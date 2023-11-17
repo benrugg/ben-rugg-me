@@ -7,7 +7,10 @@ import { useFrame, useThree, ThreeElements } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
 // import { useControls } from "leva"
 
-const numParticles = 300
+const minParticles = 100
+const maxParticles = 300
+const minThreeScreenAreaThreshold = 15
+const maxThreeScreenAreaThreshold = 35
 const zMin = 0
 const zMax = 10
 const overshootScreenScale = 2
@@ -54,7 +57,7 @@ function Temp(props: ThreeElements["mesh"]) {
 export default function Test() {
   const randomParticlePositions = useMemo(() => {
     const positions: [x: number, y: number, z: number][] = []
-    for (let i = 0; i < numParticles; i++) {
+    for (let i = 0; i < maxParticles; i++) {
       positions.push([Math.random(), Math.random(), MathUtils.randFloat(zMin, zMax)])
     }
     return positions
@@ -62,6 +65,15 @@ export default function Test() {
 
   const containerRef = useRef<THREE.Group>(null!)
   const { width, height } = useThree((state) => state.viewport)
+
+  const screenArea = width * height
+  const numParticles = Math.round(
+    MathUtils.lerp(
+      minParticles,
+      maxParticles,
+      MathUtils.clamp(MathUtils.mapLinear(screenArea, minThreeScreenAreaThreshold, maxThreeScreenAreaThreshold, 0, 1), 0, 1),
+    ),
+  )
 
   useFrame((state, delta) => {
     containerRef.current.rotation.y = MathUtils.damp(
@@ -83,7 +95,7 @@ export default function Test() {
       <ambientLight intensity={0.5} />
 
       <group ref={containerRef}>
-        <Instances range={randomParticlePositions.length}>
+        <Instances range={numParticles} limit={maxParticles}>
           <icosahedronGeometry args={[1, 0]} />
           <meshPhysicalMaterial roughness={0.12} reflectivity={0.7} color={"white"} />
 
