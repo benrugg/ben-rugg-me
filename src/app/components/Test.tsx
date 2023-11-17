@@ -4,8 +4,8 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useMemo, useRef, useState } from "react"
-import { useFrame, useThree, ThreeElements } from "@react-three/fiber"
-import { Image, Instance, Instances } from "@react-three/drei"
+import { useFrame, useThree } from "@react-three/fiber"
+import { Instance, Instances, MeshDistortMaterial, useTexture } from "@react-three/drei"
 // import { useControls } from "leva"
 
 const minParticles = 100
@@ -18,6 +18,7 @@ const overshootScreenScale = 2
 const particleRotationSpeed = 0.5
 const groupRotationAmount = 0.02
 const groupRotationDamping = 2.75
+const imageRotationAmount = 0.1
 
 function Particle(props: { position: [x: number, y: number, z: number] }) {
   const ref = useRef<THREE.InstancedMesh>(null!)
@@ -47,7 +48,27 @@ function Particle(props: { position: [x: number, y: number, z: number] }) {
 }
 
 function Temp(props: { position: [x: number, y: number, z: number]; url: string }) {
-  return <Image {...props} scale={[1.4 * 2, 0.9 * 2]} />
+  const texture = useTexture(props.url)
+
+  const ref = useRef<THREE.Mesh>(null!)
+  const { width, height } = useThree((state) => state.viewport)
+
+  useFrame((state, delta) => {
+    ref.current.rotation.y = MathUtils.damp(ref.current.rotation.y, state.pointer.x * Math.PI * imageRotationAmount, groupRotationDamping, delta)
+    ref.current.rotation.x = MathUtils.damp(
+      ref.current.rotation.x,
+      -state.pointer.y * Math.PI * imageRotationAmount * 0.5,
+      groupRotationDamping,
+      delta,
+    )
+  })
+
+  return (
+    <mesh {...props} ref={ref}>
+      <planeGeometry args={[1.4 * 2, 0.9 * 2, 10, 10]} />
+      <MeshDistortMaterial distort={0.22} speed={1.5} map={texture} />
+    </mesh>
+  )
 }
 
 export default function Test() {
