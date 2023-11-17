@@ -18,7 +18,7 @@ export default function Home() {
           width: "100vw",
           height: "100vh",
         }}
-        shadows={"soft"}
+        // shadows={"soft"}
         camera={{ position: [0, 0, 5], fov: 50 }}
       >
         <Environment files="/images/polyhaven-aerodynamics_workshop_1k.hdr" />
