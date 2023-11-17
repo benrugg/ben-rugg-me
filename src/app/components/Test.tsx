@@ -3,8 +3,7 @@
 import * as THREE from "three"
 import { useRef, useState } from "react"
 import { useFrame, useThree, ThreeElements } from "@react-three/fiber"
-import { Backdrop, SoftShadows } from "@react-three/drei"
-import { useControls } from "leva"
+// import { useControls } from "leva"
 
 const numParticles = 300
 const zMin = 0
@@ -46,25 +45,14 @@ function Particle(props: ThreeElements["mesh"] & { targetPosition: [x: number, y
   )
 }
 
-// const Light = () => {
-//   const directionalCtl = useControls("Directional Light", {
-//     position: {
-//       x: -1,
-//       y: 3,
-//       z: -4.4,
-//     },
-//     intensity: 4.0,
-//     castShadow: true,
-//   })
-
-//   return (
-//     <directionalLight
-//       position={[directionalCtl.position.x, directionalCtl.position.y, directionalCtl.position.z]}
-//       intensity={directionalCtl.intensity}
-//       castShadow={directionalCtl.castShadow}
-//     />
-//   )
-// }
+function Temp(props: ThreeElements["mesh"]) {
+  return (
+    <mesh {...props} scale={0.3}>
+      <torusKnotGeometry args={[1, 0.4, 100, 16]} />
+      <meshPhysicalMaterial roughness={0.12} reflectivity={0.7} color={"lightgreen"} />
+    </mesh>
+  )
+}
 
 export default function Test() {
   const randomPositions = () => {
@@ -75,26 +63,18 @@ export default function Test() {
     return positions
   }
 
+  const { height } = useThree((state) => state.viewport)
+
   return (
     <>
       <ambientLight intensity={0.5} />
-      {/* <Light /> */}
+
       {randomPositions().map((position, index) => (
         <Particle key={index} targetPosition={position} castShadow />
       ))}
-      {/* <Particle position={[-1.2, 0, 20]} castShadow /> */}
-      {/* <Particle position={[1.2, 0, 20]} castShadow /> */}
-      {/* <Backdrop
-        floor={1.4} // Stretches the floor segment, 0.25 by default
-        segments={20} // Mesh-resolution, 20 by default
-        receiveShadow={true} // Whether to receive shadows, false by default
-        scale={[20, 10, 5]}
-        position={[0, -1, 22]}
-        rotation={[0, Math.PI, 0]}
-      >
-        <meshStandardMaterial roughness={0.7} color="#eeeeff" side={THREE.DoubleSide} />
-      </Backdrop> */}
-      {/* <SoftShadows /> */}
+
+      <Temp position={[0, -height * 1, 0]} />
+      <Temp position={[0, -height * 2, 2]} />
     </>
   )
 }

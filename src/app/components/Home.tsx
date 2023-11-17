@@ -29,10 +29,21 @@ export default function Home() {
           <Scroll>
             <Test />
           </Scroll>
+
           <Scroll html>
             <div className="flex flex-col items-center justify-center min-h-screen w-screen absolute">
               <h1 className="text-6xl font-bold">Hello World</h1>
-              <p className="mt-3 text-2xl">Welcome to the test portfolio.</p>
+              <p className="mt-3 text-2xl">Scroll to view projects</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center min-h-screen w-screen absolute" style={{ top: "100vh" }}>
+              <h1 className="text-6xl font-bold">Page 2</h1>
+              <p className="mt-3 text-2xl">Projects...</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center min-h-screen w-screen absolute" style={{ top: "200vh" }}>
+              <h1 className="text-6xl font-bold">Page 3</h1>
+              <p className="mt-3 text-2xl">Projects...</p>
             </div>
           </Scroll>
         </ScrollControls>
