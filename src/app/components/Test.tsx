@@ -13,8 +13,8 @@ const rotationSpeed = 0.5
 
 function Particle(props: ThreeElements["mesh"]) {
   const ref = useRef<THREE.Mesh>(null!)
-  const [hovered, hover] = useState(false)
-  const [clicked, click] = useState(false)
+  const [hovered, setHovered] = useState(false)
+  const [clicked, setClicked] = useState(false)
 
   useFrame((state, delta) => {
     ref.current.rotation.x += delta * rotationSpeed
@@ -26,9 +26,9 @@ function Particle(props: ThreeElements["mesh"]) {
       {...props}
       ref={ref}
       scale={clicked ? 0.3 : 0.2}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}
+      onClick={(event) => setClicked(!clicked)}
+      onPointerOver={(event) => setHovered(true)}
+      onPointerOut={(event) => setHovered(false)}
     >
       <icosahedronGeometry args={[1, 0]} />
       <meshPhysicalMaterial roughness={0.12} reflectivity={0.7} color={hovered ? "hotpink" : "orange"} />
