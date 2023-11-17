@@ -1,18 +1,19 @@
 "use client"
+/* eslint-disable jsx-a11y/alt-text */
 
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useMemo, useRef, useState } from "react"
 import { useFrame, useThree, ThreeElements } from "@react-three/fiber"
-import { Instance, Instances } from "@react-three/drei"
+import { Image, Instance, Instances } from "@react-three/drei"
 // import { useControls } from "leva"
 
 const minParticles = 100
 const maxParticles = 300
 const minThreeScreenAreaThreshold = 15
 const maxThreeScreenAreaThreshold = 35
-const zMin = 0
-const zMax = 10
+const zMin = -10
+const zMax = 0
 const overshootScreenScale = 2
 const particleRotationSpeed = 0.5
 const groupRotationAmount = 0.02
@@ -25,7 +26,7 @@ function Particle(props: { position: [x: number, y: number, z: number] }) {
   const [clicked, setClicked] = useState(false)
 
   useFrame((state, delta) => {
-    ref.current.rotation.x += delta * particleRotationSpeed
+    ref.current.rotation.x -= delta * particleRotationSpeed
     if (hovered) ref.current.rotation.y += delta * particleRotationSpeed * 2
     ref.current.scale.x = ref.current.scale.y = ref.current.scale.z = THREE.MathUtils.lerp(ref.current.scale.z, clicked ? 0.5 : 0.2, 0.1)
     // @ts-ignore: .color is not in the type definition
@@ -45,13 +46,8 @@ function Particle(props: { position: [x: number, y: number, z: number] }) {
   )
 }
 
-function Temp(props: ThreeElements["mesh"]) {
-  return (
-    <mesh {...props} scale={0.3}>
-      <torusKnotGeometry args={[1, 0.4, 100, 16]} />
-      <meshPhysicalMaterial roughness={0.12} reflectivity={0.7} color={"lightgreen"} />
-    </mesh>
-  )
+function Temp(props: { position: [x: number, y: number, z: number]; url: string }) {
+  return <Image {...props} scale={[1.4 * 2, 0.9 * 2]} />
 }
 
 export default function Test() {
@@ -84,7 +80,7 @@ export default function Test() {
     )
     containerRef.current.rotation.x = MathUtils.damp(
       containerRef.current.rotation.x,
-      state.pointer.y * Math.PI * groupRotationAmount * 0.5,
+      -state.pointer.y * Math.PI * groupRotationAmount * 0.5,
       groupRotationDamping,
       delta,
     )
@@ -111,8 +107,8 @@ export default function Test() {
         </Instances>
       </group>
 
-      <Temp position={[0, -height * 1, 0]} />
-      <Temp position={[0, -height * 2, 2]} />
+      <Temp position={[0, -height * 1, 0]} url="/images/temp-1.jpg" />
+      <Temp position={[0, -height * 2, 1.5]} url="/images/temp-2.jpg" />
     </>
   )
 }
