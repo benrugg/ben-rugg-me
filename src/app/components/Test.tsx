@@ -48,6 +48,9 @@ function Particle(props: { position: [x: number, y: number, z: number] }) {
 }
 
 function Temp(props: { position: [x: number, y: number, z: number]; url: string }) {
+  const lightPosition: [x: number, y: number, z: number] = [...props.position]
+  lightPosition[2] += 1.5
+
   const texture = useTexture(props.url)
 
   const ref = useRef<THREE.Mesh>(null!)
@@ -64,10 +67,13 @@ function Temp(props: { position: [x: number, y: number, z: number]; url: string 
   })
 
   return (
-    <mesh {...props} ref={ref}>
-      <planeGeometry args={[1.4 * 2, 0.9 * 2, 10, 10]} />
-      <MeshDistortMaterial distort={0.22} speed={1.5} map={texture} />
-    </mesh>
+    <>
+      <mesh {...props} ref={ref}>
+        <planeGeometry args={[1.4 * 2, 0.9 * 2, 10, 10]} />
+        <MeshDistortMaterial distort={0.22} speed={1.5} map={texture} roughness={0.3} />
+      </mesh>
+      <pointLight position={lightPosition} intensity={0.5} />
+    </>
   )
 }
 
