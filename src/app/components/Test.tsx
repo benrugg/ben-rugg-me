@@ -6,6 +6,7 @@ import { MathUtils } from "three"
 import { useMemo, useRef, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Instance, Instances, MeshDistortMaterial, useTexture } from "@react-three/drei"
+import { Vector3Array } from "@/types"
 // import { useControls } from "leva"
 
 const minParticles = 100
@@ -20,7 +21,7 @@ const groupRotationAmount = 0.02
 const groupRotationDamping = 2.75
 const imageRotationAmount = 0.1
 
-function Particle(props: { position: [x: number, y: number, z: number] }) {
+function Particle(props: { position: Vector3Array }) {
   const ref = useRef<THREE.InstancedMesh>(null!)
   const color = new THREE.Color()
   const [hovered, setHovered] = useState(false)
@@ -47,8 +48,8 @@ function Particle(props: { position: [x: number, y: number, z: number] }) {
   )
 }
 
-function Temp(props: { position: [x: number, y: number, z: number]; url: string }) {
-  const lightPosition: [x: number, y: number, z: number] = [...props.position]
+function Temp(props: { position: Vector3Array; url: string }) {
+  const lightPosition: Vector3Array = [...props.position]
   lightPosition[2] += 1.5
 
   const texture = useTexture(props.url)
@@ -79,7 +80,7 @@ function Temp(props: { position: [x: number, y: number, z: number]; url: string 
 
 export default function Test() {
   const randomParticlePositions = useMemo(() => {
-    const positions: [x: number, y: number, z: number][] = []
+    const positions: Vector3Array[] = []
     for (let i = 0; i < maxParticles; i++) {
       positions.push([Math.random(), Math.random(), MathUtils.randFloat(zMin, zMax)])
     }
@@ -123,7 +124,7 @@ export default function Test() {
           <meshPhysicalMaterial roughness={0.12} reflectivity={0.7} color={"white"} />
 
           {randomParticlePositions.map((randomPosition, index) => {
-            const position: [x: number, y: number, z: number] = [
+            const position: Vector3Array = [
               (randomPosition[0] * width - width / 2) * overshootScreenScale,
               (randomPosition[1] * height - height / 2) * overshootScreenScale,
               randomPosition[2],
