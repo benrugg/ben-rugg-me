@@ -108,8 +108,12 @@ export default function Test() {
         </Instances>
       </group>
 
-      <TempImage position={[0, -height * 1, 0]} url="/images/temp-1.jpg" />
-      <TempImage position={[0, -height * 2, 1.5]} url="/images/temp-2.jpg" />
+      <group position={[0, -height * 1, 0]}>
+        <TempImage url="/images/temp-1.jpg" />
+      </group>
+      <group position={[0, -height * 2, 1.5]}>
+        <TempImage url="/images/temp-2.jpg" />
+      </group>
     </>
   )
 }
