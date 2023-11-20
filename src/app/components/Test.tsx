@@ -1,11 +1,11 @@
 "use client"
-/* eslint-disable jsx-a11y/alt-text */
 
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useMemo, useRef, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Instance, Instances, MeshDistortMaterial, useTexture } from "@react-three/drei"
+import { useSpring, animated, config } from "@react-spring/three"
 import { Vector3Array } from "@/types"
 // import { useControls } from "leva"
 
@@ -21,29 +21,32 @@ const groupRotationAmount = 0.02
 const groupRotationDamping = 2.75
 const imageRotationAmount = 0.1
 
+const AnimatedInstance = animated(Instance)
+
 function Particle(props: { position: Vector3Array }) {
   const ref = useRef<THREE.InstancedMesh>(null!)
-  const color = new THREE.Color()
   const [hovered, setHovered] = useState(false)
   const [clicked, setClicked] = useState(false)
+
+  const spring = useSpring({
+    scale: clicked ? 0.5 : 0.2,
+    color: hovered ? "hotpink" : "orange",
+    config: config.stiff,
+  })
 
   useFrame((state, delta) => {
     ref.current.rotation.x -= delta * particleRotationSpeed
     if (hovered) ref.current.rotation.y += delta * particleRotationSpeed * 2
-    ref.current.scale.x = ref.current.scale.y = ref.current.scale.z = THREE.MathUtils.lerp(ref.current.scale.z, clicked ? 0.5 : 0.2, 0.1)
-    // @ts-ignore: .color is not in the type definition
-    ref.current.color.set(hovered ? "hotpink" : "orange")
-    // ref.current.color.lerp(color.set(hovered ? "hotpink" : "orange"), 0.03)
   })
 
   return (
-    <Instance
+    <AnimatedInstance
       {...props}
       ref={ref}
-      scale={0.2}
       onClick={(event) => setClicked(!clicked)}
       onPointerOver={(event) => setHovered(true)}
       onPointerOut={(event) => setHovered(false)}
+      {...spring}
     />
   )
 }
