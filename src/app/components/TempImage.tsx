@@ -41,7 +41,6 @@ export default function TempImage(props: { url: string }) {
           uniforms-opacity-value={1.0}
         />
       </mesh>
-      <pointLight position={[0, 0, 1.5]} intensity={0.5} />
     </>
   )
 }
