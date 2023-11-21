@@ -22,7 +22,9 @@ export default function Home() {
         camera={{ position: [0, 0, 5], fov: 50 }}
       >
         <Environment files="/images/polyhaven-aerodynamics_workshop_1k.hdr" />
+        <ambientLight intensity={0.5} />
         <color attach="background" args={["#f0d5ff"]} />
+
         <Preload all />
 
         <ScrollControls damping={0.1} pages={10} distance={0.5}>

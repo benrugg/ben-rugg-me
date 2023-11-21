@@ -1,6 +1,6 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
-import { useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
@@ -48,8 +48,9 @@ function Particle(props: { position: Vector3Array }) {
 }
 
 export default function Particles() {
-  // init ref
+  // init ref and state
   const containerRef = useRef<THREE.Group>(null!)
+  const [shouldDisplay, setShouldDisplay] = useState(false)
 
   // create the random particle positions
   const randomParticlePositions = useMemo(() => {
@@ -78,11 +79,15 @@ export default function Particles() {
     ),
   )
 
-  return (
-    <>
-      <ambientLight intensity={0.5} />
+  // show the particles after the first render
+  // NOTE: this is a hack to prevent the particles from disappearing during scroll
+  useEffect(() => {
+    setShouldDisplay(true)
+  }, [])
 
-      <group ref={containerRef}>
+  return (
+    <group ref={containerRef}>
+      {shouldDisplay && (
         <Instances range={numParticles} limit={maxParticles}>
           <icosahedronGeometry args={[1, 0]} />
           <meshPhysicalMaterial roughness={0.12} reflectivity={0.7} color={"white"} />
@@ -97,7 +102,7 @@ export default function Particles() {
             return <Particle key={index} position={position} />
           })}
         </Instances>
-      </group>
-    </>
+      )}
+    </group>
   )
 }
