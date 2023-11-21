@@ -13,8 +13,8 @@ import { Vector3Array } from "@/types"
 
 const minParticles = 100
 const maxParticles = 300
-const minThreeScreenAreaThreshold = 15
-const maxThreeScreenAreaThreshold = 35
+const minThreeViewportAreaThreshold = 15
+const maxThreeViewportAreaThreshold = 35
 const zMin = -10
 const zMax = 0
 const overshootScreenScale = 2
@@ -53,6 +53,10 @@ function Particle(props: { position: Vector3Array }) {
 }
 
 export default function Test() {
+  // init ref
+  const containerRef = useRef<THREE.Group>(null!)
+
+  // create the random particle positions
   const randomParticlePositions = useMemo(() => {
     const positions: Vector3Array[] = []
     for (let i = 0; i < maxParticles; i++) {
@@ -61,18 +65,26 @@ export default function Test() {
     return positions
   }, [])
 
-  const containerRef = useRef<THREE.Group>(null!)
-  const { width, height } = useThree((state) => state.viewport)
+  // get the screen size (in three js units and pixels)
+  const {
+    viewport: { width: threeWidth, height: threeHeight },
+    size: screenSize,
+  } = useThree()
 
-  const screenArea = width * height
+  // calculate the number of particles to render based on the viewport area
+  const viewportArea = threeWidth * threeHeight
   const numParticles = Math.round(
     MathUtils.lerp(
       minParticles,
       maxParticles,
-      MathUtils.clamp(MathUtils.mapLinear(screenArea, minThreeScreenAreaThreshold, maxThreeScreenAreaThreshold, 0, 1), 0, 1),
+      MathUtils.clamp(MathUtils.mapLinear(viewportArea, minThreeViewportAreaThreshold, maxThreeViewportAreaThreshold, 0, 1), 0, 1),
     ),
   )
 
+  // calculate the width of images/videos based on the screen size
+  const desiredPixelWidth = Math.min(screenSize.width, 1200)
+
+  // rotate the group on pointer move
   useFrame((state, delta) => {
     containerRef.current.rotation.y = MathUtils.damp(
       containerRef.current.rotation.y,
@@ -99,8 +111,8 @@ export default function Test() {
 
           {randomParticlePositions.map((randomPosition, index) => {
             const position: Vector3Array = [
-              (randomPosition[0] * width - width / 2) * overshootScreenScale,
-              (randomPosition[1] * height - height / 2) * overshootScreenScale,
+              (randomPosition[0] * threeWidth - threeWidth / 2) * overshootScreenScale,
+              (randomPosition[1] * threeHeight - threeHeight / 2) * overshootScreenScale,
               randomPosition[2],
             ]
 
@@ -109,11 +121,11 @@ export default function Test() {
         </Instances>
       </group>
 
-      <group position={[0, -height * 1, 0]}>
+      <group position={[0, -threeHeight * 1, 0]}>
         <TempVideo url="/video/ai-render-demo.mp4" />
       </group>
-      <group position={[0, -height * 2, 1.5]}>
-        <TempImage url="/images/temp-2.jpg" />
+      <group position={[0, -threeHeight * 2, 1.5]}>
+        <TempImage url="/images/temp-2.jpg" desiredPixelWidth={desiredPixelWidth} />
       </group>
     </>
   )
