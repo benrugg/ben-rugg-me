@@ -8,8 +8,6 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { HoverImageShader } from "@/shaders/HoverImageShader"
 import { getScaleForDesiredPixelWidth } from "@/utils/three-camera-math"
 
-const imageRotationXAmount = -0.05
-const imageRotationYAmount = 0.1
 const aspectRatio = 16 / 9
 
 export default function FloatingScreen(props: { texture: THREE.Texture; desiredPixelWidth: number }) {
