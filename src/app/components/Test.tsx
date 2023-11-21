@@ -7,6 +7,7 @@ import { useFrame, useThree } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import TempImage from "@/app/components/TempImage"
+import TempVideo from "@/app/components/TempVideo"
 import { Vector3Array } from "@/types"
 // import { useControls } from "leva"
 
@@ -109,7 +110,7 @@ export default function Test() {
       </group>
 
       <group position={[0, -height * 1, 0]}>
-        <TempImage url="/images/temp-1.jpg" />
+        <TempVideo url="/video/ai-render-demo.mp4" />
       </group>
       <group position={[0, -height * 2, 1.5]}>
         <TempImage url="/images/temp-2.jpg" />
