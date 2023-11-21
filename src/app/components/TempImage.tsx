@@ -2,7 +2,7 @@ import * as THREE from "three"
 import { MathUtils } from "three"
 import { useRef, useState } from "react"
 import { useFrame } from "@react-three/fiber"
-import { useTexture } from "@react-three/drei"
+import { useCursor, useTexture } from "@react-three/drei"
 import { useSpring, animated } from "@react-spring/three"
 import { UniformsUtils } from "three"
 import { HoverImageShader } from "@/shaders/HoverImageShader"
@@ -15,11 +15,16 @@ export default function TempImage(props: { url: string }) {
   const ref = useRef<THREE.Mesh>(null!)
   const [hovered, setHovered] = useState(false)
 
+  // set cursor to pointer when hovering
+  useCursor(hovered)
+
+  // prepare spring animation
   const spring = useSpring({
     hoverValue: hovered ? 1 : 0,
     config: { tension: 180, friction: 130 },
   })
 
+  // rotate image on pointer move
   useFrame((state, delta) => {
     ref.current.rotation.y = MathUtils.damp(ref.current.rotation.y, state.pointer.x * Math.PI * imageRotationAmount, imageRotationDamping, delta)
     ref.current.rotation.x = MathUtils.damp(
