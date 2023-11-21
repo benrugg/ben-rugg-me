@@ -6,8 +6,8 @@ import { useMemo, useRef, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
-import TempImage from "@/app/components/TempImage"
-import TempVideo from "@/app/components/TempVideo"
+import FloatingImage from "@/app/components/FloatingImage"
+import FloatingVideo from "@/app/components/FloatingVideo"
 import { Vector3Array } from "@/types"
 // import { useControls } from "leva"
 
@@ -122,10 +122,10 @@ export default function Test() {
       </group>
 
       <group position={[0, -threeHeight * 1, 0]}>
-        <TempVideo url="/video/ai-render-demo.mp4" />
+        <FloatingVideo url="/video/ai-render-demo.mp4" desiredPixelWidth={desiredPixelWidth} />
       </group>
       <group position={[0, -threeHeight * 2, 1.5]}>
-        <TempImage url="/images/temp-2.jpg" desiredPixelWidth={desiredPixelWidth} />
+        <FloatingImage url="/images/temp-2.jpg" desiredPixelWidth={desiredPixelWidth} />
       </group>
     </>
   )
