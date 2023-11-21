@@ -1,13 +1,9 @@
-"use client"
-
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useMemo, useRef, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
-import FloatingImage from "@/app/components/FloatingImage"
-import FloatingVideo from "@/app/components/FloatingVideo"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { Vector3Array } from "@/types"
 // import { useControls } from "leva"
@@ -51,7 +47,7 @@ function Particle(props: { position: Vector3Array }) {
   )
 }
 
-export default function Test() {
+export default function Particles() {
   // init ref
   const containerRef = useRef<THREE.Group>(null!)
 
@@ -67,10 +63,9 @@ export default function Test() {
   // rotate the group on pointer move
   useRotationOnPointerMove(containerRef)
 
-  // get the screen size (in three js units and pixels)
+  // get the screen size (in three js units)
   const {
     viewport: { width: threeWidth, height: threeHeight },
-    size: screenSize,
   } = useThree()
 
   // calculate the number of particles to render based on the viewport area
@@ -82,9 +77,6 @@ export default function Test() {
       MathUtils.clamp(MathUtils.mapLinear(viewportArea, minThreeViewportAreaThreshold, maxThreeViewportAreaThreshold, 0, 1), 0, 1),
     ),
   )
-
-  // calculate the width of images/videos based on the screen size
-  const desiredPixelWidth = Math.min(screenSize.width, 1200)
 
   return (
     <>
@@ -105,13 +97,6 @@ export default function Test() {
             return <Particle key={index} position={position} />
           })}
         </Instances>
-      </group>
-
-      <group position={[0, -threeHeight * 1, 0]}>
-        <FloatingVideo url="/video/ai-render-demo.mp4" desiredPixelWidth={desiredPixelWidth} />
-      </group>
-      <group position={[0, -threeHeight * 2, 1.5]}>
-        <FloatingImage url="/images/temp-2.jpg" desiredPixelWidth={desiredPixelWidth} />
       </group>
     </>
   )
