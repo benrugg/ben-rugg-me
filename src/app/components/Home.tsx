@@ -1,9 +1,9 @@
 "use client"
 
-import { Canvas } from "@react-three/fiber"
-import { Environment, Preload, OrbitControls, ScrollControls, Scroll } from "@react-three/drei"
-
 import dynamic from "next/dynamic"
+import { Canvas } from "@react-three/fiber"
+import { Environment, Preload, ScrollControls, Scroll } from "@react-three/drei"
+import { RaycastOnScroll } from "@/app/components/utils/RaycastOnScroll"
 
 const Test = dynamic(() => import("@/app/components/Test"), { ssr: false })
 
@@ -26,6 +26,8 @@ export default function Home() {
         {/* <OrbitControls makeDefault scale={1} /> */}
         <Preload all />
         <ScrollControls damping={0.1} pages={10} distance={0.5}>
+          <RaycastOnScroll />
+
           <Scroll>
             <Test />
           </Scroll>
