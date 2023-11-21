@@ -1,15 +1,15 @@
 import * as THREE from "three"
-import { MathUtils } from "three"
 import { useEffect, useMemo, useRef, useState } from "react"
-import { useFrame, useThree } from "@react-three/fiber"
+import { useThree } from "@react-three/fiber"
 import { useCursor } from "@react-three/drei"
 import { useSpring, animated } from "@react-spring/three"
 import { UniformsUtils } from "three"
+import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { HoverImageShader } from "@/shaders/HoverImageShader"
 import { getScaleForDesiredPixelWidth } from "@/utils/three-camera-math"
 
-const imageRotationAmount = 0.1
-const imageRotationDamping = 2.75
+const imageRotationXAmount = -0.05
+const imageRotationYAmount = 0.1
 const aspectRatio = 16 / 9
 
 export default function FloatingScreen(props: { texture: THREE.Texture; desiredPixelWidth: number }) {
@@ -35,16 +35,8 @@ export default function FloatingScreen(props: { texture: THREE.Texture; desiredP
     config: { tension: 180, friction: 130 },
   })
 
-  // rotate image on pointer move
-  useFrame((state, delta) => {
-    ref.current.rotation.y = MathUtils.damp(ref.current.rotation.y, state.pointer.x * Math.PI * imageRotationAmount, imageRotationDamping, delta)
-    ref.current.rotation.x = MathUtils.damp(
-      ref.current.rotation.x,
-      -state.pointer.y * Math.PI * imageRotationAmount * 0.5,
-      imageRotationDamping,
-      delta,
-    )
-  })
+  // rotate the screen on pointer move
+  useRotationOnPointerMove(ref, 5)
 
   return (
     <>

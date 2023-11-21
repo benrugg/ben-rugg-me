@@ -8,6 +8,7 @@ import { Instance, Instances } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import FloatingImage from "@/app/components/FloatingImage"
 import FloatingVideo from "@/app/components/FloatingVideo"
+import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { Vector3Array } from "@/types"
 // import { useControls } from "leva"
 
@@ -19,8 +20,6 @@ const zMin = -10
 const zMax = 0
 const overshootScreenScale = 2
 const particleRotationSpeed = 0.5
-const groupRotationAmount = 0.02
-const groupRotationDamping = 2.75
 
 const AnimatedInstance = animated(Instance)
 
@@ -65,6 +64,9 @@ export default function Test() {
     return positions
   }, [])
 
+  // rotate the group on pointer move
+  useRotationOnPointerMove(containerRef)
+
   // get the screen size (in three js units and pixels)
   const {
     viewport: { width: threeWidth, height: threeHeight },
@@ -83,22 +85,6 @@ export default function Test() {
 
   // calculate the width of images/videos based on the screen size
   const desiredPixelWidth = Math.min(screenSize.width, 1200)
-
-  // rotate the group on pointer move
-  useFrame((state, delta) => {
-    containerRef.current.rotation.y = MathUtils.damp(
-      containerRef.current.rotation.y,
-      state.pointer.x * Math.PI * groupRotationAmount,
-      groupRotationDamping,
-      delta,
-    )
-    containerRef.current.rotation.x = MathUtils.damp(
-      containerRef.current.rotation.x,
-      -state.pointer.y * Math.PI * groupRotationAmount * 0.5,
-      groupRotationDamping,
-      delta,
-    )
-  })
 
   return (
     <>
