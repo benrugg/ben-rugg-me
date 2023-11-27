@@ -6,7 +6,7 @@ import { RaycastOnScroll } from "@/app/components/utils/RaycastOnScroll"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { VideoScreen, VideoScreenHtml } from "@/app/screens/VideoScreen"
 import { ImageScreen, ImageScreenHtml } from "@/app/screens/ImageScreen"
-import Effects from "@/app/components/Effects"
+// import Effects from "@/app/components/Effects"
 
 export default function Home() {
   return (
@@ -30,7 +30,7 @@ export default function Home() {
 
         <ScrollControls damping={0.1} pages={10} distance={0.5}>
           <RaycastOnScroll />
-          <Effects />
+          {/* <Effects /> */}
 
           <Scroll>
             <WelcomeScreen page={0} />
