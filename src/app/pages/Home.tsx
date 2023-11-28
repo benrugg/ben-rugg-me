@@ -2,12 +2,9 @@
 
 import { Canvas } from "@react-three/fiber"
 import { Environment, Preload, ScrollControls, Scroll } from "@react-three/drei"
-import { RaycastOnScroll } from "@/app/components/utils/RaycastOnScroll"
+// import { RaycastOnScroll } from "@/app/components/utils/RaycastOnScroll"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
-import { VideoScreen, VideoScreenHtml } from "@/app/screens/VideoScreen"
-import { ImageScreen, ImageScreenHtml } from "@/app/screens/ImageScreen"
 import Effects from "@/app/components/Effects"
-// import Background from "@/app/components/Background"
 
 export default function Home() {
   return (
@@ -25,24 +22,22 @@ export default function Home() {
       >
         <Environment files="/images/polyhaven-aerodynamics_workshop_1k.hdr" />
         <ambientLight intensity={0.5} />
-        <color attach="background" args={["#9db1cf"]} />
+        <color attach="background" args={["#050010"]} />
 
         <Preload all />
 
-        <ScrollControls damping={0.1} pages={10} distance={0.5}>
-          <RaycastOnScroll />
+        <Effects />
+
+        <ScrollControls damping={0.1} pages={0} distance={0.5}>
+          {/* <RaycastOnScroll /> */}
           <Effects />
 
           <Scroll>
             <WelcomeScreen page={0} />
-            <VideoScreen page={2} />
-            <ImageScreen page={4} />
           </Scroll>
 
           <Scroll html>
             <WelcomeScreenHtml page={0} />
-            <VideoScreenHtml page={2} />
-            <ImageScreenHtml page={4} />
           </Scroll>
         </ScrollControls>
       </Canvas>

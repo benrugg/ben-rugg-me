@@ -34,7 +34,7 @@ export default function FloatingScreen(props: { texture: THREE.Texture; desiredP
   })
 
   // rotate the screen on pointer move
-  useRotationOnPointerMove(ref, 5)
+  useRotationOnPointerMove(ref, 2)
 
   return (
     <>

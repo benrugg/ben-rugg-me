@@ -1,5 +1,6 @@
 // import { useRef, useState } from "react"
-import { Bloom, DepthOfField, EffectComposer, Vignette } from "@react-three/postprocessing"
+import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing"
+// import { DepthOfField } from "@react-three/postprocessing"
 // import { ToneMapping } from "@react-three/postprocessing"
 // import { ToneMappingMode } from "postprocessing"
 // import { VignetteEffect } from "postprocessing"
@@ -24,9 +25,9 @@ export default function Effects() {
 
   return (
     <EffectComposer>
-      <DepthOfField focusDistance={0.003} focalLength={0.01} bokehScale={5} width={1024} height={1024} />
+      {/* <DepthOfField focusDistance={0.003} focalLength={0.01} bokehScale={5} width={1024} height={1024} /> */}
       <Bloom mipmapBlur luminanceThreshold={0.95} levels={4} intensity={2} />
-      <Vignette eskil={false} offset={0.1} darkness={0.4} />
+      <Vignette eskil={false} offset={0.2} darkness={0.8} />
       {/* <ToneMapping mode={ToneMappingMode.ACES_FILMIC} /> */}
     </EffectComposer>
   )
