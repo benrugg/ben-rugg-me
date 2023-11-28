@@ -45,7 +45,7 @@ export default function FloatingScreen(props: {
   // prepare spring animation
   const spring = useSpring({
     hoverValue: hovered ? 1 : 0,
-    textColor: hovered ? "#acc9c7" : "#e2e8f0",
+    textColor: hovered ? "#9cb9b7" : "#e2e8f0",
     lightIntensity: hovered ? 5 : 0,
     distortMagnitude: hovered ? 0.35 : 0.2,
     materialReflectivity: hovered ? 1 : 0.5,
