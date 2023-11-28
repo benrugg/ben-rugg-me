@@ -26,7 +26,7 @@ export default function Effects() {
   return (
     <EffectComposer>
       {/* <DepthOfField focusDistance={0.003} focalLength={0.01} bokehScale={5} width={1024} height={1024} /> */}
-      <Bloom mipmapBlur luminanceThreshold={0.95} levels={4} intensity={2} />
+      {/* <Bloom mipmapBlur luminanceThreshold={0.95} levels={4} intensity={2} /> */}
       <Vignette eskil={false} offset={0.2} darkness={0.8} />
       {/* <ToneMapping mode={ToneMappingMode.ACES_FILMIC} /> */}
     </EffectComposer>
