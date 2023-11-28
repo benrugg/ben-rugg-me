@@ -22,7 +22,7 @@ export default function Ground() {
         // distortion={1} // Amount of distortion based on the distortionMap texture
         // distortionMap={distortionTexture} // The red channel of this texture is used as the distortion map. Default is null
         // debug={0}
-        reflectorOffset={0.2} // Offsets the virtual camera that projects the reflection. Useful when the reflective surface is some distance from the object's origin (default = 0)
+        reflectorOffset={0.1} // Offsets the virtual camera that projects the reflection. Useful when the reflective surface is some distance from the object's origin (default = 0)
       />
     </mesh>
   )

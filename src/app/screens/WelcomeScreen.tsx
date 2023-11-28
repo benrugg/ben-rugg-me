@@ -31,10 +31,10 @@ export function WelcomeScreen(props: { page: number }) {
       {/* <Particles /> */}
       <Ground />
       <group position={[-2.5, 0, -1]}>
-        <FloatingVideo url="/video/clover-demo.mp4" desiredPixelWidth={desiredPixelWidth} />
+        <FloatingVideo url="/video/clover-demo.mp4" desiredPixelWidth={desiredPixelWidth} title={"products &\ncompanies"} titlePosition="right" />
       </group>
       <group position={[2.5, 0, -1]}>
-        <FloatingVideo url="/video/ai-render-demo.mp4" desiredPixelWidth={desiredPixelWidth} />
+        <FloatingVideo url="/video/ai-render-demo.mp4" desiredPixelWidth={desiredPixelWidth} title={"websites &\nsoftware"} />
       </group>
     </group>
   )
