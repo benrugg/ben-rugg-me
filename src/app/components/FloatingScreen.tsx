@@ -72,6 +72,7 @@ export default function FloatingScreen(props: {
     <group ref={ref} scale={[4.2, 4.2, 1]} onPointerOver={(event) => setHovered(true)} onPointerOut={(event) => setHovered(false)}>
       <mesh>
         <planeGeometry args={[1, height, 5, 5]} />
+        {/* @ts-ignore */}
         <AnimatedMeshDistortMaterial
           distort={spring.distortMagnitude}
           speed={1}
