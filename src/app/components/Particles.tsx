@@ -7,7 +7,6 @@ import { useSpring, animated, config } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { randomFromArray } from "@/utils/random"
 import { Vector3Array } from "@/types"
-// import { useControls } from "leva"
 
 const minParticles = 100
 const maxParticles = 400
@@ -21,7 +20,8 @@ const zMin = -15
 const zMax = 0
 const overshootScreenScale = 2.3
 const particleRotationSpeed = 0.5
-const particleFloatSpeed = 0.3
+const minParticleFloatSpeed = 0.15
+const maxParticleFloatSpeed = 0.45
 const possibleColors = ["#091056", "#093156", "#2b0956", "#27030b"]
 
 const AnimatedInstance = animated(Instance)
@@ -30,6 +30,7 @@ type ParticleProps = {
   position: Vector3Array
   scale: number
   color: string
+  floatSpeed: number
 }
 
 function Particle(props: ParticleProps) {
@@ -41,9 +42,12 @@ function Particle(props: ParticleProps) {
   const spring = useSpring({
     // color: hovered ? [0, 0, 0] : [0, 155, 125],
     scale: isEntering || isExiting ? 0 : props.scale,
+    floatSpeed: isEntering || isExiting ? props.floatSpeed * 5 : props.floatSpeed,
     config: (key) => {
       if (key === "scale") {
         return config.molasses
+      } else if (key === "floatSpeed") {
+        return config.slow
       } else {
         return config.stiff
       }
@@ -68,7 +72,7 @@ function Particle(props: ParticleProps) {
     // if (hovered) ref.current.rotation.y += delta * particleRotationSpeed * 2
 
     // float
-    ref.current.position.y += delta * particleFloatSpeed
+    ref.current.position.y += delta * spring.floatSpeed.get()
 
     // if the particle is too high, exit it
     if (ref.current.position.y > yMax) {
@@ -101,6 +105,7 @@ export default function Particles() {
         position: [Math.random(), Math.random(), MathUtils.randFloat(zMin, zMax)],
         scale: MathUtils.randFloat(scaleMin, scaleMax),
         color: randomFromArray(possibleColors),
+        floatSpeed: MathUtils.randFloat(minParticleFloatSpeed, maxParticleFloatSpeed),
       })
     }
     return particles
@@ -144,7 +149,7 @@ export default function Particles() {
               props.position[2],
             ]
 
-            return <Particle key={index} position={position} scale={props.scale} color={props.color} />
+            return <Particle key={index} position={position} scale={props.scale} color={props.color} floatSpeed={props.floatSpeed} />
           })}
         </Instances>
       )}
