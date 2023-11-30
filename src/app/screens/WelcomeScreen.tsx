@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { use, useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { useThree } from "@react-three/fiber"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
