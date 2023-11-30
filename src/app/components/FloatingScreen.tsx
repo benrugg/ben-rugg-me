@@ -2,11 +2,10 @@ import * as THREE from "three"
 import { MathUtils } from "three"
 import { useEffect, /* useMemo, */ useRef, useState } from "react"
 // import { useThree } from "@react-three/fiber"
-import { Center, Text3D, MeshDistortMaterial, useCursor } from "@react-three/drei"
+import { Center, MeshDistortMaterial, Text3D, useCursor } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 // import { UniformsUtils } from "three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
-// import { HoverImageShader } from "@/shaders/HoverImageShader"
 // import { getScaleForDesiredPixelWidth } from "@/utils/three-camera-math"
 
 const aspectRatio = 16 / 9
@@ -45,12 +44,17 @@ export default function FloatingScreen(props: {
   // prepare spring animation
   const spring = useSpring({
     hoverValue: hovered ? 1 : 0,
-    textColor: hovered ? "#9cb9b7" : "#e2e8f0",
     lightIntensity: hovered ? 5 : 0,
-    distortMagnitude: hovered ? 0.35 : 0.2,
-    materialReflectivity: hovered ? 1 : 0.5,
-    materialMetalness: hovered ? 0.5 : 0,
-    materialIrridescence: hovered ? 1 : 0,
+    videoMaterialDistortMagnitude: hovered ? 0.35 : 0.2,
+    videoMaterialReflectivity: hovered ? 1 : 0.5,
+    videoMaterialMetalness: hovered ? 0.5 : 0,
+    videoMaterialIrridescence: hovered ? 1 : 0,
+    textMaterialColor: hovered ? "#a0c0c0" : "#b2e8f9",
+    textMaterialIridescence: hovered ? 0.5 : 1,
+    textMaterialIridescenceIOR: hovered ? 1.9 : 1.9,
+    textMaterialReflectivity: hovered ? 1 : 1,
+    textMaterialMetalness: hovered ? 0 : 0.8,
+    textMaterialRoughness: hovered ? 0.5 : 1,
     config: (key) => {
       if (key === "hoverValue") {
         return { tension: 180, friction: 130 }
@@ -74,30 +78,31 @@ export default function FloatingScreen(props: {
         <planeGeometry args={[1, height, 5, 5]} />
         {/* @ts-ignore */}
         <AnimatedMeshDistortMaterial
-          distort={spring.distortMagnitude}
+          distort={spring.videoMaterialDistortMagnitude}
           speed={1}
           map={props.texture}
           roughness={0.2}
-          reflectivity={spring.materialReflectivity}
-          metalness={spring.materialMetalness}
-          iridescence={spring.materialIrridescence}
+          reflectivity={spring.videoMaterialReflectivity}
+          metalness={spring.videoMaterialMetalness}
+          iridescence={spring.videoMaterialIrridescence}
         />
-        {/* <animated.shaderMaterial
-          args={[{ ...HoverImageShader, uniforms: UniformsUtils.clone(HoverImageShader.uniforms) }]}
-          uniforms-textureImage-value={props.texture}
-          uniforms-hover-value={spring.hoverValue}
-          uniforms-opacity-value={1.0}
-        /> */}
       </mesh>
       <Center
-        position={[textXPosition, -0.5 * height - 0.03, 0.2]}
+        position={[textXPosition, -0.5 * height - 0.03, 0.25]}
         top
         left={props.titlePosition === "right"}
         right={props.titlePosition !== "right"}
       >
-        <Text3D font="/fonts/Inter-SemiBold.json" scale={[0.06, 0.06, 0.12]} letterSpacing={-0.06} lineHeight={0.51}>
+        <Text3D font="/fonts/Inter-SemiBold.json" scale={[0.06, 0.06, 0.4]} letterSpacing={-0.06} lineHeight={0.51}>
           {props.title}
-          <animated.meshBasicMaterial color={spring.textColor} />
+          <animated.meshPhysicalMaterial
+            color={spring.textMaterialColor}
+            iridescence={spring.textMaterialIridescence}
+            iridescenceIOR={spring.textMaterialIridescenceIOR}
+            reflectivity={spring.textMaterialReflectivity}
+            metalness={spring.textMaterialMetalness}
+            roughness={spring.textMaterialRoughness}
+          />
         </Text3D>
       </Center>
       <animated.spotLight
