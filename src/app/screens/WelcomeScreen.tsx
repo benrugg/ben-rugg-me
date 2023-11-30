@@ -1,6 +1,5 @@
 import * as THREE from "three"
 import { useRef } from "react"
-import { useThree } from "@react-three/fiber"
 // import { usePagePosition } from "@/app/hooks/usePagePosition"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
@@ -22,19 +21,15 @@ export function WelcomeScreen(props: { page: number }) {
   }
   useRotationOnPointerMove(groupRef, rotationConfig)
 
-  // set the video's size dynamically
-  const { size } = useThree()
-  const desiredPixelWidth = Math.min(size.width * 0.4, 1200)
-
   return (
     <group ref={groupRef} position={[0, yPosition, 0]}>
       {/* <Particles /> */}
       <Ground />
       <group position={[-2.5, 0, -1]}>
-        <FloatingVideo url="/video/clover-demo.mp4" desiredPixelWidth={desiredPixelWidth} title={"products &\ncompanies"} titlePosition="right" />
+        <FloatingVideo url="/video/clover-demo.mp4" title={"products &\ncompanies"} titlePosition="right" />
       </group>
       <group position={[2.5, 0, -1]}>
-        <FloatingVideo url="/video/ai-render-demo.mp4" desiredPixelWidth={desiredPixelWidth} title={"websites &\nsoftware"} />
+        <FloatingVideo url="/video/ai-render-demo.mp4" title={"websites &\nsoftware"} />
       </group>
     </group>
   )
