@@ -21,7 +21,7 @@ export default function FloatingScreen(props: {
   const ref = useRef<THREE.Group>(null!)
   const spotlightRef = useRef<THREE.SpotLight>(null!)
   // const [scale, setScale] = useState(1)
-  const [hovered, setHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
   // const vector3 = useMemo(() => new THREE.Vector3(), [])
 
   // // calculate the width of images/videos based on the screen size and world position
@@ -39,22 +39,22 @@ export default function FloatingScreen(props: {
   const textXPosition = props.titlePosition === "right" ? 0.5 - textXPadding : -0.5 + textXPadding
 
   // set cursor to pointer when hovering
-  useCursor(hovered)
+  useCursor(isHovered)
 
   // prepare spring animation
   const spring = useSpring({
-    hoverValue: hovered ? 1 : 0,
-    lightIntensity: hovered ? 5 : 0,
-    videoMaterialDistortMagnitude: hovered ? 0.35 : 0.2,
-    videoMaterialReflectivity: hovered ? 1 : 0.5,
-    videoMaterialMetalness: hovered ? 0.5 : 0,
-    videoMaterialIrridescence: hovered ? 1 : 0,
-    textMaterialColor: hovered ? "#a0c0c0" : "#b2e8f9",
-    textMaterialIridescence: hovered ? 0.5 : 1,
-    textMaterialIridescenceIOR: hovered ? 1.9 : 1.9,
-    textMaterialReflectivity: hovered ? 1 : 1,
-    textMaterialMetalness: hovered ? 0 : 0.8,
-    textMaterialRoughness: hovered ? 0.5 : 1,
+    hoverValue: isHovered ? 1 : 0,
+    lightIntensity: isHovered ? 5 : 0,
+    videoMaterialDistortMagnitude: isHovered ? 0.35 : 0.2,
+    videoMaterialReflectivity: isHovered ? 1 : 0.5,
+    videoMaterialMetalness: isHovered ? 0.5 : 0,
+    videoMaterialIrridescence: isHovered ? 1 : 0,
+    textMaterialColor: isHovered ? "#a0c0c0" : "#b2e8f9",
+    textMaterialIridescence: isHovered ? 0.5 : 1,
+    textMaterialIridescenceIOR: isHovered ? 1.9 : 1.9,
+    textMaterialReflectivity: isHovered ? 1 : 1,
+    textMaterialMetalness: isHovered ? 0 : 0.8,
+    textMaterialRoughness: isHovered ? 0.5 : 1,
     config: (key) => {
       if (key === "hoverValue") {
         return { tension: 180, friction: 130 }
@@ -73,7 +73,7 @@ export default function FloatingScreen(props: {
   useRotationOnPointerMove(ref, 2)
 
   return (
-    <group ref={ref} scale={[4.2, 4.2, 1]} onPointerOver={(event) => setHovered(true)} onPointerOut={(event) => setHovered(false)}>
+    <group ref={ref} scale={[4.2, 4.2, 1]} onPointerOver={(event) => setIsHovered(true)} onPointerOut={(event) => setIsHovered(false)}>
       <mesh>
         <planeGeometry args={[1, height, 5, 5]} />
         {/* @ts-ignore */}
