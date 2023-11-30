@@ -79,10 +79,9 @@ export function WelcomeScreenHtml() {
   const titleHeight = 62
   const titleTrails = useTrail(titleWords.length, {
     opacity: 1,
-    color: "#9bc8d3",
     height: titleHeight,
     top: 0,
-    from: { opacity: 0, height: 0, top: -20, color: "#2f9a9d" },
+    from: { opacity: 0, height: 0, top: -20 },
     delay: 300,
   })
 
@@ -91,23 +90,26 @@ export function WelcomeScreenHtml() {
   const subtitleHeight = 30
   const subtitleTrails = useTrail(subtitleWords.length, {
     opacity: 1,
-    color: "#9bc8d3",
     height: subtitleHeight,
     top: 0,
-    from: { opacity: 0, height: 0, top: -20, color: "#2f9a9d" },
+    from: { opacity: 0, height: 0, top: -20 },
     delay: 600,
   })
 
   return (
     <div className="flex flex-col items-center justify-top min-h-screen w-screen absolute">
-      <h1 className={`${rockSalt.className} text-5xl font-bold text-slate-200 mt-16`} style={{ height: titleHeight }}>
+      <h1 className={`${rockSalt.className} text-5xl font-bold mt-16`} style={{ height: titleHeight }}>
         {titleTrails.map((props, index) => (
-          <animated.span key={index} className="relative inline-block overflow-hidden align-top mx-2" style={props}>
+          <animated.span
+            key={index}
+            className="relative inline-block overflow-hidden align-top mx-2 bg-gradient-to-b text-transparent bg-clip-text from-[#60688b] via-[#4a6275] to-[#195e6f]"
+            style={props}
+          >
             {titleWords[index]}
           </animated.span>
         ))}
       </h1>
-      <p className={`${poppins.className} font-light text-lg text-slate-200`} style={{ height: subtitleHeight }}>
+      <p className={`${poppins.className} font-light text-lg`} style={{ height: subtitleHeight, color: "#4a7f97" }}>
         {subtitleTrails.map((props, index) => (
           <animated.span key={index} className="relative inline-block overflow-hidden align-top mx-1" style={props}>
             {subtitleWords[index]}
