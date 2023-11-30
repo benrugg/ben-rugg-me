@@ -1,11 +1,11 @@
 import * as THREE from "three"
-import { useRef } from "react"
+import { use, useEffect, useRef, useState } from "react"
 import { useThree } from "@react-three/fiber"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
-import { group } from "console"
+import { useTrail, animated, config } from "@react-spring/web"
 
 export function WelcomeScreen(props: { page: number }) {
   // init refs
@@ -73,10 +73,46 @@ export function WelcomeScreen(props: { page: number }) {
 }
 
 export function WelcomeScreenHtml(props: { page: number }) {
+  // animate title
+  const titleWords = "Ben Rugg".split(" ")
+  const titleHeight = 70
+  const titleTrails = useTrail(titleWords.length, {
+    opacity: 1,
+    color: "#9bc8d3",
+    height: titleHeight,
+    top: 0,
+    from: { opacity: 0, height: 0, top: -20, color: "#2f9a9d" },
+    delay: 300,
+  })
+
+  // animate subtitle
+  const subtitleWords = "web / software / digital".split(" ")
+  const subtitleHeight = 30
+  const subtitleTrails = useTrail(subtitleWords.length, {
+    opacity: 1,
+    color: "#9bc8d3",
+    height: subtitleHeight,
+    top: 0,
+    from: { opacity: 0, height: 0, top: -20, color: "#2f9a9d" },
+    delay: 500,
+  })
+
   return (
     <div className="flex flex-col items-center justify-top min-h-screen w-screen absolute">
-      <h1 className="text-6xl font-bold text-slate-200 pt-16">Ben Rugg</h1>
-      <p className="mt-3 font-light text-lg text-slate-200">web / software / digital</p>
+      <h1 className="text-6xl font-bold text-slate-200 mt-16" style={{ height: titleHeight }}>
+        {titleTrails.map((props, index) => (
+          <animated.span key={index} className="relative inline-block overflow-hidden align-top mx-2" style={props}>
+            {titleWords[index]}
+          </animated.span>
+        ))}
+      </h1>
+      <p className="font-light text-lg text-slate-200" style={{ height: subtitleHeight }}>
+        {subtitleTrails.map((props, index) => (
+          <animated.span key={index} className="relative inline-block overflow-hidden align-top mx-1" style={props}>
+            {subtitleWords[index]}
+          </animated.span>
+        ))}
+      </p>
     </div>
   )
 }
