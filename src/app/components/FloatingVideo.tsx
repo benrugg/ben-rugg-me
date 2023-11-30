@@ -74,12 +74,12 @@ export default function FloatingVideo(props: { url: string; title: string; title
         />
       </mesh>
       <Center
-        position={[textXPosition, -0.5 * height - 0.03, 0.25]}
-        top
+        position={[textXPosition, -0.5 * height + 0.12, 0.25]}
+        bottom
         left={props.titlePosition === "right"}
         right={props.titlePosition !== "right"}
       >
-        <Text3D font="/fonts/Inter-SemiBold.json" scale={[0.06, 0.06, 0.4]} letterSpacing={-0.06} lineHeight={0.51}>
+        <Text3D font="/fonts/poppins-semibold.json" scale={[0.065, 0.065, 0.4]} letterSpacing={-0.08} lineHeight={0.47}>
           {props.title}
           <animated.meshPhysicalMaterial
             color={spring.textMaterialColor}

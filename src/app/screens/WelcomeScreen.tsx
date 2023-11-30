@@ -5,7 +5,8 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
-import { useTrail, animated, config } from "@react-spring/web"
+import { useTrail, animated } from "@react-spring/web"
+import { poppins, rockSalt } from "@/fonts/fonts"
 
 export function WelcomeScreen() {
   // init refs
@@ -75,7 +76,7 @@ export function WelcomeScreen() {
 export function WelcomeScreenHtml() {
   // animate title
   const titleWords = "Ben Rugg".split(" ")
-  const titleHeight = 70
+  const titleHeight = 62
   const titleTrails = useTrail(titleWords.length, {
     opacity: 1,
     color: "#9bc8d3",
@@ -94,19 +95,19 @@ export function WelcomeScreenHtml() {
     height: subtitleHeight,
     top: 0,
     from: { opacity: 0, height: 0, top: -20, color: "#2f9a9d" },
-    delay: 500,
+    delay: 600,
   })
 
   return (
     <div className="flex flex-col items-center justify-top min-h-screen w-screen absolute">
-      <h1 className="text-6xl font-bold text-slate-200 mt-16" style={{ height: titleHeight }}>
+      <h1 className={`${rockSalt.className} text-5xl font-bold text-slate-200 mt-16`} style={{ height: titleHeight }}>
         {titleTrails.map((props, index) => (
           <animated.span key={index} className="relative inline-block overflow-hidden align-top mx-2" style={props}>
             {titleWords[index]}
           </animated.span>
         ))}
       </h1>
-      <p className="font-light text-lg text-slate-200" style={{ height: subtitleHeight }}>
+      <p className={`${poppins.className} font-light text-lg text-slate-200`} style={{ height: subtitleHeight }}>
         {subtitleTrails.map((props, index) => (
           <animated.span key={index} className="relative inline-block overflow-hidden align-top mx-1" style={props}>
             {subtitleWords[index]}
