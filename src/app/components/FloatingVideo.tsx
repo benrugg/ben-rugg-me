@@ -5,7 +5,6 @@ import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from 
 import { useSpring, animated, config } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 
-const videoScale = 4.2
 const aspectRatio = 16 / 9
 const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
 
@@ -60,7 +59,7 @@ export default function FloatingVideo(props: { url: string; title: string; title
   useRotationOnPointerMove(ref, 2)
 
   return (
-    <group ref={ref} scale={[videoScale, videoScale, 1]} onPointerOver={(event) => setIsHovered(true)} onPointerOut={(event) => setIsHovered(false)}>
+    <group ref={ref} onPointerOver={(event) => setIsHovered(true)} onPointerOut={(event) => setIsHovered(false)}>
       <mesh>
         <planeGeometry args={[1, height, 5, 5]} />
         {/* @ts-ignore */}
