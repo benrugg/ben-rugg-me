@@ -30,6 +30,7 @@ export function WelcomeScreen() {
   let video1YPosition = 0
   let video2YPosition = 0
   let videoZPosition = -1
+  let videoLightSize: "large" | "small" = "large"
   let groundYPosition = -1.4
   let groundWidth = 25
   let groundHeight = 15
@@ -47,6 +48,7 @@ export function WelcomeScreen() {
     video1YPosition = 1.65
     video2YPosition = 0
     videoZPosition = -0.2
+    videoLightSize = "small"
     groundYPosition = -0.95
     groundWidth = 15
     groundHeight = 8
@@ -64,10 +66,10 @@ export function WelcomeScreen() {
       {/* <Particles /> */}
       <Ground position={[0, groundYPosition, 0]} width={groundWidth} height={groundHeight} />
       <group position={[-videoXPosition, video1YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-        <FloatingVideo url="/video/clover-demo.mp4" title={"products &\ncompanies"} titlePosition="right" />
+        <FloatingVideo url="/video/clover-demo.mp4" title={"products &\ncompanies"} titlePosition="right" lightSize={videoLightSize} />
       </group>
       <group position={[videoXPosition, video2YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-        <FloatingVideo url="/video/ai-render-demo.mp4" title={"websites &\nsoftware"} />
+        <FloatingVideo url="/video/ai-render-demo.mp4" title={"websites &\nsoftware"} lightSize={videoLightSize} />
       </group>
     </group>
   )

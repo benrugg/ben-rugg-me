@@ -8,7 +8,7 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 const aspectRatio = 16 / 9
 const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
 
-export default function FloatingVideo(props: { url: string; title: string; titlePosition?: "left" | "right" }) {
+export default function FloatingVideo(props: { url: string; title: string; titlePosition?: "left" | "right"; lightSize?: "small" | "large" }) {
   // init refs and state
   const ref = useRef<THREE.Group>(null!)
   const spotlightRef = useRef<THREE.SpotLight>(null!)
@@ -93,10 +93,10 @@ export default function FloatingVideo(props: { url: string; title: string; title
       </Center>
       <animated.spotLight
         ref={spotlightRef}
-        position={[0, 1.6, 10]}
+        position={[0, props.lightSize === "small" ? 2 : 1.6, 10]}
         intensity={spring.lightIntensity}
         decay={0}
-        angle={MathUtils.degToRad(10)}
+        angle={MathUtils.degToRad(props.lightSize === "small" ? 6 : 10)}
         penumbra={0.3}
       />
     </group>
