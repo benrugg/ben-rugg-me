@@ -7,7 +7,7 @@ import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
 import { useTrail, animated, config } from "@react-spring/web"
 
-export function WelcomeScreen(props: { page: number }) {
+export function WelcomeScreen() {
   // init refs
   const groupRef = useRef<THREE.Group>(null!)
 
@@ -72,7 +72,7 @@ export function WelcomeScreen(props: { page: number }) {
   )
 }
 
-export function WelcomeScreenHtml(props: { page: number }) {
+export function WelcomeScreenHtml() {
   // animate title
   const titleWords = "Ben Rugg".split(" ")
   const titleHeight = 70

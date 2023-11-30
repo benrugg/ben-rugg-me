@@ -33,11 +33,11 @@ export default function Home() {
           <Effects />
 
           <Scroll>
-            <WelcomeScreen page={0} />
+            <WelcomeScreen />
           </Scroll>
 
           <Scroll html>
-            <WelcomeScreenHtml page={0} />
+            <WelcomeScreenHtml />
           </Scroll>
         </ScrollControls>
       </Canvas>
