@@ -1,8 +1,7 @@
-import { use, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useNavigation } from "@/app/hooks/useNavigation"
 import { useThree } from "@react-three/fiber"
 import { CameraControls } from "@react-three/drei"
-import path from "path"
 
 export default function CameraControlsWrapper() {
   // init refs
@@ -20,7 +19,7 @@ export default function CameraControlsWrapper() {
   // when the route is changed, zoom to one of the floating videos
   useNavigation({
     on: {
-      routeChanged: ({ pathname, searchParams }: { pathname: string | null; searchParams: URLSearchParams | null }) => {
+      routeChanged: ({ pathname }) => {
         // if we don't have a camera controls ref, quit here
         if (cameraControlsRef.current === null) return
 
