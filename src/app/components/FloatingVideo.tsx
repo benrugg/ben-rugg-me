@@ -1,6 +1,7 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useEffect, useRef, useState } from "react"
+import { useRouter } from "next/navigation"
 import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
@@ -8,11 +9,20 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 const aspectRatio = 16 / 9
 const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
 
-export default function FloatingVideo(props: { url: string; title: string; titlePosition?: "left" | "right"; lightSize?: "small" | "large" }) {
+export default function FloatingVideo(props: {
+  url: string
+  title: string
+  name: string
+  titlePosition?: "left" | "right"
+  lightSize?: "small" | "large"
+}) {
   // init refs and state
   const ref = useRef<THREE.Group>(null!)
   const spotlightRef = useRef<THREE.SpotLight>(null!)
   const [isHovered, setIsHovered] = useState(false)
+
+  // get the router
+  const router = useRouter()
 
   // load the video
   const videoTexture = useVideoTexture(props.url)
@@ -59,8 +69,13 @@ export default function FloatingVideo(props: { url: string; title: string; title
   useRotationOnPointerMove(ref, 2)
 
   return (
-    <group ref={ref} onPointerOver={(event) => setIsHovered(true)} onPointerOut={(event) => setIsHovered(false)}>
-      <mesh>
+    <group
+      ref={ref}
+      onPointerOver={(event) => setIsHovered(true)}
+      onPointerOut={(event) => setIsHovered(false)}
+      onClick={() => router.push(`/${props.name}`)}
+    >
+      <mesh name={props.name}>
         <planeGeometry args={[1, height, 5, 5]} />
         {/* @ts-ignore */}
         <AnimatedMeshDistortMaterial

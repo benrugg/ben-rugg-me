@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber"
 import { Environment, Preload, ScrollControls, Scroll } from "@react-three/drei"
 // import { RaycastOnScroll } from "@/app/components/utils/RaycastOnScroll"
+import CameraControlsWrapper from "@/app/components/CameraControlsWrapper"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import Effects from "@/app/components/Effects"
 
@@ -20,6 +21,7 @@ export default function Home() {
         // shadows={"soft"}
         camera={{ position: [0, 0, 5], fov: 50 }}
       >
+        <CameraControlsWrapper />
         <Environment files="/images/polyhaven-aerodynamics_workshop_1k.hdr" />
         <ambientLight intensity={0.5} />
         <color attach="background" args={["#050010"]} />

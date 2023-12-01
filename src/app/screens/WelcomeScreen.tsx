@@ -66,10 +66,16 @@ export function WelcomeScreen() {
       {/* <Particles /> */}
       <Ground position={[0, groundYPosition, 0]} width={groundWidth} height={groundHeight} />
       <group position={[-videoXPosition, video1YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-        <FloatingVideo url="/video/clover-demo.mp4" title={"products &\ncompanies"} titlePosition="right" lightSize={videoLightSize} />
+        <FloatingVideo
+          url="/video/clover-demo.mp4"
+          name="companies"
+          title={"products &\ncompanies"}
+          titlePosition="right"
+          lightSize={videoLightSize}
+        />
       </group>
       <group position={[videoXPosition, video2YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-        <FloatingVideo url="/video/ai-render-demo.mp4" title={"websites &\nsoftware"} lightSize={videoLightSize} />
+        <FloatingVideo url="/video/ai-render-demo.mp4" name="projects" title={"websites &\nsoftware"} lightSize={videoLightSize} />
       </group>
     </group>
   )
