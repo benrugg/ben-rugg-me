@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useEffect, useRef, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
@@ -21,8 +21,11 @@ export default function FloatingVideo(props: {
   const spotlightRef = useRef<THREE.SpotLight>(null!)
   const [isHovered, setIsHovered] = useState(false)
 
-  // get the router
+  // get the router and pathname
   const router = useRouter()
+  const pathname = usePathname()
+  const strippedPathname = pathname.replace("/", "")
+  const isExiting = strippedPathname === props.name
 
   // load the video
   const videoTexture = useVideoTexture(props.url)
@@ -42,6 +45,8 @@ export default function FloatingVideo(props: {
     hoverValue: isHovered ? 1 : 0,
     lightIntensity: isHovered ? 5 : 0,
     videoMaterialDistortMagnitude: isHovered ? 0.35 : 0.2,
+    videoMaterialColor: isExiting ? "#000000" : "#ffffff",
+    videoMaterialOpacity: isExiting ? 0 : 1,
     videoMaterialReflectivity: isHovered ? 1 : 0.5,
     videoMaterialMetalness: isHovered ? 0.5 : 0,
     videoMaterialIrridescence: isHovered ? 1 : 0,
@@ -51,9 +56,14 @@ export default function FloatingVideo(props: {
     textMaterialReflectivity: isHovered ? 1 : 1,
     textMaterialMetalness: isHovered ? 0 : 0.8,
     textMaterialRoughness: isHovered ? 0.5 : 1,
+    textMaterialOpacity: isExiting ? 0 : 1,
     config: (key) => {
       if (key === "hoverValue") {
         return { tension: 180, friction: 130 }
+      } else if (key === "videoMaterialColor" || key === "videoMaterialOpacity") {
+        return { tension: 200, friction: 150 }
+      } else if (key === "textMaterialOpacity") {
+        return config.slow
       } else {
         return config.gentle
       }
@@ -82,10 +92,14 @@ export default function FloatingVideo(props: {
           distort={spring.videoMaterialDistortMagnitude}
           speed={1}
           map={videoTexture}
+          color={spring.videoMaterialColor}
+          opacity={spring.videoMaterialOpacity}
           roughness={0.2}
           reflectivity={spring.videoMaterialReflectivity}
           metalness={spring.videoMaterialMetalness}
           iridescence={spring.videoMaterialIrridescence}
+          alphaTest={0.005}
+          transparent
         />
       </mesh>
       <Center
@@ -103,6 +117,9 @@ export default function FloatingVideo(props: {
             reflectivity={spring.textMaterialReflectivity}
             metalness={spring.textMaterialMetalness}
             roughness={spring.textMaterialRoughness}
+            opacity={spring.textMaterialOpacity}
+            alphaTest={0.005}
+            transparent
           />
         </Text3D>
       </Center>
