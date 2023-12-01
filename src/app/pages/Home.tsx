@@ -1,5 +1,7 @@
 "use client"
 
+import { useNavigation } from "@/app/hooks/useNavigation"
+import { useScreenStore } from "@/app/stores/screenStore"
 import { Canvas } from "@react-three/fiber"
 import { Environment, Preload, ScrollControls, Scroll } from "@react-three/drei"
 // import { RaycastOnScroll } from "@/app/components/utils/RaycastOnScroll"
@@ -7,7 +9,29 @@ import CameraControlsWrapper from "@/app/components/CameraControlsWrapper"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import Effects from "@/app/components/Effects"
 
+const delayBeforeSettingScreen = 1500
+
 export default function Home() {
+  // when the route is changed, set the screen, either immediately
+  // or with a delay
+  useNavigation({
+    on: {
+      routeChanged: ({ pathname }) => {
+        if (!pathname) return
+
+        let screen = pathname.replace("/", "") || "welcome"
+        // TODO: later, probably time this to after we've loaded and started rendering
+        if (performance.now() > delayBeforeSettingScreen) {
+          useScreenStore.getState().setScreen(screen)
+        } else {
+          setTimeout(() => {
+            useScreenStore.getState().setScreen(screen)
+          }, delayBeforeSettingScreen)
+        }
+      },
+    },
+  })
+
   return (
     <>
       <Canvas

@@ -2,6 +2,7 @@ import * as THREE from "three"
 import { MathUtils } from "three"
 import { useEffect, useRef, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
+import { useScreenStore } from "@/app/stores/screenStore"
 import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
@@ -21,11 +22,12 @@ export default function FloatingVideo(props: {
   const spotlightRef = useRef<THREE.SpotLight>(null!)
   const [isHovered, setIsHovered] = useState(false)
 
-  // get the router and pathname
+  // get the router
   const router = useRouter()
-  const pathname = usePathname()
-  const strippedPathname = pathname.replace("/", "")
-  const isExiting = strippedPathname === props.name
+
+  // get the current screen, and determine if we're exiting
+  const screen = useScreenStore((state) => state.screen)
+  const isExiting = screen === props.name
 
   // load the video
   const videoTexture = useVideoTexture(props.url)

@@ -19,7 +19,8 @@
     "postprocessing": "^6.33.3",
     "react": "^18",
     "react-dom": "^18",
-    "three": "^0.158.0"
+    "three": "^0.158.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/node": "^20",
