@@ -6,7 +6,6 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
 import { useTrail, animated } from "@react-spring/web"
-import { poppins /*, rockSalt */ } from "@/fonts/fonts"
 
 export function WelcomeScreen() {
   // init refs
