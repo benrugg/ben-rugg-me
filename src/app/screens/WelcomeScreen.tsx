@@ -5,7 +5,10 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
-import { useTrail, animated } from "@react-spring/web"
+import { SkeletonImages } from "@/app/components/Skeletons"
+import { useScreenStore } from "@/app/stores/screenStore"
+import { useTrail, animated as animatedHtml } from "@react-spring/web"
+import { useSpring, animated } from "@react-spring/three"
 
 export function WelcomeScreen() {
   // init refs
@@ -61,22 +64,55 @@ export function WelcomeScreen() {
   }
 
   return (
-    <group ref={groupRef} position={[0, groupYPosition, 0]}>
-      {/* <Particles /> */}
-      <Ground position={[0, groundYPosition, 0]} width={groundWidth} height={groundHeight} />
-      <group position={[-videoXPosition, video1YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-        <FloatingVideo
-          url="/video/clover-demo.mp4"
-          name="companies"
-          title={"products &\ncompanies"}
-          titlePosition="right"
-          lightSize={videoLightSize}
-        />
+    <>
+      <group position={[0, 8, -1]}>
+        <SkeletonImages count={5} spacingY={8} />
       </group>
-      <group position={[videoXPosition, video2YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-        <FloatingVideo url="/video/ai-render-demo.mp4" name="projects" title={"websites &\nsoftware"} lightSize={videoLightSize} />
+      <group ref={groupRef} position={[0, groupYPosition, 0]}>
+        {/* <Particles /> */}
+        <Ground position={[0, groundYPosition, 0]} width={groundWidth} height={groundHeight} />
+        <group position={[-videoXPosition, video1YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
+          <FloatingVideo
+            url="/video/clover-demo.mp4"
+            name="companies"
+            title={"products &\ncompanies"}
+            titlePosition="right"
+            lightSize={videoLightSize}
+          />
+        </group>
+        <group position={[videoXPosition, video2YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
+          <FloatingVideo url="/video/ai-render-demo.mp4" name="projects" title={"websites &\nsoftware"} lightSize={videoLightSize} />
+        </group>
       </group>
-    </group>
+    </>
+  )
+}
+
+export function WelcomeScreenTransition(props: { children: React.ReactNode }) {
+  // get the current screen
+  const screen = useScreenStore((state) => state.screen)
+
+  // get whether we're transitioning
+  const isTransitioning = useScreenStore((state) => state.isTransitioning)
+
+  // get whether we're visible
+  const isVisible = screen === "welcome" || isTransitioning
+
+  // prepare spring animation
+  const spring = useSpring({
+    positionY: screen === "welcome" ? 0 : -50,
+    config: {
+      tension: 320,
+      friction: 450,
+      mass: 200,
+      precision: 0.0001,
+    },
+  })
+
+  return (
+    <animated.group position-y={spring.positionY} visible={isVisible}>
+      {props.children}
+    </animated.group>
   )
 }
 
@@ -107,20 +143,20 @@ export function WelcomeScreenHtml() {
     <div className="flex flex-col items-center justify-top min-h-screen w-screen absolute">
       <h1 className={`font-kage text-[3.9rem] font-bold mt-12`} style={{ height: titleHeight }}>
         {titleTrails.map((props, index) => (
-          <animated.span
+          <animatedHtml.span
             key={index}
             className="relative inline-block overflow-hidden align-top mx-2 bg-gradient-to-b text-transparent bg-clip-text from-[#60688b] via-[#4a6275] to-[#195e6f]"
             style={props}
           >
             {titleWords[index]}
-          </animated.span>
+          </animatedHtml.span>
         ))}
       </h1>
       <p className={`font-eirene-sans font-light text-[1.17rem] tracking-wider -mt-1`} style={{ height: subtitleHeight, color: "#4a7f97" }}>
         {subtitleTrails.map((props, index) => (
-          <animated.span key={index} className="relative inline-block overflow-hidden align-top mx-1" style={props}>
+          <animatedHtml.span key={index} className="relative inline-block overflow-hidden align-top mx-1" style={props}>
             {subtitleWords[index]}
-          </animated.span>
+          </animatedHtml.span>
         ))}
       </p>
     </div>
