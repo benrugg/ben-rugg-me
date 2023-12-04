@@ -3,7 +3,7 @@ import { useScreenStore } from "@/app/stores/screenStore"
 import { useThree } from "@react-three/fiber"
 import { CameraControls } from "@react-three/drei"
 
-export default function CameraControlsWrapper() {
+export default function CameraControlsManager() {
   // init refs
   const cameraControlsRef = useRef<CameraControls>(null!)
 
@@ -16,7 +16,17 @@ export default function CameraControlsWrapper() {
 
   // configure the camera controls
   useEffect(() => {
+    // set the animation speed
     cameraControlsRef.current.smoothTime = 0.6
+
+    // disable all mouse and touch controls
+    cameraControlsRef.current.mouseButtons.left = 0
+    cameraControlsRef.current.mouseButtons.right = 0
+    cameraControlsRef.current.mouseButtons.wheel = 0
+    cameraControlsRef.current.mouseButtons.middle = 0
+    cameraControlsRef.current.touches.one = 0
+    cameraControlsRef.current.touches.two = 0
+    cameraControlsRef.current.touches.three = 0
   }, [])
 
   // when the screen is changed, zoom to one of the floating videos

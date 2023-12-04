@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useEffect, useRef, useState } from "react"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
@@ -32,7 +32,7 @@ export default function FloatingVideo(props: {
   // load the video
   const videoTexture = useVideoTexture(props.url)
 
-  // calculate the height of the images/video
+  // calculate the height of the video
   const height = 1 / aspectRatio
 
   // set the position of the text
