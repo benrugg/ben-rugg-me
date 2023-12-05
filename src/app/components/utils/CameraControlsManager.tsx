@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react"
-import { useScreenStore } from "@/app/stores/screenStore"
+import { useNavigationStore } from "@/app/stores/navigationStore"
 import { useThree } from "@react-three/fiber"
 import { CameraControls } from "@react-three/drei"
 
@@ -12,7 +12,7 @@ export default function CameraControlsManager() {
   const findMesh = useCallback((name: string) => scene.getObjectByName(name), [scene])
 
   // get the current screen
-  const screen = useScreenStore((state) => state.screen)
+  const screen = useNavigationStore((state) => state.screen)
 
   // configure the camera controls
   useEffect(() => {

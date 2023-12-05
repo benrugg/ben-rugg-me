@@ -5,8 +5,8 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
-import { useScreenStore } from "@/app/stores/screenStore"
-import { useTrail, animated as animatedHtml } from "@react-spring/web"
+import { useNavigationStore } from "@/app/stores/navigationStore"
+// import { useTrail, animated as animatedHtml } from "@react-spring/web"
 import { useSpring, animated } from "@react-spring/three"
 
 export function WelcomeScreen() {
@@ -84,10 +84,10 @@ export function WelcomeScreen() {
 
 export function WelcomeScreenTransition(props: { children: React.ReactNode }) {
   // get the current screen
-  const screen = useScreenStore((state) => state.screen)
+  const screen = useNavigationStore((state) => state.screen)
 
   // get whether we're transitioning
-  const isTransitioning = useScreenStore((state) => state.isTransitioning)
+  const isTransitioning = useNavigationStore((state) => state.isTransitioning)
 
   // get whether we're visible
   const isVisible = screen === "welcome" || isTransitioning
@@ -113,31 +113,32 @@ export function WelcomeScreenTransition(props: { children: React.ReactNode }) {
 
 export function WelcomeScreenHtml() {
   // animate title
-  const titleWords = "ben rugg".split(" ")
-  const titleHeight = 94
-  const titleTrails = useTrail(titleWords.length, {
-    opacity: 1,
-    height: titleHeight,
-    top: 0,
-    from: { opacity: 0, height: 0, top: -20 },
-    delay: 300,
-  })
+  // const titleWords = "ben rugg".split(" ")
+  // const titleHeight = 94
+  // const titleTrails = useTrail(titleWords.length, {
+  //   opacity: 1,
+  //   height: titleHeight,
+  //   top: 0,
+  //   from: { opacity: 0, height: 0, top: -20 },
+  //   delay: 300,
+  // })
 
   // animate subtitle
-  const subtitleWords = "web / software / digital".split(" ")
-  const subtitleHeight = 30
-  const subtitleTrails = useTrail(subtitleWords.length, {
-    opacity: 1,
-    height: subtitleHeight,
-    top: 0,
-    from: { opacity: 0, height: 0, top: -20 },
-    delay: 600,
-  })
+  // const subtitleWords = "web / software / digital".split(" ")
+  // const subtitleHeight = 30
+  // const subtitleTrails = useTrail(subtitleWords.length, {
+  //   opacity: 1,
+  //   height: subtitleHeight,
+  //   top: 0,
+  //   from: { opacity: 0, height: 0, top: -20 },
+  //   delay: 600,
+  // })
 
   return (
     <div className="flex flex-col items-center justify-top min-h-screen w-screen absolute">
-      <h1 className={`font-kage text-[3.9rem] font-bold mt-12`} style={{ height: titleHeight }}>
-        {titleTrails.map((props, index) => (
+      <h1 className={`font-kage text-[3.9rem] font-bold mt-12`}>
+        {/* <h1 className={`font-kage text-[3.9rem] font-bold mt-12`} style={{ height: titleHeight }}> */}
+        {/* {titleTrails.map((props, index) => (
           <animatedHtml.span
             key={index}
             className="relative inline-block overflow-hidden align-top mx-2 bg-gradient-to-b text-transparent bg-clip-text from-[#60688b] via-[#4a6275] to-[#195e6f]"
@@ -145,14 +146,25 @@ export function WelcomeScreenHtml() {
           >
             {titleWords[index]}
           </animatedHtml.span>
-        ))}
+        ))} */}
+        <span className="relative inline-block overflow-hidden align-top mx-2 bg-gradient-to-b text-transparent bg-clip-text from-[#60688b] via-[#4a6275] to-[#195e6f]">
+          ben rugg
+        </span>
       </h1>
-      <p className={`font-eirene-sans font-light text-[1.17rem] tracking-wider -mt-1`} style={{ height: subtitleHeight, color: "#4a7f97" }}>
-        {subtitleTrails.map((props, index) => (
+      <p
+        className="font-eirene-sans font-light text-[1.17rem] tracking-wider -mt-1 text-[#4a7f97]"
+        // style={{ height: subtitleHeight }}
+      >
+        {/* {subtitleTrails.map((props, index) => (
           <animatedHtml.span key={index} className="relative inline-block overflow-hidden align-top mx-1" style={props}>
             {subtitleWords[index]}
           </animatedHtml.span>
-        ))}
+        ))} */}
+        <span className="relative inline-block overflow-hidden align-top mx-1">web</span>
+        <span className="relative inline-block overflow-hidden align-top mx-1">/</span>
+        <span className="relative inline-block overflow-hidden align-top mx-1">software</span>
+        <span className="relative inline-block overflow-hidden align-top mx-1">/</span>
+        <span className="relative inline-block overflow-hidden align-top mx-1">digital</span>
       </p>
     </div>
   )
