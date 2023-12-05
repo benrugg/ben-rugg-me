@@ -1,6 +1,6 @@
 import { create } from "zustand"
 
-const transitionDuration = 4500
+const transitionDuration = 2500
 
 interface ScreenStore {
   screen: string

@@ -5,7 +5,6 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
-import { SkeletonImages } from "@/app/components/Skeletons"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { useTrail, animated as animatedHtml } from "@react-spring/web"
 import { useSpring, animated } from "@react-spring/three"
@@ -64,27 +63,22 @@ export function WelcomeScreen() {
   }
 
   return (
-    <>
-      <group position={[0, 8, -1]}>
-        <SkeletonImages count={5} spacingY={8} />
+    <group ref={groupRef} position={[0, groupYPosition, 0]}>
+      {/* <Particles /> */}
+      <Ground position={[0, groundYPosition, 0]} width={groundWidth} height={groundHeight} />
+      <group position={[-videoXPosition, video1YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
+        <FloatingVideo
+          url="/video/clover-demo.mp4"
+          name="companies"
+          title={"products &\ncompanies"}
+          titlePosition="right"
+          lightSize={videoLightSize}
+        />
       </group>
-      <group ref={groupRef} position={[0, groupYPosition, 0]}>
-        {/* <Particles /> */}
-        <Ground position={[0, groundYPosition, 0]} width={groundWidth} height={groundHeight} />
-        <group position={[-videoXPosition, video1YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-          <FloatingVideo
-            url="/video/clover-demo.mp4"
-            name="companies"
-            title={"products &\ncompanies"}
-            titlePosition="right"
-            lightSize={videoLightSize}
-          />
-        </group>
-        <group position={[videoXPosition, video2YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-          <FloatingVideo url="/video/ai-render-demo.mp4" name="projects" title={"websites &\nsoftware"} lightSize={videoLightSize} />
-        </group>
+      <group position={[videoXPosition, video2YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
+        <FloatingVideo url="/video/ai-render-demo.mp4" name="projects" title={"websites &\nsoftware"} lightSize={videoLightSize} />
       </group>
-    </>
+    </group>
   )
 }
 
@@ -100,17 +94,18 @@ export function WelcomeScreenTransition(props: { children: React.ReactNode }) {
 
   // prepare spring animation
   const spring = useSpring({
-    positionY: screen === "welcome" ? 0 : -50,
+    positionY: screen === "welcome" ? 0 : -4,
+    positionZ: screen === "welcome" ? 0 : 4,
     config: {
       tension: 320,
-      friction: 450,
-      mass: 200,
-      precision: 0.0001,
+      friction: 420,
+      mass: 50,
+      precision: 0.001,
     },
   })
 
   return (
-    <animated.group position-y={spring.positionY} visible={isVisible}>
+    <animated.group position-y={spring.positionY} position-z={spring.positionZ} visible={isVisible}>
       {props.children}
     </animated.group>
   )
