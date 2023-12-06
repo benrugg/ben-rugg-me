@@ -9,18 +9,21 @@ export function CompaniesScreen() {
   // TEMP: create sections
   const tempColors = ["#ff9999", "#99ff99", "#9999ff", "#ffff99", "#ff99ff", "#99ffff"]
 
+  // TODO: determine if it's ok/best to mount/unmount or if we should just hide/show
+
   return (
     <group visible={isVisible}>
-      {tempColors.map((tempColor, index) => (
-        <TempImage
-          key={index}
-          tempColor={tempColor}
-          index={index}
-          isTransitioningTo={isTransitioningTo}
-          isTransitioningFrom={isTransitioningFrom}
-          isScreenReady={isScreenReady}
-        />
-      ))}
+      {isVisible &&
+        tempColors.map((tempColor, index) => (
+          <TempImage
+            key={index}
+            tempColor={tempColor}
+            index={index}
+            isTransitioningTo={isTransitioningTo}
+            isTransitioningFrom={isTransitioningFrom}
+            isScreenReady={isScreenReady}
+          />
+        ))}
     </group>
   )
 }

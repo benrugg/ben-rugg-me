@@ -32,15 +32,15 @@ export function TempImage(props: {
 
   const spring = useSpring({
     positionY:
-      props.isTransitioningTo || sectionIndex < props.index
+      props.isTransitioningTo || props.isTransitioningFrom || sectionIndex < props.index
         ? startPositionY
-        : props.isTransitioningFrom || sectionIndex > props.index
+        : sectionIndex > props.index
         ? endPositionY
         : readyPositionY,
     rotationX:
-      props.isTransitioningTo || sectionIndex < props.index
+      props.isTransitioningTo || props.isTransitioningFrom || sectionIndex < props.index
         ? startRotationX
-        : props.isTransitioningFrom || sectionIndex > props.index
+        : sectionIndex > props.index
         ? endRotationX
         : readyRotationX,
     onStart: () => {
