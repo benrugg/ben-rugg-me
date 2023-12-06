@@ -7,6 +7,7 @@ const offScreenY = 5
 
 export function TempImage(props: {
   index: number
+  sectionIndex: number
   isTransitioningTo: boolean
   isTransitioningFrom: boolean
   isScreenReady: boolean
@@ -19,9 +20,6 @@ export function TempImage(props: {
   // calculate the height of the image
   const height = 1 / aspectRatio
 
-  // get the current section index
-  const sectionIndex = useNavigationStore((state) => state.sectionIndex)
-
   // prepare spring animation
   const startPositionY = -offScreenY
   const endPositionY = offScreenY
@@ -32,24 +30,24 @@ export function TempImage(props: {
 
   const spring = useSpring({
     positionY:
-      props.isTransitioningTo || props.isTransitioningFrom || sectionIndex < props.index
+      props.isTransitioningTo || props.isTransitioningFrom || props.sectionIndex < props.index
         ? startPositionY
-        : sectionIndex > props.index
+        : props.sectionIndex > props.index
         ? endPositionY
         : readyPositionY,
     rotationX:
-      props.isTransitioningTo || props.isTransitioningFrom || sectionIndex < props.index
+      props.isTransitioningTo || props.isTransitioningFrom || props.sectionIndex < props.index
         ? startRotationX
-        : sectionIndex > props.index
+        : props.sectionIndex > props.index
         ? endRotationX
         : readyRotationX,
     onStart: () => {
-      if (sectionIndex === props.index) {
+      if (props.sectionIndex === props.index) {
         setVisible(true)
       }
     },
     onRest: () => {
-      if (sectionIndex !== props.index) {
+      if (props.sectionIndex !== props.index) {
         setVisible(false)
       }
     },
@@ -68,6 +66,7 @@ export function TempImage(props: {
 
 export function TempImageHtml(props: {
   index: number
+  sectionIndex: number
   isTransitioningTo: boolean
   isTransitioningFrom: boolean
   isScreenReady: boolean
@@ -80,13 +79,10 @@ export function TempImageHtml(props: {
     e.stopPropagation()
   }
 
-  // get the current section index
-  const sectionIndex = useNavigationStore((state) => state.sectionIndex)
-
   // prepare animation classes
-  const cssClass = props.isScreenReady && sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
+  const cssClass = props.isScreenReady && props.sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
 
-  const parentCssClass = props.isScreenReady && sectionIndex === props.index ? "" : "pointer-events-none"
+  const parentCssClass = props.isScreenReady && props.sectionIndex === props.index ? "" : "pointer-events-none"
 
   return (
     <div className={`flex flex-col items-center justify-center min-h-screen w-screen absolute ${parentCssClass}`}>

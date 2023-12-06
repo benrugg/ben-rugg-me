@@ -4,7 +4,7 @@ import { TempImage, TempImageHtml } from "@/app/components/TempImage"
 
 export function CompaniesScreen() {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady } = useScreenState("companies")
+  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState("companies")
 
   // TEMP: create sections
   const tempColors = ["#ff9999", "#99ff99", "#9999ff", "#ffff99", "#ff99ff", "#99ffff"]
@@ -19,6 +19,7 @@ export function CompaniesScreen() {
             key={index}
             tempColor={tempColor}
             index={index}
+            sectionIndex={sectionIndex}
             isTransitioningTo={isTransitioningTo}
             isTransitioningFrom={isTransitioningFrom}
             isScreenReady={isScreenReady}
@@ -30,7 +31,7 @@ export function CompaniesScreen() {
 
 export function CompaniesScreenHtml() {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady } = useScreenState("companies")
+  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState("companies")
 
   // TEMP: create sections
   const tempContents = [
@@ -91,6 +92,7 @@ export function CompaniesScreenHtml() {
           <TempImageHtml
             key={index}
             index={index}
+            sectionIndex={sectionIndex}
             isTransitioningTo={isTransitioningTo}
             isTransitioningFrom={isTransitioningFrom}
             isScreenReady={isScreenReady}
