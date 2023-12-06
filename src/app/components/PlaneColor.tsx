@@ -1,5 +1,3 @@
-import { useTexture } from "@react-three/drei"
-
 const aspectRatio = 16 / 9
 
 export default function PlaneColor() {
@@ -8,7 +6,7 @@ export default function PlaneColor() {
 
   return (
     <mesh position={[0, 0, 0]}>
-      <planeGeometry args={[1, 1 / aspectRatio]} />
+      <planeGeometry args={[1, height]} />
       <meshBasicMaterial color="aqua" />
     </mesh>
   )

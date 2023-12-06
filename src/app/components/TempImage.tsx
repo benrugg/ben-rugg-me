@@ -1,4 +1,4 @@
-import { useRef, useState, MouseEvent, TouchEvent } from "react"
+import { useRef, useState, MouseEvent, Suspense, TouchEvent } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
 import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
@@ -106,7 +106,7 @@ export function TempImage(props: {
             }}
           />
         )}
-        {Slide}
+        <Suspense fallback={null}>{Slide}</Suspense>
         {hasSlides && (
           <ArrowButton
             position={[0.57, 0, 0]}

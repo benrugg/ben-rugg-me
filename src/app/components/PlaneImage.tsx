@@ -13,7 +13,7 @@ export default function PlaneImage(props: { url: string | undefined }) {
 
   return (
     <mesh position={[0, 0, 0]}>
-      <planeGeometry args={[1, 1 / aspectRatio]} />
+      <planeGeometry args={[1, height]} />
       <meshBasicMaterial map={imageTexture} />
     </mesh>
   )
