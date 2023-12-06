@@ -2,7 +2,7 @@ import { MeshReflectorMaterial, useTexture } from "@react-three/drei"
 import { Vector3Array } from "@/types"
 
 export default function Ground(props: { position: Vector3Array; width: number; height: number }) {
-  const roughnessTexture = useTexture("/images/ground-roughness-texture.jpg")
+  const roughnessTexture = useTexture("/images/textures/ground-roughness-texture.jpg")
 
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={props.position}>

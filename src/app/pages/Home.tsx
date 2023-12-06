@@ -27,7 +27,7 @@ export default function Home() {
         eventSource={htmlContainerRef}
       >
         {/* <CameraControlsManager /> */}
-        <Environment files="/images/polyhaven-aerodynamics_workshop_1k.hdr" />
+        <Environment files="/images/textures/polyhaven-aerodynamics_workshop_1k.hdr" />
         <ambientLight intensity={0.5} />
         <color attach="background" args={["#050010"]} />
 

@@ -1,7 +1,11 @@
 import { useRef, useState, MouseEvent, TouchEvent } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
+import PlaneVideo from "@/app/components/PlaneVideo"
+import PlaneImage from "@/app/components/PlaneImage"
+import PlaneColor from "@/app/components/PlaneColor"
+import ArrowButton from "@/app/components/ArrowButton"
+import type { Content } from "@/types"
 
-const aspectRatio = 16 / 9
 const offScreenY = 5
 
 export function TempImage(props: {
@@ -11,17 +15,16 @@ export function TempImage(props: {
   isTransitioningFrom: boolean
   isScreenReady: boolean
   rotationDirection: "left" | "right"
-  tempColor: string
+  content: Content
 }) {
   // init refs and state
   const groupRef = useRef<THREE.Group>(null!)
   const [visible, setVisible] = useState(false)
-
-  // calculate the height of the image
-  const height = 1 / aspectRatio
+  const [slideIndex, setSlideIndex] = useState(0)
+  const hasSlides = !!props.content.slides?.length
 
   // calculate the rotation of the image
-  const rotationY = props.rotationDirection === "left" ? Math.PI / 5 : -Math.PI / 5
+  const rotationY = props.rotationDirection === "left" ? Math.PI / 7 : -Math.PI / 7
 
   // prepare spring animation
   const startPositionY = -offScreenY
@@ -63,12 +66,57 @@ export function TempImage(props: {
     },
   })
 
+  // handle arrow button clicks
+  const handleArrowButtonClick = (direction: "next" | "previous") => {
+    if (!props.content.slides) return
+
+    if (direction === "next") {
+      if (slideIndex === props.content.slides.length - 1) {
+        setSlideIndex(0)
+      } else {
+        setSlideIndex(slideIndex + 1)
+      }
+    } else {
+      if (slideIndex === 0) {
+        setSlideIndex(props.content.slides.length - 1)
+      } else {
+        setSlideIndex(slideIndex - 1)
+      }
+    }
+  }
+
+  // prepare the current slide
+  const Slide = props.content.slides?.[slideIndex].video ? (
+    <PlaneVideo url={props.content.slides[slideIndex].video} />
+  ) : props.content.slides?.[slideIndex].image ? (
+    <PlaneImage url={props.content.slides[slideIndex].image} />
+  ) : (
+    <PlaneColor />
+  )
+
   return (
     <animated.group ref={groupRef} scale={[4.2, 4.2, 1]} position-y={spring.positionY} rotation-x={spring.rotationX} visible={visible}>
-      <mesh rotation={[0, rotationY, 0]}>
-        <planeGeometry args={[1, height]} />
-        <meshStandardMaterial color={props.tempColor} transparent />
-      </mesh>
+      <group rotation={[0, rotationY, 0]}>
+        {hasSlides && (
+          <ArrowButton
+            position={[-0.57, 0, 0]}
+            rotation={[0, Math.PI, 0]}
+            onClick={() => {
+              handleArrowButtonClick("previous")
+            }}
+          />
+        )}
+        {Slide}
+        {hasSlides && (
+          <ArrowButton
+            position={[0.57, 0, 0]}
+            rotation={[0, 0, 0]}
+            onClick={() => {
+              handleArrowButtonClick("next")
+            }}
+          />
+        )}
+      </group>
     </animated.group>
   )
 }
@@ -79,8 +127,7 @@ export function TempImageHtml(props: {
   isTransitioningTo: boolean
   isTransitioningFrom: boolean
   isScreenReady: boolean
-  title: string
-  body: string
+  content: Content
 }) {
   // define function to stop propagation of events, so we can scroll internal
   // contents without triggering a swipe to a new section
@@ -95,7 +142,7 @@ export function TempImageHtml(props: {
 
   return (
     <div className={`flex flex-col items-center justify-center min-h-screen w-screen absolute ${parentCssClass}`}>
-      <h1 className={`text-4xl font-bold text-white ${cssClass}`}>{props.title}</h1>
+      <h1 className={`text-4xl font-bold text-white ${cssClass}`}>{props.content.title}</h1>
       <div
         className="max-w-md text-white text-center mt-3 max-h-72 overflow-scroll"
         onTouchStart={stopPropagation} // match events from ReactScrollWheelHandler
@@ -105,7 +152,7 @@ export function TempImageHtml(props: {
         onWheelCapture={stopPropagation}
       >
         <p className={`${cssClass} animation-delay-700`}>
-          <span dangerouslySetInnerHTML={{ __html: props.body }} />
+          <span dangerouslySetInnerHTML={{ __html: props.content.body }} />
         </p>
       </div>
     </div>
