@@ -84,12 +84,12 @@ function WelcomeScreenContents() {
 
 export function WelcomeScreen() {
   // get the current screen state
-  const { screen, isVisible } = useScreenState("welcome")
+  const { currentScreen, isVisible } = useScreenState("welcome")
 
   // prepare spring animation
   const spring = useSpring({
-    positionY: screen === "welcome" ? 0 : -4,
-    positionZ: screen === "welcome" ? 0 : 4,
+    positionY: currentScreen === "welcome" ? 0 : -4,
+    positionZ: currentScreen === "welcome" ? 0 : 4,
     config: {
       tension: 320,
       friction: 420,

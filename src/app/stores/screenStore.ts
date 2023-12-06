@@ -3,7 +3,7 @@ import { create } from "zustand"
 const transitionDuration = 1000
 
 interface ScreenStore {
-  screen: string
+  currentScreen: string
   screenTransitioningTo: string | undefined
   screenTransitioningFrom: string | undefined
   isScreenReady: boolean
@@ -18,15 +18,15 @@ interface ScreenStore {
 }
 
 export const useScreenStore = create<ScreenStore>((set, get) => ({
-  screen: "welcome",
+  currentScreen: "welcome",
   screenTransitioningTo: undefined,
   screenTransitioningFrom: undefined,
   isScreenReady: true,
   transitioningTimeoutId: undefined,
-  setScreen: (screen) => {
+  setScreen: (newScreen) => {
     // get current state
-    const { screen: currentScreen, transitioningTimeoutId } = get()
-    if (currentScreen === screen) return
+    const { currentScreen, transitioningTimeoutId } = get()
+    if (currentScreen === newScreen) return
 
     // clear any existing timeouts
     clearTimeout(transitioningTimeoutId)
@@ -42,29 +42,29 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
 
     // set new state
     set({
-      screen,
-      screenTransitioningTo: screen,
+      currentScreen: newScreen,
+      screenTransitioningTo: newScreen,
       screenTransitioningFrom: currentScreen,
       isScreenReady: false,
       transitioningTimeoutId: newTransitioningTimeoutId,
     })
   },
   isScreenVisible: (screen) => {
-    const { screen: currentScreen, screenTransitioningTo, screenTransitioningFrom } = get()
+    const { currentScreen, screenTransitioningTo, screenTransitioningFrom } = get()
     return screen === screenTransitioningTo || screen === screenTransitioningFrom || screen === currentScreen
   },
   sectionIndex: 0,
   maxSections: 6,
   screensWithSections: ["companies", "projects"],
   incrementSectionIndex: () => {
-    const { screen, screensWithSections, sectionIndex, maxSections } = get()
-    if (!screensWithSections.includes(screen) || sectionIndex === maxSections - 1) return
+    const { currentScreen, screensWithSections, sectionIndex, maxSections } = get()
+    if (!screensWithSections.includes(currentScreen) || sectionIndex === maxSections - 1) return
 
     set({ sectionIndex: sectionIndex + 1 })
   },
   decrementSectionIndex: () => {
-    const { screen, screensWithSections, sectionIndex } = get()
-    if (!screensWithSections.includes(screen) || sectionIndex === 0) return
+    const { currentScreen, screensWithSections, sectionIndex } = get()
+    if (!screensWithSections.includes(currentScreen) || sectionIndex === 0) return
 
     set({ sectionIndex: sectionIndex - 1 })
   },
