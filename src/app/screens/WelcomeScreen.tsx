@@ -100,9 +100,10 @@ export function WelcomeScreen() {
     },
   })
 
+  // TODO: determine if it's ok/best to mount/unmount or if we should just hide/show
   return (
     <animated.group position-y={spring.positionY} position-z={spring.positionZ} visible={isVisible}>
-      <WelcomeScreenContents />
+      {isVisible && <WelcomeScreenContents />}
     </animated.group>
   )
 }
