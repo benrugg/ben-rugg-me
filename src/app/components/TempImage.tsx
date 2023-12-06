@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, MouseEvent, TouchEvent } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
 import { useNavigationStore } from "@/app/stores/navigationStore"
 
@@ -66,13 +66,43 @@ export function TempImage(props: {
   )
 }
 
-export function TempImageHtml(props: { tempNum: number }) {
+export function TempImageHtml(props: {
+  index: number
+  isTransitioningTo: boolean
+  isTransitioningFrom: boolean
+  isScreenReady: boolean
+  title: string
+  body: string
+}) {
+  // define function to stop propagation of events, so we can scroll internal
+  // contents without triggering a swipe to a new section
+  const stopPropagation = (e: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+  }
+
+  // get the current section index
+  const sectionIndex = useNavigationStore((state) => state.sectionIndex)
+
+  // prepare animation classes
+  const cssClass = props.isScreenReady && sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
+
+  const parentCssClass = props.isScreenReady && sectionIndex === props.index ? "" : "pointer-events-none"
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-screen absolute">
-      <h1 className="text-4xl font-bold text-white">Section {props.tempNum}</h1>
-      <p className="text-white">
-        From its medieval origins to the digital era, learn everything there is to know about the ubiquitous lorem ipsum passage.
-      </p>
+    <div className={`flex flex-col items-center justify-center min-h-screen w-screen absolute ${parentCssClass}`}>
+      <h1 className={`text-4xl font-bold text-white ${cssClass}`}>{props.title}</h1>
+      <div
+        className="max-w-md text-white text-center mt-3 max-h-72 overflow-scroll"
+        onTouchStart={stopPropagation} // match events from ReactScrollWheelHandler
+        onTouchEnd={stopPropagation}
+        onMouseDown={stopPropagation}
+        onMouseUp={stopPropagation}
+        onWheelCapture={stopPropagation}
+      >
+        <p className={`${cssClass} animation-delay-700`}>
+          <span dangerouslySetInnerHTML={{ __html: props.body }} />
+        </p>
+      </div>
     </div>
   )
 }

@@ -44,7 +44,7 @@ export default function Home() {
       </Canvas>
 
       <WelcomeScreenHtml />
-      {screen === "companies" && <CompaniesScreenHtml />}
+      <CompaniesScreenHtml />
     </div>
   )
 }

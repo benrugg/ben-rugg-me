@@ -1,0 +1,24 @@
+.fade-and-slide-in {
+  animation: fade-and-slide-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s backwards;
+}
+
+.fade-and-slide-out {
+  transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.animation-delay-700 {
+  animation-delay: 0.7s;
+}
+
+@keyframes fade-and-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
