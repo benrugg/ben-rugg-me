@@ -2,7 +2,7 @@ import { create } from "zustand"
 
 const transitionDuration = 1000
 
-interface NavigationStore {
+interface ScreenStore {
   screen: string
   screenTransitioningTo: string | undefined
   screenTransitioningFrom: string | undefined
@@ -17,7 +17,7 @@ interface NavigationStore {
   decrementSectionIndex: () => void
 }
 
-export const useNavigationStore = create<NavigationStore>((set, get) => ({
+export const useScreenStore = create<ScreenStore>((set, get) => ({
   screen: "welcome",
   screenTransitioningTo: undefined,
   screenTransitioningFrom: undefined,

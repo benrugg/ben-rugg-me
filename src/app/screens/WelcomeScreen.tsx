@@ -5,7 +5,7 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
-import { useNavigationStore } from "@/app/stores/navigationStore"
+import { useScreenStore } from "@/app/stores/screenStore"
 // import { useTrail, animated as animatedHtml } from "@react-spring/web"
 import { useSpring, animated } from "@react-spring/three"
 
@@ -84,9 +84,9 @@ function WelcomeScreenContents() {
 
 export function WelcomeScreen() {
   // get the current screen state
-  const navigationStore = useNavigationStore()
-  const screen = navigationStore.screen
-  const isVisible = navigationStore.isScreenVisible("welcome")
+  const screenStore = useScreenStore()
+  const screen = screenStore.screen
+  const isVisible = screenStore.isScreenVisible("welcome")
 
   // prepare spring animation
   const spring = useSpring({

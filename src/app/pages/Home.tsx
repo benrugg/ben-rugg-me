@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { useNavigationStore } from "@/app/stores/navigationStore"
+import { useScreenStore } from "@/app/stores/screenStore"
 import { Canvas } from "@react-three/fiber"
 import { Environment, Preload } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
@@ -14,7 +14,7 @@ export default function Home() {
   const htmlContainerRef = useRef<HTMLDivElement>(null!)
 
   // get the current screen state
-  const screen = useNavigationStore((state) => state.screen)
+  const screen = useScreenStore((state) => state.screen)
 
   return (
     <div ref={htmlContainerRef} className="fixed w-screen min-h-screen">

@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic"
 import { useNavigation } from "@/app/hooks/useNavigation"
-import { useNavigationStore } from "@/app/stores/navigationStore"
+import { useScreenStore } from "@/app/stores/screenStore"
 import ReactScrollWheelHandler from "react-scroll-wheel-handler"
 import { use } from "react"
 
@@ -16,18 +16,18 @@ export default function Page() {
       routeChanged: ({ pathname }) => {
         if (!pathname) return
         let screen = pathname.replace("/", "") || "welcome"
-        useNavigationStore.getState().setScreen(screen)
+        useScreenStore.getState().setScreen(screen)
       },
     },
   })
 
   // when swipes occur, increment/decrement the section index
   const handleSwipeUp = () => {
-    useNavigationStore.getState().decrementSectionIndex()
+    useScreenStore.getState().decrementSectionIndex()
   }
 
   const handleSwipeDown = () => {
-    useNavigationStore.getState().incrementSectionIndex()
+    useScreenStore.getState().incrementSectionIndex()
   }
 
   return (
