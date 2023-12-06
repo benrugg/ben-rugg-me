@@ -54,7 +54,13 @@ export function TempImage(props: {
         setVisible(false)
       }
     },
-    config: config.slow,
+    config: () => {
+      if (props.isTransitioningFrom) {
+        return config.molasses
+      } else {
+        return config.slow
+      }
+    },
   })
 
   return (
