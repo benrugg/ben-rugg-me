@@ -12,7 +12,7 @@ export default function CameraControlsManager() {
   const findMesh = useCallback((name: string) => scene.getObjectByName(name), [scene])
 
   // get the current screen
-  const screen = useScreenStore((state) => state.screen)
+  const currentScreen = useScreenStore((state) => state.currentScreen)
 
   // configure the camera controls
   useEffect(() => {
@@ -29,18 +29,18 @@ export default function CameraControlsManager() {
     cameraControlsRef.current.touches.three = 0
   }, [])
 
-  // when the screen is changed, zoom to one of the floating videos
+  // when the currentScreen is changed, zoom to one of the floating videos
   useEffect(() => {
     // if we don't have a camera controls ref, quit here
     if (cameraControlsRef.current === null) return
 
     // for the home page, zoom out
-    if (screen === "welcome") {
+    if (currentScreen === "welcome") {
       cameraControlsRef.current.setTarget(0, 0, 0, true)
       cameraControlsRef.current.setPosition(0, 0, 5, true)
-    } else if (screen === "companies" || screen === "projects") {
+    } else if (currentScreen === "companies" || currentScreen === "projects") {
       // for the companies and projects pages, zoom in to the mesh
-      const mesh = findMesh(screen)
+      const mesh = findMesh(currentScreen)
       if (mesh) {
         cameraControlsRef.current.fitToBox(mesh, true, { cover: true })
       }

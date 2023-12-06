@@ -26,8 +26,8 @@ export default function FloatingVideo(props: {
   const router = useRouter()
 
   // get the current screen, and determine if we're exiting
-  const screen = useScreenStore((state) => state.screen)
-  const isExiting = screen === props.name
+  const currentScreen = useScreenStore((state) => state.currentScreen)
+  const isExiting = currentScreen === props.name
 
   // load the video
   const videoTexture = useVideoTexture(props.url)
