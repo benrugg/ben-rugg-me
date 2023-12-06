@@ -1,6 +1,5 @@
 import { useRef, useState, MouseEvent, TouchEvent } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
-import { useNavigationStore } from "@/app/stores/navigationStore"
 
 const aspectRatio = 16 / 9
 const offScreenY = 5
@@ -11,6 +10,7 @@ export function TempImage(props: {
   isTransitioningTo: boolean
   isTransitioningFrom: boolean
   isScreenReady: boolean
+  rotationDirection: "left" | "right"
   tempColor: string
 }) {
   // init refs and state
@@ -19,6 +19,9 @@ export function TempImage(props: {
 
   // calculate the height of the image
   const height = 1 / aspectRatio
+
+  // calculate the rotation of the image
+  const rotationY = props.rotationDirection === "left" ? Math.PI / 5 : -Math.PI / 5
 
   // prepare spring animation
   const startPositionY = -offScreenY
@@ -56,7 +59,7 @@ export function TempImage(props: {
 
   return (
     <animated.group ref={groupRef} scale={[4.2, 4.2, 1]} position-y={spring.positionY} rotation-x={spring.rotationX} visible={visible}>
-      <mesh rotation={[0, -Math.PI / 5, 0]}>
+      <mesh rotation={[0, rotationY, 0]}>
         <planeGeometry args={[1, height]} />
         <meshStandardMaterial color={props.tempColor} transparent />
       </mesh>

@@ -23,6 +23,7 @@ export function CompaniesScreen() {
             isTransitioningTo={isTransitioningTo}
             isTransitioningFrom={isTransitioningFrom}
             isScreenReady={isScreenReady}
+            rotationDirection={index % 2 === 0 ? "right" : "left"}
           />
         ))}
     </group>
