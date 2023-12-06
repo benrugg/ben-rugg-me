@@ -1,4 +1,3 @@
-import { useScreenStore } from "@/app/stores/screenStore"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import { TempImage, TempImageHtml } from "@/app/components/TempImage"
 
