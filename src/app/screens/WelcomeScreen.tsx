@@ -9,7 +9,7 @@ import { useNavigationStore } from "@/app/stores/navigationStore"
 // import { useTrail, animated as animatedHtml } from "@react-spring/web"
 import { useSpring, animated } from "@react-spring/three"
 
-export function WelcomeScreen() {
+function WelcomeScreenContents() {
   // init refs
   const groupRef = useRef<THREE.Group>(null!)
 
@@ -82,15 +82,11 @@ export function WelcomeScreen() {
   )
 }
 
-export function WelcomeScreenTransition(props: { children: React.ReactNode }) {
-  // get the current screen
-  const screen = useNavigationStore((state) => state.screen)
-
-  // get whether we're transitioning
-  const isTransitioning = useNavigationStore((state) => state.isTransitioning)
-
-  // get whether we're visible
-  const isVisible = screen === "welcome" || isTransitioning
+export function WelcomeScreen() {
+  // get the current screen state
+  const navigationStore = useNavigationStore()
+  const screen = navigationStore.screen
+  const isVisible = navigationStore.isScreenVisible("welcome")
 
   // prepare spring animation
   const spring = useSpring({
@@ -106,7 +102,7 @@ export function WelcomeScreenTransition(props: { children: React.ReactNode }) {
 
   return (
     <animated.group position-y={spring.positionY} position-z={spring.positionZ} visible={isVisible}>
-      {props.children}
+      <WelcomeScreenContents />
     </animated.group>
   )
 }

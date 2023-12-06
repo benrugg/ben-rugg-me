@@ -1,12 +1,15 @@
 import { create } from "zustand"
 
-const transitionDuration = 2500
+const transitionDuration = 1000
 
 interface NavigationStore {
   screen: string
-  isTransitioning: boolean
-  isTransitioningTimeoutId: NodeJS.Timeout | undefined
+  screenTransitioningTo: string | undefined
+  screenTransitioningFrom: string | undefined
+  isScreenReady: boolean
+  transitioningTimeoutId: NodeJS.Timeout | undefined
   setScreen: (screen: string) => void
+  isScreenVisible: (screen: string) => boolean
   sectionIndex: number
   maxSections: number
   screensWithSections: string[]
@@ -16,19 +19,39 @@ interface NavigationStore {
 
 export const useNavigationStore = create<NavigationStore>((set, get) => ({
   screen: "welcome",
-  isTransitioning: false,
-  isTransitioningTimeoutId: undefined,
+  screenTransitioningTo: undefined,
+  screenTransitioningFrom: undefined,
+  isScreenReady: true,
+  transitioningTimeoutId: undefined,
   setScreen: (screen) => {
-    const { screen: currentScreen, isTransitioningTimeoutId } = get()
+    // get current state
+    const { screen: currentScreen, transitioningTimeoutId } = get()
     if (currentScreen === screen) return
 
-    clearTimeout(isTransitioningTimeoutId)
+    // clear any existing timeouts
+    clearTimeout(transitioningTimeoutId)
 
-    const newIsTransitioningTimeoutId = setTimeout(() => {
-      set({ isTransitioning: false })
+    // create new timeout
+    const newTransitioningTimeoutId = setTimeout(() => {
+      set({
+        screenTransitioningTo: undefined,
+        screenTransitioningFrom: undefined,
+        isScreenReady: true,
+      })
     }, transitionDuration)
 
-    set({ screen, isTransitioning: true, isTransitioningTimeoutId: newIsTransitioningTimeoutId })
+    // set new state
+    set({
+      screen,
+      screenTransitioningTo: screen,
+      screenTransitioningFrom: currentScreen,
+      isScreenReady: false,
+      transitioningTimeoutId: newTransitioningTimeoutId,
+    })
+  },
+  isScreenVisible: (screen) => {
+    const { screen: currentScreen, screenTransitioningTo, screenTransitioningFrom } = get()
+    return screen === screenTransitioningTo || screen === screenTransitioningFrom || screen === currentScreen
   },
   sectionIndex: 0,
   maxSections: 6,

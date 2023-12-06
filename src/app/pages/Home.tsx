@@ -5,8 +5,8 @@ import { useNavigationStore } from "@/app/stores/navigationStore"
 import { Canvas } from "@react-three/fiber"
 import { Environment, Preload } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
-import { WelcomeScreen, WelcomeScreenTransition, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
-import { CompaniesScreen, CompaniesScreenTransition, CompaniesScreenHtml } from "@/app/screens/CompaniesScreen"
+import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
+import { CompaniesScreen, CompaniesScreenHtml } from "@/app/screens/CompaniesScreen"
 import Effects from "@/app/components/Effects"
 
 export default function Home() {
@@ -39,12 +39,8 @@ export default function Home() {
 
         <Effects />
 
-        <WelcomeScreenTransition>
-          <WelcomeScreen />
-        </WelcomeScreenTransition>
-        <CompaniesScreenTransition>
-          <CompaniesScreen />
-        </CompaniesScreenTransition>
+        <WelcomeScreen />
+        <CompaniesScreen />
       </Canvas>
 
       <WelcomeScreenHtml />

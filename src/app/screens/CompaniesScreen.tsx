@@ -1,25 +1,28 @@
 import { useNavigationStore } from "@/app/stores/navigationStore"
+import { useScreenState } from "@/app/hooks/useScreenState"
 import { TempImage, TempImageHtml } from "@/app/components/TempImage"
 
 export function CompaniesScreen() {
+  // get the current screen state
+  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady } = useScreenState("companies")
+
+  // TEMP: create sections
+  const tempColors = ["#ff9999", "#99ff99", "#9999ff", "#ffff99", "#ff99ff", "#99ffff"]
+
   return (
-    <>
-      <TempImage />
-    </>
+    <group visible={isVisible}>
+      {tempColors.map((tempColor, index) => (
+        <TempImage
+          key={index}
+          tempColor={tempColor}
+          index={index}
+          isTransitioningTo={isTransitioningTo}
+          isTransitioningFrom={isTransitioningFrom}
+          isScreenReady={isScreenReady}
+        />
+      ))}
+    </group>
   )
-}
-
-export function CompaniesScreenTransition(props: { children: React.ReactNode }) {
-  // get the current screen
-  const screen = useNavigationStore((state) => state.screen)
-
-  // get whether we're transitioning
-  const isTransitioning = useNavigationStore((state) => state.isTransitioning)
-
-  // get whether we're visible
-  const isVisible = screen === "companies" || isTransitioning
-
-  return <group visible={isVisible}>{props.children}</group>
 }
 
 export function CompaniesScreenHtml() {

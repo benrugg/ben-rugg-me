@@ -32,7 +32,7 @@ export default function Page() {
 
   return (
     <main className="min-h-screen w-screen">
-      <ReactScrollWheelHandler upHandler={handleSwipeUp} downHandler={handleSwipeDown} timeout={200} className="min-h-screen w-screen">
+      <ReactScrollWheelHandler upHandler={handleSwipeUp} downHandler={handleSwipeDown} timeout={300} className="min-h-screen w-screen">
         <Home />
       </ReactScrollWheelHandler>
     </main>
