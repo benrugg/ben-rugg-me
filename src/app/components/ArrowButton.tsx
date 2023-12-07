@@ -13,19 +13,19 @@ export default function ArrowButton(props: { position: Vector3Array; rotation: V
 
   // set the color of the arrow
   if (materialRef.current) {
-    materialRef.current.color.set(isHovered ? "white" : "aqua")
+    materialRef.current.color.set(isHovered ? "white" : "#23FCE2")
   }
 
   // use a mesh for a larger hit area
   return (
     <group position={props.position} rotation={props.rotation}>
       <mesh position={[0, 0, -0.001]} onClick={props.onClick} onPointerEnter={() => setIsHovered(true)} onPointerOut={() => setIsHovered(false)}>
-        <planeGeometry args={[0.1, 0.28]} />
+        <planeGeometry args={[0.1, 0.1]} />
         <meshBasicMaterial opacity={0} transparent side={THREE.DoubleSide} />
       </mesh>
       <Text font={"/fonts/subset-EireneSans-Thin.woff"} fontSize={0.09} scale={[0.9, 1, 1]}>
         {">"}
-        <meshBasicMaterial ref={materialRef} color="aqua" side={THREE.DoubleSide} />
+        <meshBasicMaterial ref={materialRef} color="#23FCE2" side={THREE.DoubleSide} />
       </Text>
     </group>
   )

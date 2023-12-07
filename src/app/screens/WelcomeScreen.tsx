@@ -108,13 +108,13 @@ export function WelcomeScreen() {
 
 export function WelcomeScreenHtml() {
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen w-screen absolute">
+    <div className="flex flex-col items-stretch justify-between min-h-screen w-screen absolute">
       <div>
-        <h1 className={`${firaCode.className} text-[30px] tracking-widest font-light mt-16 text-white uppercase`}>Ben Rugg</h1>
+        <h1 className={`${firaCode.className} text-[30px] tracking-widest font-light mt-16 text-white text-center uppercase`}>Ben Rugg</h1>
         <p className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 text-aqua text-center`}>{"< / >"}</p>
       </div>
       <div
-        className={`flex flex-row items-center justify-between w-screen mb-4 px-6 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
+        className={`flex flex-row items-center justify-between mb-4 px-6 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
       >
         <p>Full-Stack/Engineer</p>
         <p>Madison/Wisconsin</p>

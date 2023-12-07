@@ -4,11 +4,12 @@ import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
 import PlaneColor from "@/app/components/PlaneColor"
 import ArrowButton from "@/app/components/ArrowButton"
+import { firaCode } from "@/fonts/fonts"
 import type { Content } from "@/types"
 
 const offScreenY = 5
 
-export function TempImage(props: {
+export function ContentDisplay(props: {
   index: number
   sectionIndex: number
   isTransitioningTo: boolean
@@ -121,7 +122,7 @@ export function TempImage(props: {
   )
 }
 
-export function TempImageHtml(props: {
+export function ContentDisplayHtml(props: {
   index: number
   sectionIndex: number
   isTransitioningTo: boolean
@@ -137,24 +138,25 @@ export function TempImageHtml(props: {
 
   // prepare animation classes
   const cssClass = props.isScreenReady && props.sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
-
   const parentCssClass = props.isScreenReady && props.sectionIndex === props.index ? "" : "pointer-events-none"
 
   return (
-    <div className={`flex flex-col items-center justify-center min-h-screen w-screen absolute ${parentCssClass}`}>
-      <h1 className={`text-4xl font-bold text-white ${cssClass}`}>{props.content.title}</h1>
-      <div
-        className="max-w-md text-white text-center mt-3 max-h-72 overflow-scroll"
-        onTouchStart={stopPropagation} // match events from ReactScrollWheelHandler
-        onTouchEnd={stopPropagation}
-        onMouseDown={stopPropagation}
-        onMouseUp={stopPropagation}
-        onWheelCapture={stopPropagation}
-      >
-        <p className={`${cssClass} animation-delay-700`}>
-          <span dangerouslySetInnerHTML={{ __html: props.content.body }} />
-        </p>
+    <div className={`flex flex-row items-stretch justify-between min-h-screen w-screen px-6 absolute ${parentCssClass}`}>
+      <div className={`${cssClass} flex flex-col justify-center w-1/6 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}>
+        <h4 className="text-aqua mt-3 mb-0.5">/Company</h4>
+        <p className="mb-3">{props.content.title}</p>
+        <h4 className="text-aqua mt-3 mb-0.5">/Description</h4>
+        <p
+          className="mb-3 max-h-80 overflow-scroll"
+          dangerouslySetInnerHTML={{ __html: props.content.body }}
+          onTouchStart={stopPropagation} // match events from ReactScrollWheelHandler
+          onTouchEnd={stopPropagation}
+          onMouseDown={stopPropagation}
+          onMouseUp={stopPropagation}
+          onWheelCapture={stopPropagation}
+        />
       </div>
+      <div></div>
     </div>
   )
 }

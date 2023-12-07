@@ -1,5 +1,5 @@
 import { useScreenState } from "@/app/hooks/useScreenState"
-import { TempImage, TempImageHtml } from "@/app/components/TempImage"
+import { ContentDisplay, ContentDisplayHtml } from "@/app/components/ContentDisplay"
 import { companyInfo } from "@/app/data/companies"
 
 export function CompaniesScreen() {
@@ -11,7 +11,7 @@ export function CompaniesScreen() {
     <group visible={isVisible}>
       {isVisible &&
         companyInfo.map((content, index) => (
-          <TempImage
+          <ContentDisplay
             key={index}
             index={index}
             content={content}
@@ -34,7 +34,7 @@ export function CompaniesScreenHtml() {
     <>
       {isVisible &&
         companyInfo.map((content, index) => (
-          <TempImageHtml
+          <ContentDisplayHtml
             key={index}
             index={index}
             sectionIndex={sectionIndex}

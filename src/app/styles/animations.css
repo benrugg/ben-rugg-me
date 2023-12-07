@@ -7,10 +7,10 @@
   opacity: 0;
   transform: translateY(-30px);
 }
-
+/* 
 .animation-delay-700 {
   animation-delay: 0.7s;
-}
+} */
 
 @keyframes fade-and-slide-in {
   0% {
