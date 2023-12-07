@@ -141,9 +141,9 @@ export function ContentDisplayHtml(props: {
   const pointerEventsClass = props.isScreenReady && props.sectionIndex === props.index ? "pointer-events-auto" : ""
 
   return (
-    <div className="flex flex-row items-stretch justify-between min-h-full w-screen absolute pointer-events-none">
+    <div className="flex flex-row items-stretch justify-start min-h-full absolute pointer-events-none">
       <div
-        className={`${cssClass} ${pointerEventsClass} flex flex-col justify-center w-1/6 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
+        className={`${cssClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
       >
         <h4 className="text-aqua mt-3 mb-0.5">/Company</h4>
         <p className="mb-3">{props.content.title}</p>
@@ -158,7 +158,6 @@ export function ContentDisplayHtml(props: {
           onWheelCapture={stopPropagation}
         />
       </div>
-      <div></div>
     </div>
   )
 }
