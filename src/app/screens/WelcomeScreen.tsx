@@ -6,8 +6,8 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
 import { useScreenState } from "@/app/hooks/useScreenState"
-// import { useTrail, animated as animatedHtml } from "@react-spring/web"
 import { useSpring, animated } from "@react-spring/three"
+import { firaCode } from "@/fonts/fonts"
 
 function WelcomeScreenContents() {
   // init refs
@@ -107,60 +107,28 @@ export function WelcomeScreen() {
 }
 
 export function WelcomeScreenHtml() {
-  // animate title
-  // const titleWords = "ben rugg".split(" ")
-  // const titleHeight = 94
-  // const titleTrails = useTrail(titleWords.length, {
-  //   opacity: 1,
-  //   height: titleHeight,
-  //   top: 0,
-  //   from: { opacity: 0, height: 0, top: -20 },
-  //   delay: 300,
-  // })
-
-  // animate subtitle
-  // const subtitleWords = "web / software / digital".split(" ")
-  // const subtitleHeight = 30
-  // const subtitleTrails = useTrail(subtitleWords.length, {
-  //   opacity: 1,
-  //   height: subtitleHeight,
-  //   top: 0,
-  //   from: { opacity: 0, height: 0, top: -20 },
-  //   delay: 600,
-  // })
-
   return (
-    <div className="flex flex-col items-center justify-top min-h-screen w-screen absolute">
-      <h1 className={`font-kage text-[3.9rem] font-bold mt-12`}>
-        {/* <h1 className={`font-kage text-[3.9rem] font-bold mt-12`} style={{ height: titleHeight }}> */}
-        {/* {titleTrails.map((props, index) => (
-          <animatedHtml.span
-            key={index}
-            className="relative inline-block overflow-hidden align-top mx-2 bg-gradient-to-b text-transparent bg-clip-text from-[#60688b] via-[#4a6275] to-[#195e6f]"
-            style={props}
-          >
-            {titleWords[index]}
-          </animatedHtml.span>
-        ))} */}
-        <span className="relative inline-block overflow-hidden align-top mx-2 bg-gradient-to-b text-transparent bg-clip-text from-[#60688b] via-[#4a6275] to-[#195e6f]">
-          ben rugg
-        </span>
-      </h1>
-      <p
-        className="font-eirene-sans font-light text-[1.17rem] tracking-wider -mt-1 text-[#4a7f97]"
-        // style={{ height: subtitleHeight }}
+    <div className="flex flex-col items-center justify-between min-h-screen w-screen absolute">
+      <div>
+        <h1 className={`${firaCode.className} text-[30px] tracking-widest font-light mt-16 text-white uppercase`}>Ben Rugg</h1>
+        <p className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 text-aqua text-center`}>{"< / >"}</p>
+      </div>
+      <div
+        className={`flex flex-row items-center justify-between w-screen mb-4 px-6 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
       >
-        {/* {subtitleTrails.map((props, index) => (
-          <animatedHtml.span key={index} className="relative inline-block overflow-hidden align-top mx-1" style={props}>
-            {subtitleWords[index]}
-          </animatedHtml.span>
-        ))} */}
-        <span className="relative inline-block overflow-hidden align-top mx-1">web</span>
-        <span className="relative inline-block overflow-hidden align-top mx-1">/</span>
-        <span className="relative inline-block overflow-hidden align-top mx-1">software</span>
-        <span className="relative inline-block overflow-hidden align-top mx-1">/</span>
-        <span className="relative inline-block overflow-hidden align-top mx-1">digital</span>
-      </p>
+        <p>Full-Stack/Engineer</p>
+        <p>Madison/Wisconsin</p>
+        <p>
+          <a className="hover:text-aqua" href="#">
+            About
+          </a>
+        </p>
+        <p>
+          <a className="hover:text-aqua" href="#">
+            Contact
+          </a>
+        </p>
+      </div>
     </div>
   )
 }

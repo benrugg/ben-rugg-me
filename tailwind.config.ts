@@ -8,9 +8,14 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      fontFamily: {
-        kage: ["Kage", "serif"],
-        "eirene-sans": ["Eirene Sans", "sans-serif"],
+      colors: {
+        aqua: "#23FCE2",
+      },
+      letterSpacing: {
+        normal: "0.06em",
+        wide: "0.1em",
+        wider: "0.2em",
+        widest: "0.3em",
       },
     },
   },

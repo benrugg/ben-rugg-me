@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { Suspense, useRef } from "react"
 import { Canvas } from "@react-three/fiber"
 import { Environment, Preload } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
@@ -36,7 +36,9 @@ export default function Home() {
         <Effects />
 
         <WelcomeScreen />
-        <CompaniesScreen />
+        <Suspense fallback={null}>
+          <CompaniesScreen />
+        </Suspense>
       </Canvas>
 
       <WelcomeScreenHtml />
