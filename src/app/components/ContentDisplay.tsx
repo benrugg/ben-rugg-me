@@ -4,6 +4,7 @@ import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
 import PlaneColor from "@/app/components/PlaneColor"
 import ArrowButton from "@/app/components/ArrowButton"
+import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { firaCode } from "@/fonts/fonts"
 import type { Content } from "@/types"
 
@@ -26,6 +27,9 @@ export function ContentDisplay(props: {
 
   // calculate the rotation of the image
   const rotationY = props.rotationDirection === "left" ? Math.PI / 7 : -Math.PI / 7
+
+  // rotate the image on pointer move
+  useRotationOnPointerMove(groupRef, 1.2)
 
   // prepare spring animation
   const startPositionY = -offScreenY
