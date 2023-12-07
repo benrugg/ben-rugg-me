@@ -100,7 +100,7 @@ export function ContentDisplay(props: {
       <group rotation={[0, rotationY, 0]}>
         {hasSlides && (
           <ArrowButton
-            position={[-0.57, 0, 0]}
+            position={[-0.56, 0, 0]}
             rotation={[0, Math.PI, 0]}
             onClick={() => {
               handleArrowButtonClick("previous")
@@ -110,7 +110,7 @@ export function ContentDisplay(props: {
         <Suspense fallback={null}>{Slide}</Suspense>
         {hasSlides && (
           <ArrowButton
-            position={[0.57, 0, 0]}
+            position={[0.56, 0, 0]}
             rotation={[0, 0, 0]}
             onClick={() => {
               handleArrowButtonClick("next")
@@ -138,11 +138,13 @@ export function ContentDisplayHtml(props: {
 
   // prepare animation classes
   const cssClass = props.isScreenReady && props.sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
-  const parentCssClass = props.isScreenReady && props.sectionIndex === props.index ? "" : "pointer-events-none"
+  const pointerEventsClass = props.isScreenReady && props.sectionIndex === props.index ? "pointer-events-auto" : ""
 
   return (
-    <div className={`flex flex-row items-stretch justify-between min-h-screen w-screen px-6 absolute ${parentCssClass}`}>
-      <div className={`${cssClass} flex flex-col justify-center w-1/6 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}>
+    <div className="flex flex-row items-stretch justify-between min-h-full w-screen absolute pointer-events-none">
+      <div
+        className={`${cssClass} ${pointerEventsClass} flex flex-col justify-center w-1/6 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
+      >
         <h4 className="text-aqua mt-3 mb-0.5">/Company</h4>
         <p className="mb-3">{props.content.title}</p>
         <h4 className="text-aqua mt-3 mb-0.5">/Description</h4>

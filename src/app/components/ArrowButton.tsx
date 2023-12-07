@@ -23,7 +23,7 @@ export default function ArrowButton(props: { position: Vector3Array; rotation: V
         <planeGeometry args={[0.1, 0.1]} />
         <meshBasicMaterial opacity={0} transparent side={THREE.DoubleSide} />
       </mesh>
-      <Text font={"/fonts/subset-EireneSans-Thin.woff"} fontSize={0.09} scale={[0.9, 1, 1]}>
+      <Text font={"/fonts/subset-EireneSans-Thin.woff"} fontSize={0.09} scale={[0.8, 0.9, 1]}>
         {">"}
         <meshBasicMaterial ref={materialRef} color="#23FCE2" side={THREE.DoubleSide} />
       </Text>
