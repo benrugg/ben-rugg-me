@@ -71,7 +71,7 @@ export function CompaniesScreenHtml() {
               <p className={`${firaCode.className} text-xs font-normal`}>&nbsp;</p>
             </div>
           </div>
-          <div className="w-[170px] py-28 pointer-events-auto">
+          <div className="w-[170px] py-28">
             <ScrollIndicator current={sectionIndex + 1} total={companyInfo.length} />
           </div>
         </div>
