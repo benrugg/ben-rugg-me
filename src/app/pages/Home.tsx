@@ -6,6 +6,7 @@ import { Environment, Preload } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesScreen, CompaniesScreenHtml } from "@/app/screens/CompaniesScreen"
+import Dust from "@/app/components/Dust"
 import Effects from "@/app/components/Effects"
 
 export default function Home() {
@@ -41,6 +42,8 @@ export default function Home() {
         <Suspense fallback={null}>
           <CompaniesScreen />
         </Suspense>
+
+        <Dust />
       </Canvas>
 
       <WelcomeScreenHtml />
