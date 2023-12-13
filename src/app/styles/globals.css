@@ -30,6 +30,6 @@ body {
   padding-block-start: 0.15rem;
 }
 
-.contentTextBody ul li {
-  margin-bottom: 0.3rem;
+.contentTextBody ul li + li {
+  margin-top: 0.4rem;
 }

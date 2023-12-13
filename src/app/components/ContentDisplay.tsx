@@ -168,7 +168,7 @@ export function ContentDisplayHtml(props: {
         className={`${cssClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
       >
         <div
-          className="contentTextWrap space-y-6 overflow-scroll"
+          className="contentTextWrap space-y-7 overflow-scroll"
           onTouchStart={stopPropagation} // match events from ReactScrollWheelHandler
           onTouchEnd={stopPropagation}
           onMouseDown={stopPropagation}
