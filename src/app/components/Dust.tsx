@@ -19,7 +19,6 @@ const scaleMax = 1.2
 const floatSpeedMin = 0.03
 const floatSpeedMax = 0.06
 const noiseMovementStrength = 0.0003
-const pointerDistanceThreshold = 0.1
 
 type DustProps = {
   position: Vector3Array
@@ -60,7 +59,7 @@ export default function Dust() {
   // get the screen size (in three js units)
   const {
     viewport: { width: threeWidth, height: threeHeight },
-    pointer,
+    // pointer,
   } = useThree()
 
   // animate the particles
@@ -77,10 +76,10 @@ export default function Dust() {
       particle.position[1] += perlinNoise(time, particle.position[0]) * noiseMovementStrength
       particle.position[2] += perlinNoise(time, particle.position[1]) * noiseMovementStrength * 0.2
 
-      // if the particle is near the pointer, move it away
-      const distanceSquared = Math.pow(pointer.x - particle.position[0], 2) + Math.pow(pointer.y - particle.position[1], 2)
-      particle.position[0] -= (pointer.x - particle.position[0]) * (1 / distanceSquared) * delta * 0.05
-      particle.position[1] -= (pointer.y - particle.position[1]) * (1 / distanceSquared) * delta * 0.05
+      // // if the particle is near the pointer, move it away
+      // const distanceSquared = Math.pow(pointer.x - particle.position[0], 2) + Math.pow(pointer.y - particle.position[1], 2)
+      // particle.position[0] -= (pointer.x - particle.position[0]) * (1 / distanceSquared) * delta * 0.05
+      // particle.position[1] -= (pointer.y - particle.position[1]) * (1 / distanceSquared) * delta * 0.05
 
       // reset the particle if it's out of range
       if (particle.position[1] > yMax) {
