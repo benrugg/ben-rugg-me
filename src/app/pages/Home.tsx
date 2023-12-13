@@ -7,6 +7,7 @@ import { Environment, Preload } from "@react-three/drei"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesScreen, CompaniesScreenHtml } from "@/app/screens/CompaniesScreen"
 import Dust from "@/app/components/Dust"
+import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
 
 export default function Home() {
@@ -44,6 +45,7 @@ export default function Home() {
         </Suspense>
 
         <Dust />
+        <Particles />
       </Canvas>
 
       <WelcomeScreenHtml />

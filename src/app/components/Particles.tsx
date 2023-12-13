@@ -8,21 +8,21 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { randomFromArray } from "@/utils/random"
 import { Vector3Array } from "@/types"
 
-const minParticles = 100
-const maxParticles = 400
+const minParticles = 30
+const maxParticles = 100
 const minThreeViewportAreaThreshold = 15
 const maxThreeViewportAreaThreshold = 35
 const scaleMin = 0.1
-const scaleMax = 0.14
+const scaleMax = 0.45
 const yMin = -5
 const yMax = 5
-const zMin = -15
-const zMax = 0
+const zMin = -25
+const zMax = -3
 const overshootScreenScale = 2.3
 const particleRotationSpeed = 0.5
 const minParticleFloatSpeed = 0.15
 const maxParticleFloatSpeed = 0.45
-const possibleColors = ["#091056", "#093156", "#2b0956", "#27030b"]
+const possibleColors = ["#020416", "#020c16", "#070112", "#02100b"]
 
 const AnimatedInstance = animated(Instance)
 
@@ -45,7 +45,10 @@ function Particle(props: ParticleProps) {
     floatSpeed: isEntering || isExiting ? props.floatSpeed * 5 : props.floatSpeed,
     config: (key) => {
       if (key === "scale") {
-        return config.molasses
+        return {
+          tension: 230,
+          friction: 190,
+        }
       } else if (key === "floatSpeed") {
         return config.slow
       } else {
@@ -140,7 +143,7 @@ export default function Particles() {
       {shouldDisplay && (
         <Instances range={numParticles} limit={maxParticles}>
           <icosahedronGeometry args={[1, 0]} />
-          <meshPhysicalMaterial roughness={0.12} reflectivity={0.7} color={"white"} />
+          <meshPhysicalMaterial roughness={0.12} reflectivity={0.1} color={"white"} />
 
           {randomParticles.map((props, index) => {
             const position: Vector3Array = [
