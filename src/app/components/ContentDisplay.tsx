@@ -1,10 +1,11 @@
-import { useRef, useState, MouseEvent, Suspense, TouchEvent } from "react"
+import { useRef, useState, Suspense } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
 import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
 import PlaneColor from "@/app/components/PlaneColor"
 import ArrowButton from "@/app/components/ArrowButton"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
+import { stopPointerProps, stopWheelProps } from "@/utils/stop-pointer-propagation"
 import { firaCode } from "@/fonts/fonts"
 import type { Content } from "@/types"
 
@@ -135,12 +136,6 @@ export function ContentDisplayHtml(props: {
   isScreenReady: boolean
   content: Content
 }) {
-  // define function to stop propagation of events, so we can scroll internal
-  // contents without triggering a swipe to a new section
-  const stopPropagation = (e: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-  }
-
   // prepare animation classes
   const cssClass = props.isScreenReady && props.sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
   const pointerEventsClass = props.isScreenReady && props.sectionIndex === props.index ? "pointer-events-auto" : ""
@@ -168,14 +163,7 @@ export function ContentDisplayHtml(props: {
       <div
         className={`${cssClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
       >
-        <div
-          className="contentTextWrap space-y-7 overflow-scroll"
-          onTouchStart={stopPropagation} // match events from ReactScrollWheelHandler
-          onTouchEnd={stopPropagation}
-          onMouseDown={stopPropagation}
-          onMouseUp={stopPropagation}
-          onWheelCapture={stopPropagation}
-        >
+        <div className="contentTextWrap space-y-7 overflow-scroll" {...stopPointerProps} {...stopWheelProps}>
           {TextContent}
         </div>
       </div>
