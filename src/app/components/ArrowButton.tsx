@@ -1,6 +1,7 @@
 import * as THREE from "three"
 import { useRef, useState } from "react"
 import { Text, useCursor } from "@react-three/drei"
+import { useScreenStore } from "@/app/stores/screenStore"
 import type { Vector3Array } from "@/types"
 
 export default function ArrowButton(props: { position: Vector3Array; rotation: Vector3Array; onClick: () => void }) {
@@ -16,10 +17,27 @@ export default function ArrowButton(props: { position: Vector3Array; rotation: V
     materialRef.current.color.set(isHovered ? "white" : "#23FCE2")
   }
 
+  // when the pointer is down/up on the button, set a flag in the screen store
+  // so it won't allow swiping
+  const screenStore = useScreenStore.getState()
+  const handlePointerDown = () => {
+    screenStore.setAllowSwiping(false)
+  }
+  const handlePointerUp = () => {
+    screenStore.setAllowSwiping(true)
+  }
+
   // use a mesh for a larger hit area
   return (
     <group position={props.position} rotation={props.rotation}>
-      <mesh position={[0, 0, -0.001]} onClick={props.onClick} onPointerEnter={() => setIsHovered(true)} onPointerOut={() => setIsHovered(false)}>
+      <mesh
+        position={[0, 0, -0.001]}
+        onClick={props.onClick}
+        onPointerEnter={() => setIsHovered(true)}
+        onPointerOut={() => setIsHovered(false)}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+      >
         <planeGeometry args={[0.1, 0.1]} />
         <meshBasicMaterial opacity={0} transparent side={THREE.DoubleSide} />
       </mesh>

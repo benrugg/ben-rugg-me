@@ -4,7 +4,6 @@ import dynamic from "next/dynamic"
 import { useNavigation } from "@/app/hooks/useNavigation"
 import { useScreenStore } from "@/app/stores/screenStore"
 import ReactScrollWheelHandler from "react-scroll-wheel-handler"
-import { use } from "react"
 
 const Home = dynamic(() => import("@/app/pages/Home"), { ssr: false })
 

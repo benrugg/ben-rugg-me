@@ -15,6 +15,8 @@ interface ScreenStore {
   screensWithSections: string[]
   incrementSectionIndex: () => void
   decrementSectionIndex: () => void
+  allowSwiping: boolean
+  setAllowSwiping: (allowSwiping: boolean) => void
 }
 
 export const useScreenStore = create<ScreenStore>((set, get) => ({
@@ -57,15 +59,25 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
   maxSections: 6,
   screensWithSections: ["companies", "projects"],
   incrementSectionIndex: () => {
-    const { currentScreen, screensWithSections, sectionIndex, maxSections } = get()
-    if (!screensWithSections.includes(currentScreen) || sectionIndex === maxSections - 1) return
+    const { allowSwiping, currentScreen, screensWithSections, sectionIndex, maxSections } = get()
+    if (!allowSwiping || !screensWithSections.includes(currentScreen) || sectionIndex === maxSections - 1) return
 
     set({ sectionIndex: sectionIndex + 1 })
   },
   decrementSectionIndex: () => {
-    const { currentScreen, screensWithSections, sectionIndex } = get()
-    if (!screensWithSections.includes(currentScreen) || sectionIndex === 0) return
+    const { allowSwiping, currentScreen, screensWithSections, sectionIndex } = get()
+    if (!allowSwiping || !screensWithSections.includes(currentScreen) || sectionIndex === 0) return
 
     set({ sectionIndex: sectionIndex - 1 })
+  },
+  allowSwiping: true,
+  setAllowSwiping: (allowSwiping) => {
+    if (allowSwiping) {
+      setTimeout(() => {
+        set({ allowSwiping })
+      }, 100)
+    } else {
+      set({ allowSwiping })
+    }
   },
 }))
