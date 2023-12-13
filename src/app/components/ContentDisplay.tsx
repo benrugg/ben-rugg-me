@@ -102,7 +102,7 @@ export function ContentDisplay(props: {
   )
 
   return (
-    <animated.group ref={groupRef} scale={[4.2, 4.2, 1]} position-y={spring.positionY} rotation-x={spring.rotationX} visible={visible}>
+    <animated.group ref={groupRef} scale={[4.4, 4.4, 1]} position-y={spring.positionY} rotation-x={spring.rotationX} visible={visible}>
       <group rotation={[0, rotationY, 0]}>
         {hasSlides && (
           <ArrowButton
