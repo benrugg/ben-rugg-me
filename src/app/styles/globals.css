@@ -14,3 +14,22 @@ body {
   right: 0;
   left: unset !important;
 }
+
+.contentTextWrap {
+  max-height: calc(100% - 100px);
+}
+
+.contentTextBody a:hover {
+  color: #ffc716;
+  text-decoration: underline;
+}
+
+.contentTextBody ul {
+  list-style-type: circle;
+  padding-inline-start: 0.8rem;
+  padding-block-start: 0.15rem;
+}
+
+.contentTextBody ul li {
+  margin-bottom: 0.3rem;
+}

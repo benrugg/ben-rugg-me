@@ -144,23 +144,39 @@ export function ContentDisplayHtml(props: {
   const cssClass = props.isScreenReady && props.sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
   const pointerEventsClass = props.isScreenReady && props.sectionIndex === props.index ? "pointer-events-auto" : ""
 
+  // prepare the text content
+  const TextContent = props.content.text.map((content, index) => {
+    return (
+      <div key={index}>
+        <h4 className="text-aqua mb-0.5">{content.title}</h4>
+        {content.url ? (
+          <div className="contentTextBody">
+            <a href={content.url} target="_blank" rel="noreferrer">
+              {content.body}
+            </a>
+          </div>
+        ) : (
+          <div className="contentTextBody" dangerouslySetInnerHTML={{ __html: content.body }} />
+        )}
+      </div>
+    )
+  })
+
   return (
     <div className="flex flex-row items-stretch justify-start min-h-full absolute pointer-events-none">
       <div
         className={`${cssClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
       >
-        <h4 className="text-aqua mt-3 mb-0.5">/Company</h4>
-        <p className="mb-3">{props.content.title}</p>
-        <h4 className="text-aqua mt-3 mb-0.5">/Description</h4>
-        <p
-          className="mb-3 max-h-80 overflow-scroll"
-          dangerouslySetInnerHTML={{ __html: props.content.body }}
+        <div
+          className="contentTextWrap space-y-6 overflow-scroll"
           onTouchStart={stopPropagation} // match events from ReactScrollWheelHandler
           onTouchEnd={stopPropagation}
           onMouseDown={stopPropagation}
           onMouseUp={stopPropagation}
           onWheelCapture={stopPropagation}
-        />
+        >
+          {TextContent}
+        </div>
       </div>
     </div>
   )
