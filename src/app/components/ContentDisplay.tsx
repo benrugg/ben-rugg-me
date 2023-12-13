@@ -60,6 +60,7 @@ export function ContentDisplay(props: {
     onRest: () => {
       if (props.sectionIndex !== props.index) {
         setVisible(false)
+        setSlideIndex(0)
       }
     },
     config: () => {
