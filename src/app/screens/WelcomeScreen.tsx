@@ -68,7 +68,7 @@ function WelcomeScreenContents() {
       <Ground position={[0, groundYPosition, 0]} width={groundWidth} height={groundHeight} />
       <group position={[-videoXPosition, video1YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
         <FloatingVideo
-          url="/video/clover-demo.mp4"
+          url="/video/clover-sites.mp4"
           name="companies"
           title={"products &\ncompanies"}
           titlePosition="right"

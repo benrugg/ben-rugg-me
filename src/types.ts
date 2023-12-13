@@ -7,8 +7,8 @@ export type Content = {
 }
 
 export type Slide = {
-  title: string
-  description: string
+  title?: string
+  description?: string
   video?: string
   image?: string
 }
