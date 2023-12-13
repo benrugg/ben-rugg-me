@@ -18,7 +18,7 @@ const scaleMin = 0.4
 const scaleMax = 1.2
 const floatSpeedMin = 0.03
 const floatSpeedMax = 0.06
-const noiseMovementStrength = 0.0003
+const noiseMovementStrength = 0.036
 
 type DustProps = {
   position: Vector3Array
@@ -72,9 +72,9 @@ export default function Dust() {
       particle.position[1] += particle.floatSpeed * delta
 
       // move the particle with the perlin noise
-      particle.position[0] += perlinNoise(time, particle.position[1]) * noiseMovementStrength
-      particle.position[1] += perlinNoise(time, particle.position[0]) * noiseMovementStrength
-      particle.position[2] += perlinNoise(time, particle.position[1]) * noiseMovementStrength * 0.2
+      particle.position[0] += perlinNoise(time, particle.position[1]) * noiseMovementStrength * delta
+      particle.position[1] += perlinNoise(time, particle.position[0]) * noiseMovementStrength * delta
+      particle.position[2] += perlinNoise(time, particle.position[1]) * noiseMovementStrength * delta * 0.2
 
       // // if the particle is near the pointer, move it away
       // const distanceSquared = Math.pow(pointer.x - particle.position[0], 2) + Math.pow(pointer.y - particle.position[1], 2)
