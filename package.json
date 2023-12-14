@@ -16,7 +16,7 @@
     "@react-three/postprocessing": "^2.15.11",
     "fast-simplex-noise": "^4.0.0",
     "leva": "^0.9.35",
-    "next": "14.0.2",
+    "next": "^14.0.4",
     "postprocessing": "^6.33.3",
     "react": "^18",
     "react-dom": "^18",
