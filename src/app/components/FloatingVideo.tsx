@@ -75,7 +75,12 @@ export default function FloatingVideo(props: {
   // set the spotlight to look at the image/video
   useEffect(() => {
     spotlightRef.current.target = ref.current
-  })
+
+    // pause the video on unmount or change of video
+    return () => {
+      videoTexture.image.pause()
+    }
+  }, [videoTexture])
 
   // rotate the screen on pointer move
   useRotationOnPointerMove(ref, 2)
