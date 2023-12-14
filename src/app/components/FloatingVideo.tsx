@@ -1,7 +1,6 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useEffect, useRef, useState } from "react"
-import { useRouter } from "next/navigation"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
@@ -21,9 +20,6 @@ export default function FloatingVideo(props: {
   const ref = useRef<THREE.Group>(null!)
   const spotlightRef = useRef<THREE.SpotLight>(null!)
   const [isHovered, setIsHovered] = useState(false)
-
-  // get the router
-  const router = useRouter()
 
   // get the current screen, and determine if we're exiting
   const currentScreen = useScreenStore((state) => state.currentScreen)
@@ -90,7 +86,10 @@ export default function FloatingVideo(props: {
       ref={ref}
       onPointerOver={(event) => setIsHovered(true)}
       onPointerOut={(event) => setIsHovered(false)}
-      onClick={() => router.push(`/${props.name}`)}
+      onClick={() => {
+        history.pushState({}, "", `/${props.name}`)
+        useScreenStore.getState().setScreen(props.name)
+      }}
     >
       <mesh name={props.name}>
         <planeGeometry args={[1, height, 5, 5]} />

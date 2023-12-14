@@ -1,7 +1,7 @@
-import { useRouter } from "next/navigation"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import { ContentDisplay, ContentDisplayHtml } from "@/app/components/ContentDisplay"
 import ScrollIndicator from "@/app/components/ScrollIndicator"
+import { useScreenStore } from "@/app/stores/screenStore"
 import { companyInfo } from "@/app/data/companies"
 import { projectInfo } from "@/app/data/projects"
 import { firaCode } from "@/fonts/fonts"
@@ -39,12 +39,10 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
   // load the desired data
   const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
 
-  // get the router
-  const router = useRouter()
-
   // declare function to go back to the home screen
   const goHome = () => {
-    router.push("/")
+    history.pushState({}, "", "/")
+    useScreenStore.getState().setScreen("welcome")
   }
 
   // prepare animation classes
