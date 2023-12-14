@@ -2,12 +2,11 @@ import { useRef, useState, Suspense } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
 import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
-import PlaneColor from "@/app/components/PlaneColor"
 import ArrowButton from "@/app/components/ArrowButton"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { stopPointerProps, stopWheelProps } from "@/utils/stop-pointer-propagation"
 import { firaCode } from "@/fonts/fonts"
-import type { Content } from "@/types"
+import type { Content, ImageSlide, VideoSlide } from "@/types"
 
 const offScreenY = 5
 
@@ -93,12 +92,10 @@ export function ContentDisplay(props: {
   }
 
   // prepare the current slide
-  const Slide = props.content.slides?.[slideIndex].video ? (
-    <PlaneVideo url={props.content.slides[slideIndex].video} />
-  ) : props.content.slides?.[slideIndex].image ? (
-    <PlaneImage url={props.content.slides[slideIndex].image} />
+  const Slide = (props.content.slides[slideIndex] as VideoSlide).video ? (
+    <PlaneVideo url={(props.content.slides[slideIndex] as VideoSlide).video} />
   ) : (
-    <PlaneColor />
+    <PlaneImage url={(props.content.slides[slideIndex] as ImageSlide).image} />
   )
 
   return (

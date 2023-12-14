@@ -2,9 +2,7 @@ import { useTexture } from "@react-three/drei"
 
 const aspectRatio = 16 / 9
 
-export default function PlaneImage(props: { url: string | undefined }) {
-  if (!props.url) return null
-
+export default function PlaneImage(props: { url: string }) {
   // calculate the height of the image
   const height = 1 / aspectRatio
 

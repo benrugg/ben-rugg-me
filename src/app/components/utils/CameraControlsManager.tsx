@@ -45,7 +45,7 @@ export default function CameraControlsManager() {
         cameraControlsRef.current.fitToBox(mesh, true, { cover: true })
       }
     }
-  }, [screen, findMesh])
+  }, [currentScreen, findMesh])
 
   return <CameraControls ref={cameraControlsRef} />
 }
