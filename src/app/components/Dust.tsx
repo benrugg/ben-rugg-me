@@ -7,7 +7,7 @@ import { makeNoise2D } from "fast-simplex-noise"
 import { DustShader } from "@/shaders/DustShader"
 import type { Vector3Array } from "@/types"
 
-const maxParticles = 3000
+const maxParticles = 2000
 const zMin = -7
 const zMax = 4
 const xMin = -1.3
@@ -15,7 +15,7 @@ const xMax = 1.3
 const yMin = -1.3
 const yMax = 1.3
 const scaleMin = 0.4
-const scaleMax = 1.2
+const scaleMax = 1.1
 const floatSpeedMin = 0.03
 const floatSpeedMax = 0.06
 const noiseMovementStrength = 0.036
@@ -64,6 +64,11 @@ export default function Dust() {
 
   // animate the particles
   useFrame((state, delta) => {
+    // if a lot of time has passed, don't do anything (this happens when the tab is inactive)
+    if (delta > 0.5) {
+      return
+    }
+
     // get increasing time
     const time = state.clock.getElapsedTime() / 100
 
