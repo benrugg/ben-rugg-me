@@ -5,7 +5,7 @@ import { Canvas } from "@react-three/fiber"
 import { Environment, Preload, Stats } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
-import { CompaniesScreen, CompaniesScreenHtml } from "@/app/screens/CompaniesScreen"
+import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
@@ -45,7 +45,10 @@ export default function Home() {
           <WelcomeScreen />
         </Suspense>
         <Suspense fallback={null}>
-          <CompaniesScreen />
+          <CompaniesAndProjectsScreen screen="companies" />
+        </Suspense>
+        <Suspense fallback={null}>
+          <CompaniesAndProjectsScreen screen="projects" />
         </Suspense>
 
         <Dust />
@@ -55,7 +58,8 @@ export default function Home() {
       </Canvas>
 
       <WelcomeScreenHtml />
-      <CompaniesScreenHtml />
+      <CompaniesAndProjectsScreenHtml screen="companies" />
+      <CompaniesAndProjectsScreenHtml screen="projects" />
     </div>
   )
 }

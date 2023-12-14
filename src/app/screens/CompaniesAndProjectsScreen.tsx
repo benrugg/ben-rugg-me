@@ -3,17 +3,20 @@ import { useScreenState } from "@/app/hooks/useScreenState"
 import { ContentDisplay, ContentDisplayHtml } from "@/app/components/ContentDisplay"
 import ScrollIndicator from "@/app/components/ScrollIndicator"
 import { companyInfo } from "@/app/data/companies"
+import { projectInfo } from "@/app/data/projects"
 import { firaCode } from "@/fonts/fonts"
 
-export function CompaniesScreen() {
+export function CompaniesAndProjectsScreen(props: { screen: string }) {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState("companies")
+  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState(props.screen)
 
-  // TODO: determine if it's ok/best to mount/unmount or if we should just hide/show
+  // load the desired data
+  const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
+
   return (
     <group visible={isVisible}>
       {isVisible &&
-        companyInfo.map((content, index) => (
+        companiesOrProjects.map((content, index) => (
           <ContentDisplay
             key={index}
             index={index}
@@ -29,9 +32,12 @@ export function CompaniesScreen() {
   )
 }
 
-export function CompaniesScreenHtml() {
+export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState("companies")
+  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState(props.screen)
+
+  // load the desired data
+  const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
 
   // get the router
   const router = useRouter()
@@ -58,7 +64,7 @@ export function CompaniesScreenHtml() {
               </p>
             </div>
             <div className="relative flex-grow">
-              {companyInfo.map((content, index) => (
+              {companiesOrProjects.map((content, index) => (
                 <ContentDisplayHtml
                   key={index}
                   index={index}
@@ -75,7 +81,7 @@ export function CompaniesScreenHtml() {
             </div>
           </div>
           <div className={`w-[170px] py-28 ${cssClass}`} style={{ animationDelay: "0.7s" }}>
-            <ScrollIndicator current={sectionIndex + 1} total={companyInfo.length} />
+            <ScrollIndicator current={sectionIndex + 1} total={companiesOrProjects.length} />
           </div>
         </div>
       )}

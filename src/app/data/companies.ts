@@ -29,25 +29,25 @@ export const companyInfo: Content[] = [
     ],
     slides: [
       {
-        image: "/images/content/daily-good-0.jpg",
+        image: "/images/content/companies/daily-good-0.jpg",
       },
       {
-        image: "/images/content/daily-good-1.jpg",
+        image: "/images/content/companies/daily-good-1.jpg",
       },
       {
-        image: "/images/content/daily-good-2.jpg",
+        image: "/images/content/companies/daily-good-2.jpg",
       },
       {
-        image: "/images/content/daily-good-3.jpg",
+        image: "/images/content/companies/daily-good-3.jpg",
       },
       {
-        image: "/images/content/daily-good-4.jpg",
+        image: "/images/content/companies/daily-good-4.jpg",
       },
       {
-        image: "/images/content/daily-good-5.jpg",
+        image: "/images/content/companies/daily-good-5.jpg",
       },
       {
-        image: "/images/content/daily-good-6.jpg",
+        image: "/images/content/companies/daily-good-6.jpg",
       },
     ],
   },
@@ -79,31 +79,31 @@ export const companyInfo: Content[] = [
     ],
     slides: [
       {
-        image: "/images/content/echo-0.jpg",
+        image: "/images/content/companies/echo-0.jpg",
       },
       {
         video: "/video/echo.mp4",
       },
       {
-        image: "/images/content/echo-2.jpg",
+        image: "/images/content/companies/echo-2.jpg",
       },
       {
-        image: "/images/content/echo-3.jpg",
+        image: "/images/content/companies/echo-3.jpg",
       },
       {
-        image: "/images/content/echo-4.jpg",
+        image: "/images/content/companies/echo-4.jpg",
       },
       {
-        image: "/images/content/echo-5.jpg",
+        image: "/images/content/companies/echo-5.jpg",
       },
       {
-        image: "/images/content/echo-6.jpg",
+        image: "/images/content/companies/echo-6.jpg",
       },
       {
-        image: "/images/content/echo-7.jpg",
+        image: "/images/content/companies/echo-7.jpg",
       },
       {
-        image: "/images/content/echo-8.jpg",
+        image: "/images/content/companies/echo-8.jpg",
       },
     ],
   },
@@ -129,28 +129,28 @@ export const companyInfo: Content[] = [
     ],
     slides: [
       {
-        image: "/images/content/revolver-0.jpg",
+        image: "/images/content/companies/revolver-0.jpg",
       },
       {
-        image: "/images/content/revolver-1.jpg",
+        image: "/images/content/companies/revolver-1.jpg",
       },
       {
-        image: "/images/content/revolver-2.jpg",
+        image: "/images/content/companies/revolver-2.jpg",
       },
       {
-        image: "/images/content/revolver-3.jpg",
+        image: "/images/content/companies/revolver-3.jpg",
       },
       {
-        image: "/images/content/revolver-4.jpg",
+        image: "/images/content/companies/revolver-4.jpg",
       },
       {
-        image: "/images/content/revolver-5.jpg",
+        image: "/images/content/companies/revolver-5.jpg",
       },
       {
-        image: "/images/content/revolver-6.jpg",
+        image: "/images/content/companies/revolver-6.jpg",
       },
       {
-        image: "/images/content/revolver-7.jpg",
+        image: "/images/content/companies/revolver-7.jpg",
       },
     ],
   },
@@ -182,34 +182,34 @@ export const companyInfo: Content[] = [
     ],
     slides: [
       {
-        image: "/images/content/kingdom-0.jpg",
+        image: "/images/content/companies/kingdom-0.jpg",
       },
       {
-        image: "/images/content/kingdom-1.jpg",
+        image: "/images/content/companies/kingdom-1.jpg",
       },
       {
-        image: "/images/content/kingdom-2.jpg",
+        image: "/images/content/companies/kingdom-2.jpg",
       },
       {
-        image: "/images/content/kingdom-3.jpg",
+        image: "/images/content/companies/kingdom-3.jpg",
       },
       {
-        image: "/images/content/kingdom-4.jpg",
+        image: "/images/content/companies/kingdom-4.jpg",
       },
       {
-        image: "/images/content/kingdom-5.jpg",
+        image: "/images/content/companies/kingdom-5.jpg",
       },
       {
-        image: "/images/content/kingdom-6.jpg",
+        image: "/images/content/companies/kingdom-6.jpg",
       },
       {
-        image: "/images/content/kingdom-7.jpg",
+        image: "/images/content/companies/kingdom-7.jpg",
       },
       {
-        image: "/images/content/kingdom-8.jpg",
+        image: "/images/content/companies/kingdom-8.jpg",
       },
       {
-        image: "/images/content/kingdom-9.jpg",
+        image: "/images/content/companies/kingdom-9.jpg",
       },
     ],
   },
@@ -242,25 +242,25 @@ export const companyInfo: Content[] = [
     ],
     slides: [
       {
-        image: "/images/content/clover-0.jpg",
+        image: "/images/content/companies/clover-0.jpg",
       },
       {
-        image: "/images/content/clover-1.jpg",
+        image: "/images/content/companies/clover-1.jpg",
       },
       {
         video: "/video/clover-sites.mp4",
       },
       {
-        image: "/images/content/clover-3.jpg",
+        image: "/images/content/companies/clover-3.jpg",
       },
       {
-        image: "/images/content/clover-4.jpg",
+        image: "/images/content/companies/clover-4.jpg",
       },
       {
-        image: "/images/content/clover-5.jpg",
+        image: "/images/content/companies/clover-5.jpg",
       },
       {
-        image: "/images/content/clover-6.jpg",
+        image: "/images/content/companies/clover-6.jpg",
       },
       {
         video: "/video/clover-donations.mp4",
@@ -294,7 +294,7 @@ export const companyInfo: Content[] = [
     ],
     slides: [
       {
-        image: "/images/content/regime-0.jpg",
+        image: "/images/content/companies/regime-0.jpg",
       },
       {
         video: "/video/regime.mp4",
