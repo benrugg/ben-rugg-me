@@ -10,10 +10,11 @@ export default function PlaneVideo(props: { url: string }) {
   // load the video
   const videoTexture = useVideoTexture(props.url)
 
-  // pause the video on unmount or change of video
+  // pause the video and start it at the beginning on unmount or change of video
   useEffect(() => {
     return () => {
       videoTexture.image.pause()
+      videoTexture.image.currentTime = 0
     }
   }, [videoTexture])
 
