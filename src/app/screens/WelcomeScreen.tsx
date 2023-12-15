@@ -76,7 +76,7 @@ function WelcomeScreenContents() {
         />
       </group>
       <group position={[videoXPosition, video2YPosition, videoZPosition]} scale={[videoScale, videoScale, 1]}>
-        <FloatingVideo url="/video/prism.mp4" name="projects" title={"websites &\nsoftware"} lightSize={videoLightSize} />
+        <FloatingVideo url="/video/websites-and-software.mp4" name="projects" title={"websites &\nsoftware"} lightSize={videoLightSize} />
       </group>
     </group>
   )
