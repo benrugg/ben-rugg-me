@@ -1,4 +1,6 @@
 import { create } from "zustand"
+import { companyInfo } from "@/app/data/companies"
+import { projectInfo } from "@/app/data/projects"
 
 const transitionDuration = 1000
 
@@ -12,6 +14,7 @@ interface ScreenStore {
   isScreenVisible: (screen: string) => boolean
   sectionIndex: number
   maxSections: number
+  setMaxSections: (maxSections: number) => void
   screensWithSections: string[]
   incrementSectionIndex: () => void
   decrementSectionIndex: () => void
@@ -33,13 +36,18 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
     // clear any existing timeouts
     clearTimeout(transitioningTimeoutId)
 
-    // create new timeout
+    // create new timeout to update state in a moment
     const newTransitioningTimeoutId = setTimeout(() => {
       set({
         screenTransitioningTo: undefined,
         screenTransitioningFrom: undefined,
         isScreenReady: true,
       })
+
+      // reset section index if we've moved to a screen without sections
+      if (!get().screensWithSections.includes(newScreen)) {
+        set({ sectionIndex: 0 })
+      }
     }, transitionDuration)
 
     // set new state
@@ -50,6 +58,15 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
       isScreenReady: false,
       transitioningTimeoutId: newTransitioningTimeoutId,
     })
+
+    // if we're moving to a screen with sections, set the max sections
+    if (get().screensWithSections.includes(newScreen)) {
+      if (newScreen === "companies") {
+        set({ maxSections: companyInfo.length })
+      } else if (newScreen === "projects") {
+        set({ maxSections: projectInfo.length })
+      }
+    }
   },
   isScreenVisible: (screen) => {
     const { currentScreen, screenTransitioningTo, screenTransitioningFrom } = get()
@@ -57,6 +74,9 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
   },
   sectionIndex: 0,
   maxSections: 6,
+  setMaxSections: (maxSections) => {
+    set({ maxSections })
+  },
   screensWithSections: ["companies", "projects"],
   incrementSectionIndex: () => {
     const { allowSwiping, currentScreen, screensWithSections, sectionIndex, maxSections } = get()
