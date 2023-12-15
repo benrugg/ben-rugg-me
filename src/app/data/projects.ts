@@ -209,6 +209,47 @@ export const projectInfo: Content[] = [
     text: [
       {
         title: "/Project",
+        body: "Pinc AI Hero / 2022",
+      },
+      {
+        title: "/Description",
+        body: "I created the hero section for Pinc AI's website. It's a 3D scene with a custom shader and particle system. It interacts with the mouse and animates into shapes that represent the company's core values.",
+      },
+      {
+        title: "/Website",
+        body: "pinc-ai.com",
+        url: "https://www.pinc-ai.com/",
+      },
+      {
+        title: "/Tech Stack",
+        body: `
+          <ul>
+            <li>React.js</li>
+            <li>Three.js</li>
+            <li>React-Three-Fiber</li>
+          </ul>
+        `,
+      },
+    ],
+    slides: [
+      {
+        image: "/images/content/projects/pinc-ai-0.jpg",
+      },
+      {
+        video: "/video/pinc-ai.mp4",
+      },
+      {
+        image: "/images/content/projects/pinc-ai-2.jpg",
+      },
+      {
+        image: "/images/content/projects/pinc-ai-3.jpg",
+      },
+    ],
+  },
+  {
+    text: [
+      {
+        title: "/Project",
         body: "Echo / 2014-2022",
       },
       {
@@ -247,6 +288,53 @@ export const projectInfo: Content[] = [
       },
       {
         video: "/video/echo.mp4",
+      },
+    ],
+  },
+  {
+    text: [
+      {
+        title: "/Project",
+        body: "Jumpkick / 2014",
+      },
+      {
+        title: "/Description",
+        body: "Jumpkick was a proactive notification system for Kickstarter. Users could choose project categories and receive an email when new projects met their unique interests. I built the entire system, including the front-end marketing site and onboarding flow, the backend, the email system, the kickstarter scraping/mining tool, and a proprietary prediction algorithm.",
+      },
+      {
+        title: "/Website",
+        body: "jumpkick.me",
+        url: "http://jumpkick.me/",
+      },
+      {
+        title: "/Tech Stack",
+        body: `
+          <ul>
+            <li>Ruby on Rails</li>
+            <li>AWS EC2 & RDS</li>
+            <li>MySQL</li>
+          </ul>
+        `,
+      },
+    ],
+    slides: [
+      {
+        image: "/images/content/projects/jumpkick-0.jpg",
+      },
+      {
+        image: "/images/content/projects/jumpkick-1.jpg",
+      },
+      {
+        video: "/video/jumpkick.mp4",
+      },
+      {
+        image: "/images/content/projects/jumpkick-3.jpg",
+      },
+      {
+        image: "/images/content/projects/jumpkick-4.jpg",
+      },
+      {
+        image: "/images/content/projects/jumpkick-5.jpg",
       },
     ],
   },
