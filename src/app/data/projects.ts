@@ -338,4 +338,94 @@ export const projectInfo: Content[] = [
       },
     ],
   },
+  {
+    text: [
+      {
+        title: "/Project",
+        body: "Clover / 2008-2015",
+      },
+      {
+        title: "/Description",
+        body: "Clover Sites was a revolutionary visual website builder, originally created in the early days of web 2.0. I built the first version of the product, and then led the team that built the second and third versions. We also created an enterprise-scale donation payment processing system. We built all aspects of front-end, back-end, templates and templating engines, server architecture, high-availability infrastructure, and custom payment processing systems. We scaled reliably to millions of monthly website visits and hundreds of millions of dollars in donations.",
+      },
+      {
+        title: "/Website",
+        body: "cloversites.com",
+        url: "https://www.cloversites.com/",
+      },
+      {
+        title: "/Tech Stack",
+        body: `
+          <ul>
+            <li>Ruby on Rails</li>
+            <li>AWS EC2 & RDS</li>
+            <li>MySQL</li>
+            <li>PHP</li>
+            <li>Flash</li>
+          </ul>
+        `,
+      },
+    ],
+    slides: [
+      {
+        image: "/images/content/projects/clover-0.jpg",
+      },
+      {
+        image: "/images/content/projects/clover-1.jpg",
+      },
+      {
+        video: "/video/clover-sites.mp4",
+      },
+      {
+        image: "/images/content/projects/clover-3.jpg",
+      },
+      {
+        image: "/images/content/projects/clover-4.jpg",
+      },
+      {
+        image: "/images/content/projects/clover-5.jpg",
+      },
+      {
+        video: "/video/clover-donations.mp4",
+      },
+    ],
+  },
+  {
+    text: [
+      {
+        title: "/Project",
+        body: "The Regime / 2005-2008",
+      },
+      {
+        title: "/Description",
+        body: "I created dozens of interactive websites and applications for clients, including some high profile bands and film companies. I coded all aspects of front-end and back-end systems, including custom CMS's, and interactive Flash applications with realtime streaming features.",
+      },
+      {
+        title: "/Website",
+        body: "theregime.com",
+        url: "https://www.theregime.com/",
+      },
+      {
+        title: "/Tech Stack",
+        body: `
+          <ul>
+            <li>Flash</li>
+            <li>PHP</li>
+            <li>MySQL</li>
+            <li>HTML</li>
+            <li>JavaScript</li>
+            <li>CSS</li>
+          </ul>
+        `,
+      },
+    ],
+    slides: [
+      {
+        image: "/images/content/projects/regime-0.jpg",
+      },
+      {
+        video: "/video/regime.mp4",
+      },
+    ],
+  },
 ]
