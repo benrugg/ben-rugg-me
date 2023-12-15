@@ -205,4 +205,49 @@ export const projectInfo: Content[] = [
       },
     ],
   },
+  {
+    text: [
+      {
+        title: "/Project",
+        body: "Echo / 2014-2022",
+      },
+      {
+        title: "/Description",
+        body: "Echo is an iOS and Android app made for people who pray. I created the backend: a high availability DB, REST API, transactional emails and large-scale push notication system. I architected the infrastructure and managed the AWS resources. I also created the front-end marketing site, account management tool, and custom billing system.",
+      },
+      {
+        title: "/Website",
+        body: "echoprayer.com",
+        url: "https://www.echoprayer.com/",
+      },
+      {
+        title: "/Tech Stack",
+        body: `
+          <ul>
+            <li>Ruby on Rails</li>
+            <li>AWS EC2 & RDS</li>
+            <li>MySQL</li>
+            <li>Redis</li>
+          </ul>
+        `,
+      },
+    ],
+    slides: [
+      {
+        image: "/images/content/projects/echo-0.jpg",
+      },
+      {
+        image: "/images/content/projects/echo-1.jpg",
+      },
+      {
+        image: "/images/content/projects/echo-2.jpg",
+      },
+      {
+        image: "/images/content/projects/echo-3.jpg",
+      },
+      {
+        video: "/video/echo.mp4",
+      },
+    ],
+  },
 ]
