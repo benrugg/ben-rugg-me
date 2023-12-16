@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    windowHistorySupport: true,
+  },
   async rewrites() {
     return [
       {
