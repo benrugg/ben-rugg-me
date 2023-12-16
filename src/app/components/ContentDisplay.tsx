@@ -3,6 +3,7 @@ import { useSpring, animated, config } from "@react-spring/three"
 import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
 import ArrowButton from "@/app/components/ArrowButton"
+import { useScreenStore } from "@/app/stores/screenStore"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { stopPointerProps, stopWheelProps } from "@/utils/stop-pointer-propagation"
 import { firaCode } from "@/fonts/fonts"
@@ -107,6 +108,19 @@ export function ContentDisplay(props: {
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown)
+    }
+  })
+
+  // listen for changes to the slide index proxy, which counts as a left/right swipe
+  useScreenStore.subscribe((state, prevState) => {
+    if (!visible) return
+
+    if (state.slideIndexProxy !== prevState.slideIndexProxy) {
+      if (state.slideIndexProxy > prevState.slideIndexProxy) {
+        handleArrowButtonClick("next")
+      } else {
+        handleArrowButtonClick("previous")
+      }
     }
   })
 

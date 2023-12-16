@@ -29,11 +29,21 @@ export default function Page() {
     useScreenStore.getState().incrementSectionIndex()
   }
 
+  const handleSwipeLeft = () => {
+    useScreenStore.getState().incrementSlideIndex()
+  }
+
+  const handleSwipeRight = () => {
+    useScreenStore.getState().decrementSlideIndex()
+  }
+
   return (
     <main className="min-h-screen w-screen">
       <ReactScrollWheelHandler
         upHandler={handleSwipeUp}
         downHandler={handleSwipeDown}
+        leftHandler={handleSwipeLeft}
+        rightHandler={handleSwipeRight}
         timeout={300}
         // pauseListeners={true}
         className="min-h-screen w-screen"

@@ -18,6 +18,9 @@ interface ScreenStore {
   screensWithSections: string[]
   incrementSectionIndex: () => void
   decrementSectionIndex: () => void
+  slideIndexProxy: number
+  incrementSlideIndex: () => void
+  decrementSlideIndex: () => void
   allowSwiping: boolean
   setAllowSwiping: (allowSwiping: boolean) => void
 }
@@ -89,6 +92,19 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
     if (!allowSwiping || !screensWithSections.includes(currentScreen) || sectionIndex === 0) return
 
     set({ sectionIndex: sectionIndex - 1 })
+  },
+  slideIndexProxy: 0,
+  incrementSlideIndex: () => {
+    const { allowSwiping, slideIndexProxy } = get()
+    if (!allowSwiping) return
+
+    set({ slideIndexProxy: slideIndexProxy + 1 })
+  },
+  decrementSlideIndex: () => {
+    const { allowSwiping, slideIndexProxy } = get()
+    if (!allowSwiping) return
+
+    set({ slideIndexProxy: slideIndexProxy - 1 })
   },
   allowSwiping: true,
   setAllowSwiping: (allowSwiping) => {
