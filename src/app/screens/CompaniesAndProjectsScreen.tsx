@@ -58,7 +58,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
                 className={`${firaCode.className} text-xs tracking-wide font-normal text-aqua uppercase hover:text-white cursor-pointer`}
                 onClick={goHome}
               >
-                {"<"} Back
+                {"<"} Home
               </p>
             </div>
             <div className="relative flex-grow">
