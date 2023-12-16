@@ -1,4 +1,4 @@
-import { useRef, useState, Suspense } from "react"
+import { useEffect, useRef, useState, Suspense } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
 import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
@@ -90,6 +90,25 @@ export function ContentDisplay(props: {
       }
     }
   }
+
+  // listen for key presses
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (!visible) return
+
+    if (event.key === "ArrowLeft") {
+      handleArrowButtonClick("previous")
+    } else if (event.key === "ArrowRight") {
+      handleArrowButtonClick("next")
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  })
 
   // prepare the current slide
   const Slide = (props.content.slides[slideIndex] as VideoSlide).video ? (
