@@ -73,6 +73,13 @@ export function ContentDisplay(props: {
     },
   })
 
+  // show the content when the spring is ready (NOTE: this is a hack to fix an
+  // issue where ocassionally the content would start at the ready position, and
+  // not animate in)
+  if (!visible && spring.positionY.get() === readyPositionY) {
+    setVisible(true)
+  }
+
   // handle arrow button clicks
   const handleArrowButtonClick = (direction: "next" | "previous") => {
     if (!props.content.slides) return
