@@ -20,7 +20,7 @@ export default function ArrowButton(props: { position: Vector3Array; rotation: V
 
   // on smaller screens, make the hit area bigger
   const { size } = useThree()
-  const hitAreaScaleX = size.width < 1250 ? 0.21 : 0.1
+  const hitAreaScaleX = size.width < 1250 ? 0.35 : 0.1
   const hitAreaScaleY = size.width < 1250 ? 0.55 : 0.1
 
   // when the pointer is down/up on the button, set a flag in the screen store
