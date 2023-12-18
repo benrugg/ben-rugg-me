@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import defaultTheme from "tailwindcss/defaultTheme"
 
 const config: Config = {
   content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -17,6 +18,12 @@ const config: Config = {
         wider: "0.2em",
         widest: "0.3em",
       },
+    },
+    screens: {
+      xs: "475px",
+      smheight: { raw: "(max-height: 700px)" },
+      xsheight: { raw: "(max-height: 600px)" },
+      ...defaultTheme.screens,
     },
   },
   plugins: [],
