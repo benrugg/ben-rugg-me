@@ -110,7 +110,7 @@ export function WelcomeScreenHtml() {
     <div className="flex flex-col items-stretch justify-between min-h-screen w-screen absolute">
       <div>
         <h1
-          className={`${firaCode.className} text-[30px] tracking-widest font-light mt-16 smheight:mt-11 xsheight:mt-8 text-white text-center uppercase`}
+          className={`${firaCode.className} text-[30px] tracking-widest font-light mt-16 smheight:mt-14 xsheight:mt-12 text-white text-center uppercase`}
         >
           Ben Rugg
         </h1>
