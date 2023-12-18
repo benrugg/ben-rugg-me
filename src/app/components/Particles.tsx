@@ -98,7 +98,6 @@ function Particle(props: ParticleProps) {
 export default function Particles() {
   // init ref and state
   const containerRef = useRef<THREE.Group>(null!)
-  const [shouldDisplay, setShouldDisplay] = useState(false)
 
   // create the random particle positions
   const randomParticles = useMemo(() => {
@@ -132,30 +131,22 @@ export default function Particles() {
     ),
   )
 
-  // show the particles after the first render
-  // NOTE: this is a hack to prevent the particles from disappearing during scroll
-  useEffect(() => {
-    setShouldDisplay(true)
-  }, [])
-
   return (
     <group ref={containerRef}>
-      {shouldDisplay && (
-        <Instances range={numParticles} limit={maxParticles}>
-          <icosahedronGeometry args={[1, 0]} />
-          <meshPhysicalMaterial roughness={0.12} reflectivity={0.1} color={"white"} />
+      <Instances range={numParticles} limit={maxParticles}>
+        <icosahedronGeometry args={[1, 0]} />
+        <meshPhysicalMaterial roughness={0.12} reflectivity={0.1} color={"white"} />
 
-          {randomParticles.map((props, index) => {
-            const position: Vector3Array = [
-              (props.position[0] * threeWidth - threeWidth / 2) * overshootScreenScale,
-              (props.position[1] * threeHeight - threeHeight / 2) * overshootScreenScale,
-              props.position[2],
-            ]
+        {randomParticles.map((props, index) => {
+          const position: Vector3Array = [
+            (props.position[0] * threeWidth - threeWidth / 2) * overshootScreenScale,
+            (props.position[1] * threeHeight - threeHeight / 2) * overshootScreenScale,
+            props.position[2],
+          ]
 
-            return <Particle key={index} position={position} scale={props.scale} color={props.color} floatSpeed={props.floatSpeed} />
-          })}
-        </Instances>
-      )}
+          return <Particle key={index} position={position} scale={props.scale} color={props.color} floatSpeed={props.floatSpeed} />
+        })}
+      </Instances>
     </group>
   )
 }
