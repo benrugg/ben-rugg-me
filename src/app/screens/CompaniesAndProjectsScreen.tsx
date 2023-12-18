@@ -52,7 +52,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
     <>
       {isVisible && (
         <div className="flex flex-row justify-between min-h-screen w-screen px-6 absolute pointer-events-none">
-          <div className="flex flex-col justify-start min-h-screen w-1/6 pointer-events-none">
+          <div className="flex flex-col justify-start min-h-screen w-1/4 xs:w-1/6 pointer-events-none">
             <div className={`pt-8 pointer-events-auto ${cssClass}`}>
               <p
                 className={`${firaCode.className} text-xs tracking-wide font-normal text-aqua uppercase hover:text-white cursor-pointer`}
@@ -61,7 +61,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
                 {"<"} Home
               </p>
             </div>
-            <div className="relative flex-grow">
+            <div className="narrowwidth:hidden narrowheight:hidden relative flex-grow">
               {companiesOrProjects.map((content, index) => (
                 <ContentDisplayHtml
                   key={index}
@@ -78,7 +78,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
               <p className={`${firaCode.className} text-xs font-normal`}>&nbsp;</p>
             </div>
           </div>
-          <div className={`w-[170px] py-28 ${cssClass}`} style={{ animationDelay: "0.7s" }}>
+          <div className={`narrowwidth:hidden w-[170px] py-28 ${cssClass}`} style={{ animationDelay: "0.7s" }}>
             <ScrollIndicator current={sectionIndex + 1} total={companiesOrProjects.length} />
           </div>
         </div>

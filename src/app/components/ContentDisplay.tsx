@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, Suspense } from "react"
 import { useSpring, animated, config } from "@react-spring/three"
+import { useThree } from "@react-three/fiber"
+import { MathUtils } from "three"
 import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
 import ArrowButton from "@/app/components/ArrowButton"
@@ -25,9 +27,6 @@ export function ContentDisplay(props: {
   const [visible, setVisible] = useState(false)
   const [slideIndex, setSlideIndex] = useState(0)
   const hasSlides = !!props.content.slides?.length
-
-  // calculate the rotation of the image
-  const rotationY = props.rotationDirection === "left" ? Math.PI / 7 : -Math.PI / 7
 
   // rotate the image on pointer move
   useRotationOnPointerMove(groupRef, 1.2)
@@ -141,12 +140,38 @@ export function ContentDisplay(props: {
     <PlaneImage url={(props.content.slides[slideIndex] as ImageSlide).image} />
   )
 
+  // change size of the content depending on screen size (mobile responsive)
+  // (on smaller screens, scale up the content a bit, because the sidebar text won't be there)
+  const { viewport, size } = useThree()
+  const screenAspectRatio = viewport.width / viewport.height
+  const scaleMultiplier = size.width < 1250 ? 1.3 : 1
+  const minContentScale = 1.0
+  const maxContentScale = 4.4 * scaleMultiplier
+  const minAspectRatio = 0.2
+  const maxAspectRatio = 1.7
+
+  const contentScale = MathUtils.clamp(
+    MathUtils.mapLinear(screenAspectRatio, minAspectRatio, maxAspectRatio, minContentScale, maxContentScale),
+    minContentScale,
+    maxContentScale,
+  )
+
+  // calculate the rotation of the image (on smaller screens, don't rotate as much)
+  const rotationYMultiplier = size.width < 650 ? 0.5 : 1
+  const rotationY = (props.rotationDirection === "left" ? Math.PI / 7 : -Math.PI / 7) * rotationYMultiplier
+
   return (
-    <animated.group ref={groupRef} scale={[4.4, 4.4, 1]} position-y={spring.positionY} rotation-x={spring.rotationX} visible={visible}>
+    <animated.group
+      ref={groupRef}
+      scale={[contentScale, contentScale, 1]}
+      position-y={spring.positionY}
+      rotation-x={spring.rotationX}
+      visible={visible}
+    >
       <group rotation={[0, rotationY, 0]}>
         {hasSlides && (
           <ArrowButton
-            position={[-0.56, 0, 0]}
+            position={[-0.56, 0, 0.01]}
             rotation={[0, Math.PI, 0]}
             onClick={() => {
               handleArrowButtonClick("previous")
@@ -156,7 +181,7 @@ export function ContentDisplay(props: {
         <Suspense fallback={null}>{Slide}</Suspense>
         {hasSlides && (
           <ArrowButton
-            position={[0.56, 0, 0]}
+            position={[0.56, 0, 0.01]}
             rotation={[0, 0, 0]}
             onClick={() => {
               handleArrowButtonClick("next")

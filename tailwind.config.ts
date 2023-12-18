@@ -23,6 +23,8 @@ const config: Config = {
       xs: "475px",
       smheight: { raw: "(max-height: 700px)" },
       xsheight: { raw: "(max-height: 600px)" },
+      narrowwidth: { raw: "(max-width: 1250px)" },
+      narrowheight: { raw: "(max-height: 650px)" },
       ...defaultTheme.screens,
     },
   },
