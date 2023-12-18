@@ -57,9 +57,9 @@ function WelcomeScreenContents() {
 
   if (screenAspectRatio <= 0.6) {
     // narrow/tall mobile
-    groupYPosition = -0.9
-    videoScale = 2
-    video1YPosition = 1.4
+    groupYPosition = -0.92
+    videoScale = 2.2
+    video1YPosition = 1.47
   }
 
   return (
@@ -107,7 +107,7 @@ export function WelcomeScreen() {
 
 export function WelcomeScreenHtml() {
   return (
-    <div className="flex flex-col items-stretch justify-between min-h-screen w-screen absolute">
+    <div className="flex flex-col items-stretch justify-between h-[100dvh] w-screen absolute">
       <div>
         <h1
           className={`${firaCode.className} text-[30px] tracking-widest font-light mt-16 smheight:mt-14 xsheight:mt-12 text-white text-center uppercase`}
@@ -117,7 +117,7 @@ export function WelcomeScreenHtml() {
         <p className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 smheight:mt-0 text-aqua text-center`}>{"< / >"}</p>
       </div>
       <div
-        className={`flex flex-row flex-wrap gap-x-3 xs:gap-x-8 gap-y-1 items-center justify-between mb-4 sm:px-6 px-4 ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
+        className={`flex flex-row flex-wrap gap-x-3 xs:gap-x-8 xs:gap-y-1 gap-y-0 items-center justify-between xs:mb-4 mb-3 sm:px-6 px-4 ${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-white uppercase`}
       >
         <p>Full-Stack/Engineer</p>
         <p className="basis-1/3 sm:basis-0 text-right sm:text-center">

@@ -51,11 +51,11 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
   return (
     <>
       {isVisible && (
-        <div className="flex flex-row justify-between min-h-screen w-screen px-6 absolute pointer-events-none">
-          <div className="flex flex-col justify-start min-h-screen w-1/4 xs:w-1/6 pointer-events-none">
-            <div className={`pt-8 pointer-events-auto ${cssClass}`}>
+        <div className="flex flex-row justify-between h-[100dvh] w-screen px-6 absolute pointer-events-none">
+          <div className="flex flex-col justify-start h-[100dvh] w-1/4 xs:w-1/6 pointer-events-none">
+            <div className={`xs:pt-8 pt-7 pointer-events-auto ${cssClass}`}>
               <p
-                className={`${firaCode.className} text-xs tracking-wide font-normal text-aqua uppercase hover:text-white cursor-pointer`}
+                className={`${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-aqua uppercase hover:text-white cursor-pointer`}
                 onClick={goHome}
               >
                 {"<"} Home
@@ -75,7 +75,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
               ))}
             </div>
             <div className="pt-8">
-              <p className={`${firaCode.className} text-xs font-normal`}>&nbsp;</p>
+              <p className={`${firaCode.className} xs:text-xs text-[13px] font-normal`}>&nbsp;</p>
             </div>
           </div>
           <div className={`narrowwidth:hidden w-[170px] py-28 ${cssClass}`} style={{ animationDelay: "0.7s" }}>

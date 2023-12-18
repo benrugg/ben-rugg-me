@@ -38,7 +38,7 @@ export default function Page() {
   }
 
   return (
-    <main className="min-h-screen w-screen">
+    <main>
       <ReactScrollWheelHandler
         upHandler={handleSwipeUp}
         downHandler={handleSwipeDown}
@@ -46,7 +46,7 @@ export default function Page() {
         rightHandler={handleSwipeRight}
         timeout={300}
         // pauseListeners={true}
-        className="min-h-screen w-screen"
+        className="h-[100dvh] w-screen"
       >
         <Home />
       </ReactScrollWheelHandler>

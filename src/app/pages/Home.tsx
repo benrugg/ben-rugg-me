@@ -19,14 +19,14 @@ export default function Home() {
   const showStats = useHasQueryFlag("debug")
 
   return (
-    <div ref={htmlContainerRef} className="fixed w-screen min-h-screen">
+    <div ref={htmlContainerRef} className="fixed w-screen h-[100dvh]">
       <Canvas
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           width: "100vw",
-          height: "100vh",
+          height: "100dvh",
         }}
         // shadows={"soft"}
         camera={{ position: [0, 0, 5], fov: 50 }}
