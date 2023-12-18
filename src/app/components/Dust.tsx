@@ -7,7 +7,10 @@ import { makeNoise2D } from "fast-simplex-noise"
 import { DustShader } from "@/shaders/DustShader"
 import type { Vector3Array } from "@/types"
 
+const minParticles = 300
 const maxParticles = 2000
+const minThreeViewportAreaThreshold = 15
+const maxThreeViewportAreaThreshold = 35
 const zMin = -7
 const zMax = 4
 const xMin = -1.3
@@ -62,6 +65,18 @@ export default function Dust() {
     // pointer,
   } = useThree()
 
+  // calculate the number of particles to render based on the viewport area
+  const viewportArea = threeWidth * threeHeight
+  const numParticles = Math.round(
+    MathUtils.lerp(
+      minParticles,
+      maxParticles,
+      MathUtils.clamp(MathUtils.mapLinear(viewportArea, minThreeViewportAreaThreshold, maxThreeViewportAreaThreshold, 0, 1), 0, 1),
+    ),
+  )
+
+  console.log(numParticles)
+
   // animate the particles
   useFrame((state, delta) => {
     // if a lot of time has passed, don't do anything (this happens when the tab is inactive)
@@ -114,7 +129,7 @@ export default function Dust() {
   })
 
   return (
-    <Points ref={pointsRef} limit={maxParticles} range={particles.length}>
+    <Points ref={pointsRef} limit={maxParticles} range={numParticles}>
       <shaderMaterial
         args={[{ ...DustShader, uniforms: UniformsUtils.clone(DustShader.uniforms) }]}
         uniforms-pointTexture-value={pointTexture}
