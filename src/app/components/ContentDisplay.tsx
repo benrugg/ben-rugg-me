@@ -111,23 +111,26 @@ export function ContentDisplay(props: {
   }
 
   useEffect(() => {
+    // add event listener
     window.addEventListener("keydown", handleKeyDown)
 
+    // listen for changes to the slide index proxy, which counts as a left/right swipe
+    const unsubscribeFromScreenStore = useScreenStore.subscribe((state, prevState) => {
+      if (!visible) return
+
+      if (state.slideIndexProxy !== prevState.slideIndexProxy) {
+        if (state.slideIndexProxy > prevState.slideIndexProxy) {
+          handleArrowButtonClick("next")
+        } else {
+          handleArrowButtonClick("previous")
+        }
+      }
+    })
+
+    // cleanup when unmounting
     return () => {
       window.removeEventListener("keydown", handleKeyDown)
-    }
-  })
-
-  // listen for changes to the slide index proxy, which counts as a left/right swipe
-  useScreenStore.subscribe((state, prevState) => {
-    if (!visible) return
-
-    if (state.slideIndexProxy !== prevState.slideIndexProxy) {
-      if (state.slideIndexProxy > prevState.slideIndexProxy) {
-        handleArrowButtonClick("next")
-      } else {
-        handleArrowButtonClick("previous")
-      }
+      unsubscribeFromScreenStore()
     }
   })
 
