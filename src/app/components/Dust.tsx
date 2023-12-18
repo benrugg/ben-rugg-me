@@ -75,8 +75,6 @@ export default function Dust() {
     ),
   )
 
-  console.log(numParticles)
-
   // animate the particles
   useFrame((state, delta) => {
     // if a lot of time has passed, don't do anything (this happens when the tab is inactive)
