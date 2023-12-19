@@ -41,6 +41,9 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
     // clear any existing timeouts
     clearTimeout(transitioningTimeoutId)
 
+    // clear any flags that won't be relevant anymore
+    set({ isTextContentVisibleOnMobile: false })
+
     // create new timeout to update state in a moment
     const newTransitioningTimeoutId = setTimeout(() => {
       set({
