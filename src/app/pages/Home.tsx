@@ -2,7 +2,7 @@
 
 import { Suspense, useRef } from "react"
 import { Canvas } from "@react-three/fiber"
-import { Environment, Preload, Stats } from "@react-three/drei"
+import { Environment, Stats } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
@@ -10,6 +10,7 @@ import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
 import MainLoading from "@/app/components/MainLoading"
+import FadeInCover from "@/app/components/FadeInCover"
 import { useHasQueryFlag } from "@/app/hooks/useHasQueryFlag"
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
   const showStats = useHasQueryFlag("debug")
 
   return (
-    <Suspense fallback={<MainLoading doAnimateIn={false} />}>
+    <Suspense fallback={null}>
       <div ref={htmlContainerRef} className="fixed w-screen h-[100dvh]">
         <Canvas
           style={{
@@ -38,8 +39,6 @@ export default function Home() {
           <Environment files="/images/textures/polyhaven-aerodynamics_workshop_tiny.hdr" />
           <ambientLight intensity={0.5} />
           <color attach="background" args={["#050010"]} />
-
-          <Preload all />
 
           <Effects />
 
@@ -62,6 +61,8 @@ export default function Home() {
         <WelcomeScreenHtml />
         <CompaniesAndProjectsScreenHtml screen="companies" />
         <CompaniesAndProjectsScreenHtml screen="projects" />
+
+        <FadeInCover />
       </div>
     </Suspense>
   )
