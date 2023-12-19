@@ -3,9 +3,13 @@
 import dynamic from "next/dynamic"
 import { useNavigation } from "@/app/hooks/useNavigation"
 import { useScreenStore } from "@/app/stores/screenStore"
+import MainLoading from "@/app/components/MainLoading"
 import ReactScrollWheelHandler from "react-scroll-wheel-handler"
 
-const Home = dynamic(() => import("@/app/pages/Home"), { ssr: false })
+const Home = dynamic(() => import("@/app/pages/Home"), {
+  ssr: false,
+  loading: MainLoading,
+})
 
 export default function Page() {
   // when the route is changed, set the screen, either immediately

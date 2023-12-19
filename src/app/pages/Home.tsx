@@ -19,47 +19,49 @@ export default function Home() {
   const showStats = useHasQueryFlag("debug")
 
   return (
-    <div ref={htmlContainerRef} className="fixed w-screen h-[100dvh]">
-      <Canvas
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100dvh",
-        }}
-        // shadows={"soft"}
-        camera={{ position: [0, 0, 5], fov: 50 }}
-        eventSource={htmlContainerRef}
-      >
-        {/* <CameraControlsManager /> */}
-        <Environment files="/images/textures/polyhaven-aerodynamics_workshop_tiny.hdr" />
-        <ambientLight intensity={0.5} />
-        <color attach="background" args={["#050010"]} />
+    <Suspense fallback={null}>
+      <div ref={htmlContainerRef} className="fixed w-screen h-[100dvh]">
+        <Canvas
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100dvh",
+          }}
+          // shadows={"soft"}
+          camera={{ position: [0, 0, 5], fov: 50 }}
+          eventSource={htmlContainerRef}
+        >
+          {/* <CameraControlsManager /> */}
+          <Environment files="/images/textures/polyhaven-aerodynamics_workshop_tiny.hdr" />
+          <ambientLight intensity={0.5} />
+          <color attach="background" args={["#050010"]} />
 
-        <Preload all />
+          <Preload all />
 
-        <Effects />
+          <Effects />
 
-        <Suspense fallback={null}>
-          <WelcomeScreen />
-        </Suspense>
-        <Suspense fallback={null}>
-          <CompaniesAndProjectsScreen screen="companies" />
-        </Suspense>
-        <Suspense fallback={null}>
-          <CompaniesAndProjectsScreen screen="projects" />
-        </Suspense>
+          <Suspense fallback={null}>
+            <WelcomeScreen />
+          </Suspense>
+          <Suspense fallback={null}>
+            <CompaniesAndProjectsScreen screen="companies" />
+          </Suspense>
+          <Suspense fallback={null}>
+            <CompaniesAndProjectsScreen screen="projects" />
+          </Suspense>
 
-        <Dust />
-        <Particles />
+          <Dust />
+          <Particles />
 
-        {showStats && <Stats className="threeStats" />}
-      </Canvas>
+          {showStats && <Stats className="threeStats" />}
+        </Canvas>
 
-      <WelcomeScreenHtml />
-      <CompaniesAndProjectsScreenHtml screen="companies" />
-      <CompaniesAndProjectsScreenHtml screen="projects" />
-    </div>
+        <WelcomeScreenHtml />
+        <CompaniesAndProjectsScreenHtml screen="companies" />
+        <CompaniesAndProjectsScreenHtml screen="projects" />
+      </div>
+    </Suspense>
   )
 }

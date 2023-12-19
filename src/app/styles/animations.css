@@ -36,3 +36,31 @@
     transform: translateY(0);
   }
 }
+
+.spin {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.background-wipe-up {
+  background: linear-gradient(#ffffff 0%, #ffffff 49.5%, #000000 49.6%, #000000 100%);
+  background-size: 200% 200%;
+  animation: background-wipe-up 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+@keyframes background-wipe-up {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
