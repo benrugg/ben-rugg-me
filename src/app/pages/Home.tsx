@@ -42,9 +42,8 @@ export default function Home() {
 
           <Effects />
 
-          <Suspense fallback={null}>
-            <WelcomeScreen />
-          </Suspense>
+          <WelcomeScreen />
+
           <Suspense fallback={null}>
             <CompaniesAndProjectsScreen screen="companies" />
           </Suspense>
