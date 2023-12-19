@@ -140,6 +140,17 @@ export function ContentDisplay(props: {
     <PlaneImage url={(props.content.slides[slideIndex] as ImageSlide).image} />
   )
 
+  // when visible and not on the last slide, preload the next image/video
+  let NextSlide = null
+  if (props.sectionIndex === props.index && slideIndex < props.content.slides.length - 1) {
+    const nextSlideIndex = slideIndex + 1
+    NextSlide = (props.content.slides[nextSlideIndex] as VideoSlide).video ? (
+      <PlaneVideo url={(props.content.slides[nextSlideIndex] as VideoSlide).video} justPreload={true} />
+    ) : (
+      <PlaneImage url={(props.content.slides[nextSlideIndex] as ImageSlide).image} justPreload={true} />
+    )
+  }
+
   // change size of the content depending on screen size (mobile responsive)
   // (on smaller screens, scale up the content a bit, because the sidebar text won't be there)
   const { viewport, size } = useThree()
@@ -179,6 +190,7 @@ export function ContentDisplay(props: {
           />
         )}
         <Suspense fallback={null}>{Slide}</Suspense>
+        {NextSlide && <Suspense fallback={null}>{NextSlide}</Suspense>}
         {hasSlides && (
           <ArrowButton
             position={[0.56, 0, 0.01]}
