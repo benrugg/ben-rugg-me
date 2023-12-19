@@ -25,6 +25,7 @@ const config: Config = {
       xsheight: { raw: "(max-height: 600px)" },
       narrowwidth: { raw: "(max-width: 1250px)" },
       narrowheight: { raw: "(max-height: 650px)" },
+      fullsizedevice: { raw: "(min-width: 1250px) and (min-height: 650px)" },
       ...defaultTheme.screens,
     },
   },

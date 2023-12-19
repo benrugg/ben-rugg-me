@@ -38,7 +38,10 @@ export default function ArrowButton(props: { position: Vector3Array; rotation: V
     <group position={props.position} rotation={props.rotation}>
       <mesh
         position={[0, 0, -0.001]}
-        onClick={props.onClick}
+        onClick={(event) => {
+          event.stopPropagation()
+          props.onClick()
+        }}
         onPointerEnter={() => setIsHovered(true)}
         onPointerOut={() => {
           handlePointerUp()

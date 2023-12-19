@@ -23,6 +23,8 @@ interface ScreenStore {
   decrementSlideIndex: () => void
   allowSwiping: boolean
   setAllowSwiping: (allowSwiping: boolean) => void
+  isTextContentVisibleOnMobile: boolean
+  setIsTextContentVisibleOnMobile: (isTextContentVisibleOnMobile: boolean) => void
 }
 
 export const useScreenStore = create<ScreenStore>((set, get) => ({
@@ -82,14 +84,14 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
   },
   screensWithSections: ["companies", "projects"],
   incrementSectionIndex: () => {
-    const { allowSwiping, currentScreen, screensWithSections, sectionIndex, maxSections } = get()
-    if (!allowSwiping || !screensWithSections.includes(currentScreen) || sectionIndex === maxSections - 1) return
+    const { allowSwiping, currentScreen, screensWithSections, sectionIndex, maxSections, isTextContentVisibleOnMobile } = get()
+    if (!allowSwiping || isTextContentVisibleOnMobile || !screensWithSections.includes(currentScreen) || sectionIndex === maxSections - 1) return
 
     set({ sectionIndex: sectionIndex + 1 })
   },
   decrementSectionIndex: () => {
-    const { allowSwiping, currentScreen, screensWithSections, sectionIndex } = get()
-    if (!allowSwiping || !screensWithSections.includes(currentScreen) || sectionIndex === 0) return
+    const { allowSwiping, currentScreen, screensWithSections, sectionIndex, isTextContentVisibleOnMobile } = get()
+    if (!allowSwiping || isTextContentVisibleOnMobile || !screensWithSections.includes(currentScreen) || sectionIndex === 0) return
 
     set({ sectionIndex: sectionIndex - 1 })
   },
@@ -115,5 +117,9 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
     } else {
       set({ allowSwiping })
     }
+  },
+  isTextContentVisibleOnMobile: false,
+  setIsTextContentVisibleOnMobile: (isTextContentVisibleOnMobile) => {
+    set({ isTextContentVisibleOnMobile })
   },
 }))

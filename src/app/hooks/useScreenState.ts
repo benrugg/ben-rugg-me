@@ -1,7 +1,15 @@
 import { useScreenStore } from "@/app/stores/screenStore"
 
 export const useScreenState = (screen: string) => {
-  const { currentScreen, isScreenVisible, screenTransitioningTo, screenTransitioningFrom, isScreenReady, sectionIndex } = useScreenStore()
+  const {
+    currentScreen,
+    isScreenVisible,
+    screenTransitioningTo,
+    screenTransitioningFrom,
+    isScreenReady,
+    sectionIndex,
+    isTextContentVisibleOnMobile,
+  } = useScreenStore()
 
   return {
     currentScreen,
@@ -10,5 +18,6 @@ export const useScreenState = (screen: string) => {
     isTransitioningFrom: screenTransitioningFrom === screen,
     isScreenReady: isScreenReady && currentScreen === screen,
     sectionIndex,
+    isTextContentVisibleOnMobile,
   }
 }

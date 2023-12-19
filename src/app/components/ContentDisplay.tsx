@@ -26,7 +26,6 @@ export function ContentDisplay(props: {
   const groupRef = useRef<THREE.Group>(null!)
   const [visible, setVisible] = useState(false)
   const [slideIndex, setSlideIndex] = useState(0)
-  const hasSlides = !!props.content.slides?.length
 
   // rotate the image on pointer move
   useRotationOnPointerMove(groupRef, 1.2)
@@ -133,24 +132,6 @@ export function ContentDisplay(props: {
     }
   })
 
-  // prepare the current slide
-  const Slide = (props.content.slides[slideIndex] as VideoSlide).video ? (
-    <PlaneVideo url={(props.content.slides[slideIndex] as VideoSlide).video} />
-  ) : (
-    <PlaneImage url={(props.content.slides[slideIndex] as ImageSlide).image} />
-  )
-
-  // when visible and not on the last slide, preload the next image/video
-  let NextSlide = null
-  if (props.sectionIndex === props.index && slideIndex < props.content.slides.length - 1) {
-    const nextSlideIndex = slideIndex + 1
-    NextSlide = (props.content.slides[nextSlideIndex] as VideoSlide).video ? (
-      <PlaneVideo url={(props.content.slides[nextSlideIndex] as VideoSlide).video} justPreload={true} />
-    ) : (
-      <PlaneImage url={(props.content.slides[nextSlideIndex] as ImageSlide).image} justPreload={true} />
-    )
-  }
-
   // change size of the content depending on screen size (mobile responsive)
   // (on smaller screens, scale up the content a bit, because the sidebar text won't be there)
   const { viewport, size } = useThree()
@@ -171,6 +152,30 @@ export function ContentDisplay(props: {
   const rotationYMultiplier = size.width < 650 ? 0.5 : 1
   const rotationY = (props.rotationDirection === "left" ? Math.PI / 7 : -Math.PI / 7) * rotationYMultiplier
 
+  // declare a function to show the text content on mobile
+  const showTextContent = () => {
+    if (size.width >= 1250 && size.height >= 650) return
+    useScreenStore.getState().setIsTextContentVisibleOnMobile(true)
+  }
+
+  // prepare the current slide
+  const Slide = (props.content.slides[slideIndex] as VideoSlide).video ? (
+    <PlaneVideo url={(props.content.slides[slideIndex] as VideoSlide).video} onClick={showTextContent} />
+  ) : (
+    <PlaneImage url={(props.content.slides[slideIndex] as ImageSlide).image} onClick={showTextContent} />
+  )
+
+  // when visible and not on the last slide, preload the next image/video
+  let NextSlide = null
+  if (props.sectionIndex === props.index && slideIndex < props.content.slides.length - 1) {
+    const nextSlideIndex = slideIndex + 1
+    NextSlide = (props.content.slides[nextSlideIndex] as VideoSlide).video ? (
+      <PlaneVideo url={(props.content.slides[nextSlideIndex] as VideoSlide).video} justPreload={true} />
+    ) : (
+      <PlaneImage url={(props.content.slides[nextSlideIndex] as ImageSlide).image} justPreload={true} />
+    )
+  }
+
   return (
     <animated.group
       ref={groupRef}
@@ -180,26 +185,24 @@ export function ContentDisplay(props: {
       visible={visible}
     >
       <group rotation={[0, rotationY, 0]}>
-        {hasSlides && (
-          <ArrowButton
-            position={[-0.56, 0, 0.01]}
-            rotation={[0, Math.PI, 0]}
-            onClick={() => {
-              handleArrowButtonClick("previous")
-            }}
-          />
-        )}
+        <ArrowButton
+          position={[-0.56, 0, 0.01]}
+          rotation={[0, Math.PI, 0]}
+          onClick={() => {
+            handleArrowButtonClick("previous")
+          }}
+        />
+
         <Suspense fallback={null}>{Slide}</Suspense>
         {NextSlide && <Suspense fallback={null}>{NextSlide}</Suspense>}
-        {hasSlides && (
-          <ArrowButton
-            position={[0.56, 0, 0.01]}
-            rotation={[0, 0, 0]}
-            onClick={() => {
-              handleArrowButtonClick("next")
-            }}
-          />
-        )}
+
+        <ArrowButton
+          position={[0.56, 0, 0.01]}
+          rotation={[0, 0, 0]}
+          onClick={() => {
+            handleArrowButtonClick("next")
+          }}
+        />
       </group>
     </animated.group>
   )
@@ -211,11 +214,18 @@ export function ContentDisplayHtml(props: {
   isTransitioningTo: boolean
   isTransitioningFrom: boolean
   isScreenReady: boolean
+  isOnMobile: boolean
   content: Content
 }) {
-  // prepare animation classes
-  const cssClass = props.isScreenReady && props.sectionIndex === props.index ? "fade-and-slide-in" : "fade-and-slide-out"
+  // prepare css classes
+  const animationClass =
+    props.isScreenReady && props.sectionIndex === props.index
+      ? props.isOnMobile
+        ? "fade-and-slide-in"
+        : "fade-and-slide-in-with-delay"
+      : "fade-and-slide-out"
   const pointerEventsClass = props.isScreenReady && props.sectionIndex === props.index ? "pointer-events-auto" : ""
+  const positionClass = props.isOnMobile ? "" : "absolute"
 
   // prepare the text content
   const TextContent = props.content.text.map((content, index) => {
@@ -236,9 +246,9 @@ export function ContentDisplayHtml(props: {
   })
 
   return (
-    <div className="flex flex-row items-stretch justify-start min-h-full absolute pointer-events-none">
+    <div className={`flex flex-row items-stretch justify-start min-h-full ${positionClass} pointer-events-none`}>
       <div
-        className={`${cssClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
+        className={`${animationClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} text-xs tracking-wide font-normal text-white uppercase`}
       >
         <div className="contentTextWrap space-y-7 overflow-scroll" {...stopPointerProps} {...stopWheelProps}>
           {TextContent}

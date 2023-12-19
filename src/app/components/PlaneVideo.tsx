@@ -3,7 +3,7 @@ import { useVideoTexture } from "@react-three/drei"
 
 const aspectRatio = 16 / 9
 
-export default function PlaneVideo(props: { url: string; justPreload?: boolean }) {
+export default function PlaneVideo(props: { url: string; justPreload?: boolean; onClick?: () => void }) {
   // calculate the height of the video
   const height = 1 / aspectRatio
 
@@ -27,7 +27,7 @@ export default function PlaneVideo(props: { url: string; justPreload?: boolean }
   }, [videoTexture, props.justPreload])
 
   return (
-    <mesh position={[0, 0, 0]} visible={!props.justPreload}>
+    <mesh position={[0, 0, 0]} visible={!props.justPreload} onClick={props.onClick}>
       <planeGeometry args={[1, height]} />
       <meshBasicMaterial map={videoTexture} />
     </mesh>

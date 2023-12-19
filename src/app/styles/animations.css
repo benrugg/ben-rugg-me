@@ -2,6 +2,10 @@
   animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
 }
 
+.fade-in-fast {
+  animation: fade-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
+}
+
 .fade-out {
   transition: opacity 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
   opacity: 0;
@@ -22,6 +26,10 @@
 }
 
 .fade-and-slide-in {
+  animation: fade-and-slide-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
+}
+
+.fade-and-slide-in-with-delay {
   animation: fade-and-slide-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s backwards;
 }
 
