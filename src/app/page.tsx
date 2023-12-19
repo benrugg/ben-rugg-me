@@ -8,7 +8,7 @@ import ReactScrollWheelHandler from "react-scroll-wheel-handler"
 
 const Home = dynamic(() => import("@/app/pages/Home"), {
   ssr: false,
-  loading: MainLoading,
+  loading: () => <MainLoading doAnimateIn={true} />,
 })
 
 export default function Page() {
