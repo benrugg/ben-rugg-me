@@ -14,7 +14,7 @@ export const companyInfo: Content[] = [
       },
       {
         title: "/Description",
-        body: "Daily Good brings a moment of joy to someone you care about every day of the year. It's a unique physical and digital product delivering a daily dose of positivity. My business partner and I created all aspects of the brand and product from scratch and spun up a custom onboarding flow and admin site quickly.",
+        body: "Daily Good brings a moment of joy to someone you care about every day of the year. It's a unique physical and digital product delivering a daily dose of positivity. My business partner and I created all aspects of the brand and product from scratch and built a custom onboarding flow and admin site quickly.",
       },
       {
         title: "/Highlights",
@@ -167,7 +167,7 @@ export const companyInfo: Content[] = [
       },
       {
         title: "/Description",
-        body: "Kingdom is an architecture and design firm. I invested in this small company and came on board to help scale operations. We created a new brand and website, while also building out a new office space. I helped them grow from 2 to 8 employees in 3 months. We developed properties in the Hollywood Hills and designed a 5,000 sq ft home in Beverly Hills, while simultaneously doing corporate design work and spinning up new potential consumer products.",
+        body: "Kingdom is an architecture and design firm. I invested in this small company and came on board to help scale operations. We created a new brand and website, while also building out a new office space. I helped them grow from 2 to 8 employees in 3 months. We developed properties in the Hollywood Hills and designed a 5,000 sq ft home in Beverly Hills, while simultaneously doing corporate design work and developing new consumer products for market.",
       },
       {
         title: "/Highlights",
