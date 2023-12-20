@@ -6,7 +6,7 @@ import CloseButton from "@/app/components/CloseButton"
 
 export function AboutScreenHtml() {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady } = useScreenState("about")
+  const { isVisible, isTransitioningTo, isScreenReady } = useScreenState("about")
 
   // prepare animation classes
   const cssClass = isTransitioningTo || isScreenReady ? "fade-in" : "fade-out"
@@ -54,7 +54,10 @@ export function AboutScreenHtml() {
               </div>
             </div>
           </div>
-          <div className="text-center uppercase text-[10px] tracking-wide md:pt-6 pt-9 pb-4 space-y-1">
+          <div
+            className="text-center uppercase text-[10px] tracking-wide md:pt-6 pt-9 pb-4 space-y-1 fade-and-slide-in-with-delay"
+            style={{ animationDelay: "1.1s" }}
+          >
             <p>This site was hand crafted in React.js, Next.js, TypeScript, and React-Three-Fiber</p>
             <p>{"//"}</p>
             <p>

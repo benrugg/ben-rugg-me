@@ -7,6 +7,7 @@ import { Environment, Stats } from "@react-three/drei"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
 import { AboutScreenHtml } from "@/app/screens/AboutScreen"
+import { ContactScreenHtml } from "@/app/screens/ContactScreen"
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
@@ -63,6 +64,7 @@ export default function Main() {
         <CompaniesAndProjectsScreenHtml screen="companies" />
         <CompaniesAndProjectsScreenHtml screen="projects" />
         <AboutScreenHtml />
+        <ContactScreenHtml />
 
         <FadeInCover />
       </div>
