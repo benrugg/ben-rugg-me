@@ -158,11 +158,16 @@ export function ContentDisplay(props: {
     useScreenStore.getState().setIsTextContentVisibleOnMobile(true)
   }
 
+  // on narrow-screened mobile devices, replace the title slide with a mobile-friendly version
+  const processSlideImageUrl = (url: string) => {
+    return size.width <= 600 && slideIndex === 0 ? url.replace("-0", "-0-mobile") : url
+  }
+
   // prepare the current slide
   const Slide = (props.content.slides[slideIndex] as VideoSlide).video ? (
     <PlaneVideo url={(props.content.slides[slideIndex] as VideoSlide).video} onClick={showTextContent} />
   ) : (
-    <PlaneImage url={(props.content.slides[slideIndex] as ImageSlide).image} onClick={showTextContent} />
+    <PlaneImage url={processSlideImageUrl((props.content.slides[slideIndex] as ImageSlide).image)} onClick={showTextContent} />
   )
 
   // when visible and not on the last slide, preload the next image/video
