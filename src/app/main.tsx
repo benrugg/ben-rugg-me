@@ -6,6 +6,7 @@ import { Environment, Stats } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
+import { AboutScreenHtml } from "@/app/screens/AboutScreen"
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
@@ -61,6 +62,7 @@ export default function Main() {
         <WelcomeScreenHtml />
         <CompaniesAndProjectsScreenHtml screen="companies" />
         <CompaniesAndProjectsScreenHtml screen="projects" />
+        <AboutScreenHtml />
 
         <FadeInCover />
       </div>

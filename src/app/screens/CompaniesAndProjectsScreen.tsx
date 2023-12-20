@@ -3,6 +3,7 @@ import { ContentDisplay, ContentDisplayHtml } from "@/app/components/ContentDisp
 import ScrollIndicator from "@/app/components/ScrollIndicator"
 import CloseButton from "@/app/components/CloseButton"
 import { useScreenStore } from "@/app/stores/screenStore"
+import { navigateHome } from "@/utils/screen-navigation"
 import { companyInfo } from "@/app/data/companies"
 import { projectInfo } from "@/app/data/projects"
 import { firaCode } from "@/fonts/fonts"
@@ -42,12 +43,6 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
   // load the desired data
   const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
 
-  // declare function to go back to the home screen
-  const goHome = () => {
-    history.pushState({}, "", "/")
-    useScreenStore.getState().setScreen("welcome")
-  }
-
   // declare function to hide text content on mobile
   const hideTextContent = () => {
     useScreenStore.getState().setIsTextContentVisibleOnMobile(false)
@@ -65,7 +60,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
               <div className={`xs:pt-8 pt-7 pointer-events-auto ${cssClass}`}>
                 <p
                   className={`${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-aqua uppercase hover:text-white cursor-pointer`}
-                  onClick={goHome}
+                  onClick={navigateHome}
                 >
                   {"<"} Home
                 </p>

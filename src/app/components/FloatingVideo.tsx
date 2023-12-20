@@ -5,6 +5,7 @@ import { useScreenStore } from "@/app/stores/screenStore"
 import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
+import { navigateToScreen } from "@/utils/screen-navigation"
 
 const aspectRatio = 16 / 9
 const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
@@ -86,10 +87,7 @@ export default function FloatingVideo(props: {
       ref={ref}
       onPointerOver={(event) => setIsHovered(true)}
       onPointerOut={(event) => setIsHovered(false)}
-      onClick={() => {
-        history.pushState({}, "", `/${props.name}`)
-        useScreenStore.getState().setScreen(props.name)
-      }}
+      onClick={() => navigateToScreen(props.name)}
     >
       <mesh name={props.name}>
         <planeGeometry args={[1, height, 5, 5]} />

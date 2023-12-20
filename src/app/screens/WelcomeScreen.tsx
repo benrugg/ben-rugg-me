@@ -6,6 +6,7 @@ import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
 import { useScreenState } from "@/app/hooks/useScreenState"
+import { navigateToScreen } from "@/utils/screen-navigation"
 import { useSpring, animated } from "@react-spring/three"
 import { firaCode } from "@/fonts/fonts"
 
@@ -120,10 +121,8 @@ export function WelcomeScreenHtml() {
         className={`flex flex-row flex-wrap gap-x-3 xs:gap-x-8 xs:gap-y-1 gap-y-0 items-center justify-between xs:mb-4 mb-3 sm:px-6 px-4 ${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-white uppercase`}
       >
         <p>Full-Stack/Engineer</p>
-        <p className="basis-1/3 sm:basis-0 text-right sm:text-center">
-          <a className="hover:text-aqua" href="#">
-            About
-          </a>
+        <p className="basis-1/3 sm:basis-0 text-right sm:text-center cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("about")}>
+          About
         </p>
         <p className="basis-1/3 sm:basis-0 text-left sm:text-center">
           <a className="hover:text-aqua" href="#">
