@@ -94,7 +94,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
           </div>
           {isTextContentVisibleOnMobile && (
             <>
-              <div className="fullsizedevice:hidden flex flex-col justify-center h-[100dvh] w-screen absolute px-6 bg-black bg-opacity-80 fade-in-fast">
+              <div className="fullsizedevice:hidden flex flex-col justify-center items-center h-[100dvh] w-screen absolute px-6 bg-black bg-opacity-80 fade-in-fast">
                 <ContentDisplayHtml
                   index={sectionIndex}
                   sectionIndex={sectionIndex}

@@ -246,7 +246,7 @@ export function ContentDisplayHtml(props: {
   })
 
   return (
-    <div className={`flex flex-row items-stretch justify-start min-h-full ${positionClass} pointer-events-none`}>
+    <div className={`flex flex-row items-stretch justify-start min-h-full max-w-xl ${positionClass} pointer-events-none`}>
       <div
         className={`${animationClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-white uppercase`}
       >
