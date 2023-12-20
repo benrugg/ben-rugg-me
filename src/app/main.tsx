@@ -9,11 +9,11 @@ import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/ap
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
-import MainLoading from "@/app/components/MainLoading"
+// import MainLoading from "@/app/components/MainLoading"
 import FadeInCover from "@/app/components/FadeInCover"
 import { useHasQueryFlag } from "@/app/hooks/useHasQueryFlag"
 
-export default function Home() {
+export default function Main() {
   // init refs
   const htmlContainerRef = useRef<HTMLDivElement>(null!)
 

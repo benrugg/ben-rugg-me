@@ -6,7 +6,7 @@ import { useScreenStore } from "@/app/stores/screenStore"
 import MainLoading from "@/app/components/MainLoading"
 import ReactScrollWheelHandler from "react-scroll-wheel-handler"
 
-const Home = dynamic(() => import("@/app/pages/Home"), {
+const Main = dynamic(() => import("@/app/main"), {
   ssr: false,
   loading: () => <MainLoading doAnimateIn={true} />,
 })
@@ -52,7 +52,7 @@ export default function Page() {
         // pauseListeners={true}
         className="h-[100dvh] w-screen"
       >
-        <Home />
+        <Main />
       </ReactScrollWheelHandler>
     </main>
   )
