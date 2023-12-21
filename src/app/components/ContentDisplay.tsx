@@ -255,7 +255,7 @@ export function ContentDisplayHtml(props: {
       <div
         className={`${animationClass} ${pointerEventsClass} flex flex-col justify-center ${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-white uppercase`}
       >
-        <div className="contentTextWrap space-y-7 overflow-scroll" {...stopPointerProps} {...stopWheelProps}>
+        <div className="contentTextWrap space-y-7 overflow-scroll hide-scrollbar" {...stopPointerProps} {...stopWheelProps}>
           {TextContent}
         </div>
       </div>
