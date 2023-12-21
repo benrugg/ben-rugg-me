@@ -58,7 +58,7 @@ export function AboutScreenHtml() {
             className="text-center uppercase text-[10px] tracking-wide md:pt-6 pt-9 pb-4 space-y-1 fade-and-slide-in-with-delay"
             style={{ animationDelay: "1.1s" }}
           >
-            <p>This site was hand crafted in React.js, Next.js, TypeScript, and React-Three-Fiber</p>
+            <p>This site was hand coded in React.js, Next.js, TypeScript, and React-Three-Fiber</p>
             <p>{"//"}</p>
             <p>
               <a className="text-aqua hover:text-white" href="https://github.com/benrugg/ben-rugg-me" target="_blank">
