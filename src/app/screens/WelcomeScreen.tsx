@@ -115,12 +115,19 @@ export function WelcomeScreenHtml() {
         >
           Ben Rugg
         </h1>
-        <p className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 smheight:mt-0 text-aqua text-center`}>{"< / >"}</p>
+        <p
+          className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 smheight:mt-0 text-aqua text-center cursor-pointer`}
+          onClick={() => navigateToScreen("full-stack-engineer")}
+        >
+          {"< / >"}
+        </p>
       </div>
       <div
         className={`flex flex-row flex-wrap gap-x-3 xs:gap-x-8 xs:gap-y-1 gap-y-0 items-center justify-between xs:mb-4 mb-3 sm:px-6 px-4 ${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-white uppercase`}
       >
-        <p>Full-Stack/Engineer</p>
+        <p className="cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("full-stack-engineer")}>
+          Full-Stack/Engineer
+        </p>
         <p className="basis-1/3 sm:basis-0 text-right sm:text-center cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("about")}>
           About
         </p>

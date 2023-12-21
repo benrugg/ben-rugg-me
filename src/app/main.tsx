@@ -8,6 +8,7 @@ import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
 import { AboutScreenHtml } from "@/app/screens/AboutScreen"
 import { ContactScreenHtml } from "@/app/screens/ContactScreen"
+import { FullStackEngineerScreenHtml } from "@/app/screens/FullStackEngineerScreen"
 import { MadisonScreen, MadisonScreenHtml } from "@/app/screens/MadisonScreen"
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
@@ -67,6 +68,7 @@ export default function Main() {
         <CompaniesAndProjectsScreenHtml screen="projects" />
         <AboutScreenHtml />
         <ContactScreenHtml />
+        <FullStackEngineerScreenHtml />
         <MadisonScreenHtml />
 
         <FadeInCover />
