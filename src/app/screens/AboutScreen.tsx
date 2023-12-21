@@ -22,7 +22,7 @@ export function AboutScreenHtml() {
               <CloseButton onClick={navigateHome} />
             </div>
           </div>
-          <div className="flex flex-col items-center relative fullsizedevice:top-[-30px] overflow-y-scroll overflow-x-hidden">
+          <div className="flex flex-col items-center relative fullsizedevice:top-[-30px] overflow-y-scroll overflow-x-hidden hide-scrollbar">
             <p className="text-aqua uppercase tracking-wide fade-and-slide-in-with-delay text-[17px]">/Crafting Interactive Experiences Since 2000</p>
 
             <div className="flex sm:flex-row flex-col justify-center items-start max-w-5xl sm:space-x-8 sm:space-y-0 space-y-7 mt-6">

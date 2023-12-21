@@ -22,7 +22,7 @@ export function ContactScreenHtml() {
               <CloseButton onClick={navigateHome} />
             </div>
           </div>
-          <div className="mx-auto relative fullsizedevice:top-[-40px] overflow-y-scroll overflow-x-hidden">
+          <div className="mx-auto relative fullsizedevice:top-[-40px] overflow-y-scroll overflow-x-hidden hide-scrollbar">
             <p className="text-aqua uppercase tracking-wide fade-and-slide-in-with-delay text-[17px]">/Get In Touch</p>
 
             <div className="space-y-6 mt-6 text-sm uppercase tracking-wide fade-and-slide-in-with-delay" style={{ animationDelay: "0.7s" }}>
