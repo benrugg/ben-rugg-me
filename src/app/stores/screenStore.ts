@@ -29,6 +29,8 @@ interface ScreenStore {
   setAllowSwiping: (allowSwiping: boolean) => void
   isTextContentVisibleOnMobile: boolean
   setIsTextContentVisibleOnMobile: (isTextContentVisibleOnMobile: boolean) => void
+  hasSeenSwipeInstructions: boolean
+  setHasSeenSwipeInstructions: (hasSeenSwipeInstructions: boolean) => void
 }
 
 export const useScreenStore = create<ScreenStore>((set, get) => ({
@@ -142,5 +144,9 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
   isTextContentVisibleOnMobile: false,
   setIsTextContentVisibleOnMobile: (isTextContentVisibleOnMobile) => {
     set({ isTextContentVisibleOnMobile })
+  },
+  hasSeenSwipeInstructions: false,
+  setHasSeenSwipeInstructions: (hasSeenSwipeInstructions) => {
+    set({ hasSeenSwipeInstructions })
   },
 }))

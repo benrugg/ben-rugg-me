@@ -2,11 +2,13 @@ import { useScreenState } from "@/app/hooks/useScreenState"
 import { ContentDisplay, ContentDisplayHtml } from "@/app/components/ContentDisplay"
 import ScrollIndicator from "@/app/components/ScrollIndicator"
 import CloseButton from "@/app/components/CloseButton"
+import SwipeInstructions from "@/app/components/SwipeInstructions"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { navigateHome } from "@/utils/screen-navigation"
 import { companyInfo } from "@/app/data/companies"
 import { projectInfo } from "@/app/data/projects"
 import { firaCode } from "@/fonts/fonts"
+import { MouseEventHandler } from "react"
 
 export function CompaniesAndProjectsScreen(props: { screen: string }) {
   // get the current screen state
@@ -36,7 +38,8 @@ export function CompaniesAndProjectsScreen(props: { screen: string }) {
 
 export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
   // get the current screen state
-  const { isActive, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex, isTextContentVisibleOnMobile } = useScreenState(props.screen)
+  const { isActive, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex, isTextContentVisibleOnMobile, hasSeenSwipeInstructions } =
+    useScreenState(props.screen)
 
   // load the desired data
   const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
@@ -46,8 +49,15 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
     useScreenStore.getState().setIsTextContentVisibleOnMobile(false)
   }
 
+  // declare function to hide swipe instructions
+  const hideSwipeInstructions = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation()
+    useScreenStore.getState().setHasSeenSwipeInstructions(true)
+  }
+
   // prepare animation classes
   const cssClass = isTransitioningTo || isScreenReady ? "fade-in" : "fade-out"
+  const justFadeOutCssClass = isTransitioningTo || isScreenReady ? "" : "fade-out"
 
   return (
     <>
@@ -102,6 +112,11 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
                 <CloseButton onClick={hideTextContent} />
               </div>
             </>
+          )}
+          {!hasSeenSwipeInstructions && (
+            <div className={`${justFadeOutCssClass}`} onClickCapture={hideSwipeInstructions}>
+              <SwipeInstructions />
+            </div>
           )}
         </>
       )}

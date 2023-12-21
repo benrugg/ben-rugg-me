@@ -10,6 +10,7 @@ export const useScreenState = (screen: string) => {
     isScreenReady,
     sectionIndex,
     isTextContentVisibleOnMobile,
+    hasSeenSwipeInstructions,
   } = useScreenStore()
 
   return {
@@ -21,5 +22,6 @@ export const useScreenState = (screen: string) => {
     isScreenReady: isScreenReady && currentScreen === screen,
     sectionIndex,
     isTextContentVisibleOnMobile,
+    hasSeenSwipeInstructions,
   }
 }

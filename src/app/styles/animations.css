@@ -2,6 +2,10 @@
   animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
 }
 
+.fade-in-with-long-delay {
+  animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) 1.9s backwards;
+}
+
 .fade-in-fast {
   animation: fade-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
 }
@@ -116,5 +120,30 @@
   }
   100% {
     transform: rotateY(12deg) rotateX(-4deg);
+  }
+}
+
+.swipe-up {
+  animation: swipe-up 2s cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
+}
+
+@keyframes swipe-up {
+  0% {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-80px);
+  }
+  90% {
+    transform: translateY(-80px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80px);
+    opacity: 0;
   }
 }
