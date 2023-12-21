@@ -12,7 +12,7 @@ import { MadisonScreen, MadisonScreenHtml } from "@/app/screens/MadisonScreen"
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
-// import MainLoading from "@/app/components/MainLoading"
+import MainLoading from "@/app/components/MainLoading"
 import FadeInCover from "@/app/components/FadeInCover"
 import { useHasQueryFlag } from "@/app/hooks/useHasQueryFlag"
 
@@ -24,7 +24,7 @@ export default function Main() {
   const showStats = useHasQueryFlag("debug")
 
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<MainLoading doAnimateIn={false} />}>
       <div ref={htmlContainerRef} className="fixed w-screen h-[100dvh]">
         <Canvas
           style={{
@@ -45,9 +45,8 @@ export default function Main() {
 
           <Effects />
 
-          <Suspense fallback={null}>
-            <WelcomeScreen />
-          </Suspense>
+          <WelcomeScreen />
+
           <Suspense fallback={null}>
             <CompaniesAndProjectsScreen screen="companies" />
           </Suspense>
