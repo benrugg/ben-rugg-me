@@ -6,14 +6,14 @@ import CloseButton from "@/app/components/CloseButton"
 
 export function ContactScreenHtml() {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isScreenReady } = useScreenState("contact")
+  const { isActive, isTransitioningTo, isScreenReady } = useScreenState("contact")
 
   // prepare animation classes
   const cssClass = isTransitioningTo || isScreenReady ? "fade-in" : "fade-out"
 
   return (
     <>
-      {isVisible && (
+      {isActive && (
         <div
           className={`flex flex-col justify-between h-[100dvh] w-screen absolute px-6 bg-black text-white bg-opacity-80 ${cssClass} ${firaCode.className}`}
         >

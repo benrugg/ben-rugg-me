@@ -3,6 +3,7 @@ import { useScreenStore } from "@/app/stores/screenStore"
 export const useScreenState = (screen: string) => {
   const {
     currentScreen,
+    isScreenActive,
     isScreenVisible,
     screenTransitioningTo,
     screenTransitioningFrom,
@@ -13,6 +14,7 @@ export const useScreenState = (screen: string) => {
 
   return {
     currentScreen,
+    isActive: isScreenActive(screen),
     isVisible: isScreenVisible(screen),
     isTransitioningTo: screenTransitioningTo === screen,
     isTransitioningFrom: screenTransitioningFrom === screen,

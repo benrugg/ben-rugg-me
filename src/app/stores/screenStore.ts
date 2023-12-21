@@ -3,14 +3,18 @@ import { companyInfo } from "@/app/data/companies"
 import { projectInfo } from "@/app/data/projects"
 
 const transitionDuration = 1000
+const stillVisibleDuration = 3000
 
 interface ScreenStore {
   currentScreen: string
+  previousScreen: string | undefined
   screenTransitioningTo: string | undefined
   screenTransitioningFrom: string | undefined
   isScreenReady: boolean
   transitioningTimeoutId: NodeJS.Timeout | undefined
+  stillVisibleTimeoutId: NodeJS.Timeout | undefined
   setScreen: (screen: string) => void
+  isScreenActive: (screen: string) => boolean
   isScreenVisible: (screen: string) => boolean
   sectionIndex: number
   maxSections: number
@@ -29,17 +33,20 @@ interface ScreenStore {
 
 export const useScreenStore = create<ScreenStore>((set, get) => ({
   currentScreen: "welcome",
+  previousScreen: undefined,
   screenTransitioningTo: undefined,
   screenTransitioningFrom: undefined,
   isScreenReady: true,
   transitioningTimeoutId: undefined,
+  stillVisibleTimeoutId: undefined,
   setScreen: (newScreen) => {
     // get current state
-    const { currentScreen, transitioningTimeoutId } = get()
+    const { currentScreen, transitioningTimeoutId, stillVisibleTimeoutId } = get()
     if (currentScreen === newScreen) return
 
     // clear any existing timeouts
     clearTimeout(transitioningTimeoutId)
+    clearTimeout(stillVisibleTimeoutId)
 
     // clear any flags that won't be relevant anymore
     set({ isTextContentVisibleOnMobile: false })
@@ -58,13 +65,20 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
       }
     }, transitionDuration)
 
+    // create new timeout to update state a little later
+    const newStillVisibleTimeoutId = setTimeout(() => {
+      set({ previousScreen: undefined })
+    }, stillVisibleDuration)
+
     // set new state
     set({
       currentScreen: newScreen,
+      previousScreen: currentScreen,
       screenTransitioningTo: newScreen,
       screenTransitioningFrom: currentScreen,
       isScreenReady: false,
       transitioningTimeoutId: newTransitioningTimeoutId,
+      stillVisibleTimeoutId: newStillVisibleTimeoutId,
     })
 
     // if we're moving to a screen with sections, set the max sections
@@ -76,9 +90,13 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
       }
     }
   },
-  isScreenVisible: (screen) => {
+  isScreenActive: (screen) => {
     const { currentScreen, screenTransitioningTo, screenTransitioningFrom } = get()
     return screen === screenTransitioningTo || screen === screenTransitioningFrom || screen === currentScreen
+  },
+  isScreenVisible: (screen) => {
+    const { currentScreen, previousScreen } = get()
+    return screen === previousScreen || screen === currentScreen
   },
   sectionIndex: 0,
   maxSections: 6,

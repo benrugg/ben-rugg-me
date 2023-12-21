@@ -1,9 +1,10 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
+import { useScreenState } from "@/app/hooks/useScreenState"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { randomFromArray } from "@/utils/random"
 import { Vector3Array } from "@/types"
@@ -34,17 +35,28 @@ type ParticleProps = {
 }
 
 function Particle(props: ParticleProps) {
+  // init refs and state
   const ref = useRef<THREE.InstancedMesh>(null!)
   const [isEntering, setIsEntering] = useState(true)
   const [isExiting, setIsExiting] = useState(false)
   // const [hovered, setHovered] = useState(false)
 
+  // get the current screen state for the Madison screen
+  const { isTransitioningTo, isScreenReady } = useScreenState("madison")
+  const isMadisonScreenActive = isTransitioningTo || isScreenReady
+
+  // prepare spring animation
   const spring = useSpring({
-    // color: hovered ? [0, 0, 0] : [0, 155, 125],
-    scale: isEntering || isExiting ? 0 : props.scale,
+    color: isMadisonScreenActive ? "#FFFFFF" : props.color,
+    scale: isEntering || isExiting ? 0 : isMadisonScreenActive ? props.scale * 0.2 : props.scale,
     floatSpeed: isEntering || isExiting ? props.floatSpeed * 5 : props.floatSpeed,
     config: (key) => {
       if (key === "scale") {
+        return {
+          tension: 230,
+          friction: 190,
+        }
+      } else if (key === "color") {
         return {
           tension: 230,
           friction: 190,

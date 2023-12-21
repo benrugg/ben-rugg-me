@@ -10,14 +10,14 @@ import { firaCode } from "@/fonts/fonts"
 
 export function CompaniesAndProjectsScreen(props: { screen: string }) {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState(props.screen)
+  const { isActive, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex } = useScreenState(props.screen)
 
   // load the desired data
   const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
 
   return (
-    <group visible={isVisible}>
-      {isVisible &&
+    <group visible={isActive}>
+      {isActive &&
         companiesOrProjects.map((content, index) => (
           <ContentDisplay
             key={index}
@@ -36,9 +36,7 @@ export function CompaniesAndProjectsScreen(props: { screen: string }) {
 
 export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
   // get the current screen state
-  const { isVisible, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex, isTextContentVisibleOnMobile } = useScreenState(
-    props.screen,
-  )
+  const { isActive, isTransitioningTo, isTransitioningFrom, isScreenReady, sectionIndex, isTextContentVisibleOnMobile } = useScreenState(props.screen)
 
   // load the desired data
   const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
@@ -53,7 +51,7 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
 
   return (
     <>
-      {isVisible && (
+      {isActive && (
         <>
           <div className="flex flex-row justify-between h-[100dvh] w-screen px-6 absolute pointer-events-none">
             <div className="flex flex-col justify-start h-[100dvh] w-1/4 xs:w-1/6 pointer-events-none">

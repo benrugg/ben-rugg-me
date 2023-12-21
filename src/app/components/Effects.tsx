@@ -10,7 +10,7 @@ import { useSpring, animated } from "@react-spring/three"
 
 export default function Effects() {
   // get the current screen state for the Madison screen
-  const { isVisible: isMadisonScreenVisible } = useScreenState("madison")
+  const { isActive: isMadisonScreenVisible } = useScreenState("madison")
 
   // get screen size
   const { size } = useThree()

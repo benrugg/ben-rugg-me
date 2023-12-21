@@ -6,13 +6,26 @@
   animation: fade-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
 }
 
+.fade-in-slow {
+  animation: fade-in 2s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
+}
+
+.fade-in-slow-with-delay {
+  animation: fade-in 2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s backwards;
+}
+
 .fade-out {
   transition: opacity 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
   opacity: 0;
 }
 
-.fade-out-slow {
+.fade-out-medium {
   transition: opacity 0.9s cubic-bezier(0.39, 0.575, 0.565, 1);
+  opacity: 0;
+}
+
+.fade-out-slow {
+  transition: opacity 2s cubic-bezier(0.39, 0.575, 0.565, 1);
   opacity: 0;
 }
 

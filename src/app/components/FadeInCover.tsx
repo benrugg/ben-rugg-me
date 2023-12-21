@@ -11,7 +11,7 @@ export default function FadeInCover() {
         return
       }
 
-      ref.current.classList.add("fade-out-slow")
+      ref.current.classList.add("fade-out-medium")
     }, 66)
   })
 

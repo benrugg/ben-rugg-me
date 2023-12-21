@@ -1,16 +1,9 @@
 // From @brandonscript
 // https://github.com/vercel/next.js/discussions/42016#discussioncomment-4847318
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { usePathname, useSearchParams } from "next/navigation"
-
-export const usePrevious = <T>(value: T) => {
-  const ref = useRef<T>()
-  useEffect(() => {
-    ref.current = value
-  })
-  return ref.current
-}
+import { usePrevious } from "./usePrevious"
 
 interface NavigationEvents {
   routeChanged?: ({ pathname, searchParams }: { pathname: string | null; searchParams: URLSearchParams | null }) => void

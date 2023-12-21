@@ -8,7 +8,7 @@ import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
 import { AboutScreenHtml } from "@/app/screens/AboutScreen"
 import { ContactScreenHtml } from "@/app/screens/ContactScreen"
-import MadisonScreen from "@/app/screens/MadisonScreen"
+import { MadisonScreen, MadisonScreenHtml } from "@/app/screens/MadisonScreen"
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
@@ -68,6 +68,7 @@ export default function Main() {
         <CompaniesAndProjectsScreenHtml screen="projects" />
         <AboutScreenHtml />
         <ContactScreenHtml />
+        <MadisonScreenHtml />
 
         <FadeInCover />
       </div>
