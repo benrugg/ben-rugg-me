@@ -53,16 +53,16 @@ export function MadisonScreenHtml() {
           <div className="relative" style={{ width: "min(100vw, 80dvh)", height: "min(100vw, 80dvh)" }}>
             <Image
               className={`w-full h-full ${cssClass}`}
-              style={{ mixBlendMode: "color-burn" }}
+              style={{ mixBlendMode: "color-burn", transform: "translateZ(0.1px)" }}
               src="/images/textures/madison-wi-overlay.png"
-              width={1920}
-              height={2068}
+              width={1950}
+              height={1950}
               alt="Wisconsin State Outline"
             />
             <a className="pointer-events-auto" href="https://www.google.com/search?q=madison+wi" target="_blank">
               <Image
                 className={`h-auto absolute top-[87%] left-[58%] -translate-x-1/2 -translate-y-1/2 ${cssClass}`}
-                style={{ mixBlendMode: "color-burn", width: "min(7vw, 5.5dvh)" }}
+                style={{ mixBlendMode: "color-burn", transform: "translateZ(0.1px)", width: "min(7vw, 5.5dvh)" }}
                 src="/images/textures/madison-heart.png"
                 width={111}
                 height={104}
