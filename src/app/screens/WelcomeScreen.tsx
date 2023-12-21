@@ -127,7 +127,9 @@ export function WelcomeScreenHtml() {
         <p className="basis-1/3 sm:basis-0 text-left sm:text-center cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("contact")}>
           Contact
         </p>
-        <p>Madison/Wisconsin</p>
+        <p className="cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("madison")}>
+          Madison/Wisconsin
+        </p>
       </div>
     </div>
   )

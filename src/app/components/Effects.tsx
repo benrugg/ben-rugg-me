@@ -4,30 +4,47 @@ import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing"
 // import { ToneMapping } from "@react-three/postprocessing"
 // import { ToneMappingMode } from "postprocessing"
 // import { VignetteEffect } from "postprocessing"
-// import { useFrame } from "@react-three/fiber"
-// import { useScroll } from "@react-three/drei"
+import { useThree } from "@react-three/fiber"
+import { useScreenState } from "@/app/hooks/useScreenState"
+import { useSpring, animated } from "@react-spring/three"
 
 export default function Effects() {
-  // // init refs
-  // const vignetteRef = useRef<VignetteEffect>(null!)
+  // get the current screen state for the Madison screen
+  const { isVisible: isMadisonScreenVisible } = useScreenState("madison")
 
-  // // use scroll and update effects each frame
-  // const data = useScroll()
+  // get screen size
+  const { size } = useThree()
 
-  // useFrame(() => {
-  //   const vignetteOffset = 0.1 * data.curve(0.2, 0.1, 0.1)
-  //   const vignetteDarkness = 1.1 * data.curve(0.2, 0.1, 0.1)
-  //   if (vignetteRef.current) {
-  //     vignetteRef.current.offset = vignetteOffset
-  //     vignetteRef.current.darkness = vignetteDarkness
-  //   }
-  // })
+  // prepare spring animation
+  const AnimatedVignette = animated(Vignette)
+  const AnimatedBloom = animated(Bloom)
+
+  const spring = useSpring({
+    vignetteDarkness: isMadisonScreenVisible ? 0 : 0.8,
+    vignetteOffset: isMadisonScreenVisible ? 0 : size.width <= 950 ? 0.2 : 1,
+    bloomIntensity: isMadisonScreenVisible ? 2 : 0,
+    config: () => {
+      if (isMadisonScreenVisible) {
+        return {
+          tension: 200,
+          friction: 190,
+          precision: 0.001,
+        }
+      } else {
+        return {
+          tension: 350,
+          friction: 120,
+          precision: 0.001,
+        }
+      }
+    },
+  })
 
   return (
     <EffectComposer>
       {/* <DepthOfField focusDistance={0.003} focalLength={0.01} bokehScale={5} width={1024} height={1024} /> */}
-      {/* <Bloom mipmapBlur luminanceThreshold={0.95} levels={4} intensity={2} /> */}
-      <Vignette eskil={false} offset={0.2} darkness={0.8} />
+      <AnimatedBloom mipmapBlur luminanceThreshold={0.7} levels={5} intensity={spring.bloomIntensity} />
+      <AnimatedVignette eskil={false} offset={spring.vignetteOffset} darkness={spring.vignetteDarkness} />
       {/* <ToneMapping mode={ToneMappingMode.ACES_FILMIC} /> */}
     </EffectComposer>
   )

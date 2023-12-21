@@ -8,6 +8,7 @@ import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
 import { AboutScreenHtml } from "@/app/screens/AboutScreen"
 import { ContactScreenHtml } from "@/app/screens/ContactScreen"
+import MadisonScreen from "@/app/screens/MadisonScreen"
 import Dust from "@/app/components/Dust"
 import Particles from "@/app/components/Particles"
 import Effects from "@/app/components/Effects"
@@ -40,7 +41,7 @@ export default function Main() {
           {/* <CameraControlsManager /> */}
           <Environment files="/images/textures/polyhaven-aerodynamics_workshop_tiny.hdr" />
           <ambientLight intensity={0.5} />
-          <color attach="background" args={["#050010"]} />
+          <color attach="background" args={["#060012"]} />
 
           <Effects />
 
@@ -56,6 +57,8 @@ export default function Main() {
 
           <Dust />
           <Particles />
+
+          <MadisonScreen />
 
           {showStats && <Stats className="threeStats" />}
         </Canvas>
