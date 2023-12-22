@@ -1,1 +1,1 @@
-export const rootUrl = "https://benrugg.me"
+export const rootUrl = "https://www.benrugg.me"
