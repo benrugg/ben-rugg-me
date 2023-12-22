@@ -5,10 +5,8 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      {
-        source: "/:any*",
-        destination: "/",
-      },
+      { source: "/sitemap.xml", destination: "/sitemap.xml" },
+      { source: "/:any*", destination: "/" },
     ]
   },
 }
