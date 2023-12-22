@@ -42,6 +42,12 @@ body {
   padding-block-start: 0.15rem;
 }
 
+.contentTextBody.noListStyle ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+  padding-block-start: 0;
+}
+
 .contentTextBody ul li + li {
   margin-top: 0.4rem;
 }

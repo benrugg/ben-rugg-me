@@ -5,10 +5,15 @@ import { useNavigation } from "@/app/hooks/useNavigation"
 import { useScreenStore } from "@/app/stores/screenStore"
 import MainLoading from "@/app/components/MainLoading"
 import ReactScrollWheelHandler from "react-scroll-wheel-handler"
+import { isBot } from "@/utils/is-bot"
 
 const Main = dynamic(() => import("@/app/main"), {
   ssr: false,
   loading: () => <MainLoading doAnimateIn={true} />,
+})
+
+const MainForBot = dynamic(() => import("@/app/bot-pages/Main"), {
+  ssr: false,
 })
 
 export default function Page() {
@@ -43,17 +48,19 @@ export default function Page() {
 
   return (
     <main>
-      <ReactScrollWheelHandler
-        upHandler={handleSwipeUp}
-        downHandler={handleSwipeDown}
-        leftHandler={handleSwipeLeft}
-        rightHandler={handleSwipeRight}
-        timeout={300}
-        // pauseListeners={true}
-        className="h-[100dvh] w-screen"
-      >
-        <Main />
-      </ReactScrollWheelHandler>
+      {isBot() && <MainForBot />}
+      {!isBot() && (
+        <ReactScrollWheelHandler
+          upHandler={handleSwipeUp}
+          downHandler={handleSwipeDown}
+          leftHandler={handleSwipeLeft}
+          rightHandler={handleSwipeRight}
+          timeout={300}
+          className="h-[100dvh] w-screen"
+        >
+          <Main />
+        </ReactScrollWheelHandler>
+      )}
     </main>
   )
 }

@@ -11,7 +11,7 @@ type ContentText = {
   url?: string
 }
 
-type ContentSlide = ImageSlide | VideoSlide
+export type ContentSlide = ImageSlide | VideoSlide
 
 export type ImageSlide = {
   image: string
