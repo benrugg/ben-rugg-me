@@ -116,7 +116,7 @@ export function WelcomeScreenHtml() {
           Ben Rugg
         </h1>
         <p
-          className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 smheight:mt-0 text-aqua text-center cursor-pointer`}
+          className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 smheight:mt-0 text-aqua mx-auto w-fit text-center cursor-pointer`}
           onClick={() => navigateToScreen("full-stack-engineer")}
         >
           {"< / >"}
