@@ -1,5 +1,6 @@
 import * as THREE from "three"
 import { useRef } from "react"
+import Link from "next/link"
 import { useThree } from "@react-three/fiber"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 // import Particles from "@/app/components/Particles"
@@ -128,8 +129,10 @@ export function WelcomeScreenHtml() {
         <p className="cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("full-stack-engineer")}>
           Full-Stack/Engineer
         </p>
-        <p className="basis-1/3 sm:basis-0 text-right sm:text-center cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("about")}>
-          About
+        <p className="basis-1/3 sm:basis-0 text-right sm:text-center cursor-pointer hover:text-aqua">
+          <Link href="/about" prefetch={false}>
+            About
+          </Link>
         </p>
         <p className="basis-1/3 sm:basis-0 text-left sm:text-center cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("contact")}>
           Contact

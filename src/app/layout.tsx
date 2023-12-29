@@ -1,10 +1,9 @@
-import type { Metadata } from "next"
+import MainWrapper from "@/app/MainWrapper"
 import { rootUrl } from "@/config/root-url"
 import "@/app/styles/globals.css"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Ben Rugg // Full-Stack Engineer & Entrepreneur",
-  description: "Digital portfolio of Ben Rugg // Serial entrepreneur and Full-Stack Engineer in Madison, Wisconsin.",
   metadataBase: new URL(rootUrl),
   openGraph: {
     title: "Ben Rugg // Full-Stack Engineer & Entrepreneur",
@@ -33,7 +32,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-black">{children}</body>
+      <body className="bg-black">
+        <main>
+          <MainWrapper />
+          {children}
+        </main>
+      </body>
     </html>
   )
 }
