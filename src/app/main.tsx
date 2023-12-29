@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react"
 import { Canvas } from "@react-three/fiber"
-import { Environment, Stats } from "@react-three/drei"
+import { AdaptiveDpr, Environment, Stats } from "@react-three/drei"
 // import CameraControlsManager from "@/app/components/utils/CameraControlsManager"
 import { WelcomeScreen, WelcomeScreenHtml } from "@/app/screens/WelcomeScreen"
 import { CompaniesAndProjectsScreen, CompaniesAndProjectsScreenHtml } from "@/app/screens/CompaniesAndProjectsScreen"
@@ -38,6 +38,7 @@ export default function Main() {
           eventSource={htmlContainerRef}
         >
           {/* <CameraControlsManager /> */}
+          <AdaptiveDpr />
           <Environment files="/images/textures/polyhaven-aerodynamics_workshop_tiny.hdr" />
           <ambientLight intensity={0.5} />
           <color attach="background" args={["#060012"]} />
