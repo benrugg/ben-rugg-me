@@ -8,8 +8,8 @@ export function AboutContentBody() {
         entrepreneur and creator.
       </p>
       <p>
-        Since the sale of Clover, I&apos;ve had the privilege of founding more companies, creating more products, mentoring other entrepreneurs, and
-        investing in meaningful startups.
+        Since the sale of Clover, I&apos;ve continued creating digital experiences and software - from web apps to mobile apps to games. I now have
+        two decades of experiences on all layers of app development, from front-end to back-end to architecture.
       </p>
       <p>I love the intersection of technology and design, and I thrive creating user experiences that impact people in a practical way.</p>
     </>
