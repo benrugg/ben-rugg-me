@@ -5,6 +5,7 @@ import "@/app/styles/globals.css"
 export const metadata: Metadata = {
   title: "Ben Rugg // Full-Stack Engineer & Entrepreneur",
   description: "Digital portfolio of Ben Rugg // Serial entrepreneur and Full-Stack Engineer in Madison, Wisconsin.",
+  metadataBase: new URL(rootUrl),
   openGraph: {
     title: "Ben Rugg // Full-Stack Engineer & Entrepreneur",
     description: "Digital portfolio of Ben Rugg // Serial entrepreneur and Full-Stack Engineer in Madison, Wisconsin.",
