@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useSpring, animated } from "@react-spring/web"
+import { useScreenStore } from "@/app/stores/screenStore"
 import { firaCode } from "@/fonts/fonts"
 import arrowIcon from "@/assets/icons/arrow-icon.svg"
 
@@ -23,10 +24,19 @@ export default function ScrollIndicator(props: { current: number; total: number 
     config: { tension: 340, friction: 160, mass: 10 },
   })
 
+  // handle clicks on the scroll indicator
+  const handleClickUp = () => {
+    useScreenStore.getState().decrementSectionIndex()
+  }
+
+  const handleClickDown = () => {
+    useScreenStore.getState().incrementSectionIndex()
+  }
+
   return (
     <div className="flex flex-col justify-between items-center h-full text-white uppercase cursor-default pointer-events-none select-none">
       <div>
-        <Image src={arrowIcon} alt="up arrow" className="mb-[3px]" />
+        <Image src={arrowIcon} alt="up arrow" className="mb-[3px] cursor-pointer pointer-events-auto" onClick={handleClickUp} />
       </div>
       <div className={`flex flex-row flex-grow items-start ${firaCode.className} text-xs tracking-wide font-normal`}>
         <div className="w-[64px] h-full relative text-gray-400">
@@ -58,7 +68,7 @@ export default function ScrollIndicator(props: { current: number; total: number 
         </div>
       </div>
       <div>
-        <Image src={arrowIcon} alt="down arrow" className="mt-[3px] rotate-180" />
+        <Image src={arrowIcon} alt="down arrow" className="mt-[3px] rotate-180 cursor-pointer pointer-events-auto" onClick={handleClickDown} />
       </div>
     </div>
   )
