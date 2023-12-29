@@ -1,6 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic"
+import { GoogleAnalytics } from "nextjs-google-analytics"
 import { useNavigation } from "@/app/hooks/useNavigation"
 import { useScreenStore } from "@/app/stores/screenStore"
 import MainLoading from "@/app/components/MainLoading"
@@ -48,6 +49,7 @@ export default function Page() {
 
   return (
     <main>
+      <GoogleAnalytics trackPageViews />
       {isBot() && <MainForBot />}
       {!isBot() && (
         <ReactScrollWheelHandler
