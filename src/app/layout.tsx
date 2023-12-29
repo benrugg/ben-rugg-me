@@ -1,4 +1,4 @@
-import MainWrapper from "@/app/MainWrapper"
+import MainWrapper from "@/app/components/MainWrapper"
 import { rootUrl } from "@/config/root-url"
 import "@/app/styles/globals.css"
 import type { Metadata } from "next"

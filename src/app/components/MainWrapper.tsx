@@ -8,7 +8,7 @@ import { useShowStaticContent } from "@/app/hooks/useShowStaticContent"
 import MainLoading from "@/app/components/MainLoading"
 import ReactScrollWheelHandler from "react-scroll-wheel-handler"
 
-const Main = dynamic(() => import("@/app/Main"), {
+const Main = dynamic(() => import("@/app/components/Main"), {
   ssr: false,
   loading: () => <MainLoading doAnimateIn={true} />,
 })
