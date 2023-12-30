@@ -1,4 +1,4 @@
-import PageContent from "./HomePageContent"
+import PageContent from "@/app/components/static-content/HomePageContent"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {

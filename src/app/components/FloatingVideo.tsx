@@ -1,11 +1,11 @@
 import * as THREE from "three"
 import { MathUtils } from "three"
 import { useEffect, useRef, useState } from "react"
+import { useRouter } from "next/navigation"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { Center, MeshDistortMaterial, Text3D, useCursor, useVideoTexture } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
-import { navigateToScreen } from "@/utils/screen-navigation"
 
 const aspectRatio = 16 / 9
 const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
@@ -81,6 +81,12 @@ export default function FloatingVideo(props: {
 
   // rotate the screen on pointer move
   useRotationOnPointerMove(ref, 2)
+
+  // declare function to navigate to screen
+  const router = useRouter()
+  const navigateToScreen = (screen: string) => {
+    router.push(`/${screen}`)
+  }
 
   return (
     <group

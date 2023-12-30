@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { AboutContentBody, AboutContentFooter } from "@/app/components/AboutContent"
-import StaticContentWrapper from "@/app/components/StaticContentWrapper"
+import StaticContentWrapper from "@/app/components/static-content/StaticContentWrapper"
 
 export default function PageContent() {
   return (

@@ -3,11 +3,9 @@ import { useRef } from "react"
 import Link from "next/link"
 import { useThree } from "@react-three/fiber"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
-// import Particles from "@/app/components/Particles"
 import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
 import { useScreenState } from "@/app/hooks/useScreenState"
-import { navigateToScreen } from "@/utils/screen-navigation"
 import { useSpring, animated } from "@react-spring/three"
 import { firaCode } from "@/fonts/fonts"
 
@@ -118,27 +116,34 @@ export function WelcomeScreenHtml() {
         </h1>
         <p
           className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 smheight:mt-0 text-aqua mx-auto w-fit text-center cursor-pointer`}
-          onClick={() => navigateToScreen("full-stack-engineer")}
         >
-          {"< / >"}
+          <Link href="/full-stack-engineer" prefetch={false}>
+            {"< / >"}
+          </Link>
         </p>
       </div>
       <div
         className={`flex flex-row flex-wrap gap-x-3 xs:gap-x-8 xs:gap-y-1 gap-y-0 items-center justify-between xs:mb-4 mb-3 sm:px-6 px-4 ${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-white uppercase`}
       >
-        <p className="cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("full-stack-engineer")}>
-          Full-Stack/Engineer
+        <p className="cursor-pointer hover:text-aqua">
+          <Link href="/full-stack-engineer" prefetch={false}>
+            Full-Stack/Engineer
+          </Link>
         </p>
         <p className="basis-1/3 sm:basis-0 text-right sm:text-center cursor-pointer hover:text-aqua">
           <Link href="/about" prefetch={false}>
             About
           </Link>
         </p>
-        <p className="basis-1/3 sm:basis-0 text-left sm:text-center cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("contact")}>
-          Contact
+        <p className="basis-1/3 sm:basis-0 text-left sm:text-center cursor-pointer hover:text-aqua">
+          <Link href="/contact" prefetch={false}>
+            Contact
+          </Link>
         </p>
-        <p className="cursor-pointer hover:text-aqua" onClick={() => navigateToScreen("madison")}>
-          Madison/Wisconsin
+        <p className="cursor-pointer hover:text-aqua">
+          <Link href="/madison" prefetch={false}>
+            Madison/Wisconsin
+          </Link>
         </p>
       </div>
     </div>

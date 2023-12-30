@@ -1,14 +1,13 @@
+import Link from "next/link"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import { ContentDisplay, ContentDisplayHtml } from "@/app/components/ContentDisplay"
 import ScrollIndicator from "@/app/components/ScrollIndicator"
 import CloseButton from "@/app/components/CloseButton"
 import SwipeInstructions from "@/app/components/SwipeInstructions"
 import { useScreenStore } from "@/app/stores/screenStore"
-import { navigateHome } from "@/utils/screen-navigation"
 import { companyInfo } from "@/app/data/companies"
 import { projectInfo } from "@/app/data/projects"
 import { firaCode } from "@/fonts/fonts"
-import { MouseEventHandler } from "react"
 
 export function CompaniesAndProjectsScreen(props: { screen: string }) {
   // get the current screen state
@@ -68,9 +67,10 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
               <div className={`xs:pt-8 pt-7 pointer-events-auto ${cssClass}`}>
                 <p
                   className={`${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-aqua uppercase hover:text-white cursor-pointer`}
-                  onClick={navigateHome}
                 >
-                  {"<"} Home
+                  <Link href="/" prefetch={false}>
+                    {"<"} Home
+                  </Link>
                 </p>
               </div>
               <div className="narrowwidth:hidden narrowheight:hidden relative flex-grow">

@@ -1,9 +1,12 @@
-import FooterForBot from "./Footer"
-import Image from "next/image"
+"use client"
 
-export default function HomeForBot() {
+import Image from "next/image"
+import Link from "next/link"
+import StaticContentWrapper from "@/app/components/static-content/StaticContentWrapper"
+
+export default function PageContent() {
   return (
-    <>
+    <StaticContentWrapper showAllFooterLinks={false}>
       <p className="lg:mb-6 mb-20 -mt-5">Digital portfolio of Ben Rugg, expert full-stack engineer and serial entrepreneur.</p>
       <Image
         src="/images/home/home-screenshot.jpg"
@@ -15,17 +18,16 @@ export default function HomeForBot() {
       <p className="uppercase tracking-wide text-lg mb-2">View my work:</p>
       <div className="flex justify-center xs:flex-row flex-col xs:space-x-12 space-x-0 xs:space-y-0 space-y-2 text-lg uppercase tracking-wide">
         <p>
-          <a className="text-aqua hover:text-white" href="/companies">
+          <Link href="/companies" className="text-aqua hover:text-white">
             Companies & Products
-          </a>
+          </Link>
         </p>
         <p>
-          <a className="text-aqua hover:text-white" href="/projects">
+          <Link href="/projects" className="text-aqua hover:text-white">
             Projects & Software
-          </a>
+          </Link>
         </p>
       </div>
-      <FooterForBot />
-    </>
+    </StaticContentWrapper>
   )
 }

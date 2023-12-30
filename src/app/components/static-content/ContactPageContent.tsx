@@ -1,8 +1,10 @@
-import FooterForBot from "./Footer"
+"use client"
 
-export default function ContactForBot() {
+import StaticContentWrapper from "@/app/components/static-content/StaticContentWrapper"
+
+export default function PageContent() {
   return (
-    <>
+    <StaticContentWrapper showAllFooterLinks={true}>
       <h1 className="uppercase tracking-wider text-2xl my-6 text-aqua">/Get In Touch</h1>
       <div className="flex flex-col space-y-8 mx-auto my-20">
         <div>
@@ -22,7 +24,6 @@ export default function ContactForBot() {
           </p>
         </div>
       </div>
-      <FooterForBot showAllLinks={true} />
-    </>
+    </StaticContentWrapper>
   )
 }

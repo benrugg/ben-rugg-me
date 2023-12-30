@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import CloseButton from "@/app/components/CloseButton"
 import { firaCode } from "@/fonts/fonts"
-import { navigateHome } from "@/utils/screen-navigation"
 import { resumeSentences } from "@/app/data/resume-sentences"
 import styles from "./glitch.module.scss"
 
@@ -84,7 +83,7 @@ export function FullStackEngineerScreenHtml() {
             <FullStackEngineerScreenHtmlContents />
           </div>
           <div className={`absolute bottom-3 left-1/2 -translate-x-1/2 scale-150 ${closeButtonCssClass}`}>
-            <CloseButton onClick={navigateHome} />
+            <CloseButton />
           </div>
         </>
       )}

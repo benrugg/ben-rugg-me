@@ -3,7 +3,7 @@ import { useRef } from "react"
 import { useGLTF } from "@react-three/drei"
 import { useSpring, animated } from "@react-spring/three"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
-import { navigateHome } from "@/utils/screen-navigation"
+import { useRouter } from "next/navigation"
 import type { Vector3Array } from "@/types"
 
 export default function MadisonWisconsin(props: { isActive: boolean }) {
@@ -39,6 +39,13 @@ export default function MadisonWisconsin(props: { isActive: boolean }) {
       }
     },
   })
+
+  // declare function to navigate home
+  const router = useRouter()
+
+  const navigateHome = () => {
+    router.push("/")
+  }
 
   return (
     <group ref={ref}>

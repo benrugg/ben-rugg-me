@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { firaCode } from "@/fonts/fonts"
 
 export default function StaticPageFooter(props: { showAllLinks?: boolean }) {
@@ -5,35 +6,35 @@ export default function StaticPageFooter(props: { showAllLinks?: boolean }) {
     <div className={`text-center text-white ${firaCode.className} text-xs mt-20`}>
       {props.showAllLinks && (
         <>
-          <a href="/" className="text-aqua hover:text-white">
+          <Link href="/" className="text-aqua hover:text-white">
             Home
-          </a>
+          </Link>
           <span className="mx-2">{"//"}</span>
-          <a href="/companies" className="text-aqua hover:text-white">
+          <Link href="/companies" className="text-aqua hover:text-white">
             Companies & Products
-          </a>
+          </Link>
           <span className="mx-2">{"//"}</span>
-          <a href="/projects" className="text-aqua hover:text-white">
+          <Link href="/projects" className="text-aqua hover:text-white">
             Projects & Software
-          </a>
+          </Link>
           <span className="mx-2">{"//"}</span>
         </>
       )}
-      <a href="/about" className="text-aqua hover:text-white">
+      <Link href="/about" className="text-aqua hover:text-white">
         About
-      </a>
+      </Link>
       <span className="mx-2">{"//"}</span>
-      <a href="/contact" className="text-aqua hover:text-white">
+      <Link href="/contact" className="text-aqua hover:text-white">
         Contact
-      </a>
+      </Link>
       <span className="mx-2">{"//"}</span>
-      <a href="/full-stack-engineer" className="text-aqua hover:text-white">
+      <Link href="/full-stack-engineer" className="text-aqua hover:text-white">
         Full-Stack Engineer
-      </a>
+      </Link>
       <span className="mx-2">{"//"}</span>
-      <a href="/madison" className="text-aqua hover:text-white">
+      <Link href="/madison" className="text-aqua hover:text-white">
         Madison, Wisconsin
-      </a>
+      </Link>
     </div>
   )
 }

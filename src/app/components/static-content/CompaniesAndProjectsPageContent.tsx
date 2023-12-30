@@ -1,4 +1,6 @@
-import FooterForBot from "./Footer"
+"use client"
+
+import StaticContentWrapper from "@/app/components/static-content/StaticContentWrapper"
 import { companyInfo } from "@/app/data/companies"
 import { projectInfo } from "@/app/data/projects"
 import type { Content, ContentSlide, ImageSlide, VideoSlide } from "@/types"
@@ -50,7 +52,7 @@ function CompanyOrProject(props: { content: Content }) {
   )
 }
 
-export default function CompaniesAndProjectsForBot(props: { screen: string }) {
+export default function PageContent(props: { screen: string }) {
   // load the desired data
   const companiesOrProjects = props.screen === "companies" ? companyInfo : projectInfo
 
@@ -58,14 +60,13 @@ export default function CompaniesAndProjectsForBot(props: { screen: string }) {
   const titleText = props.screen === "companies" ? "Companies & Products" : "Projects & Software"
 
   return (
-    <>
+    <StaticContentWrapper showAllFooterLinks={true}>
       <h1 className="uppercase tracking-wider text-2xl my-6">{titleText}</h1>
       <div className="flex justify-center flex-col space-y-64 max-w-4xl mx-auto my-20">
         {companiesOrProjects.map((content, index) => (
           <CompanyOrProject key={index} content={content} />
         ))}
       </div>
-      <FooterForBot showAllLinks={true} />
-    </>
+    </StaticContentWrapper>
   )
 }

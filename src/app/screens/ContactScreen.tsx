@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { useScreenState } from "@/app/hooks/useScreenState"
-import { navigateHome } from "@/utils/screen-navigation"
 import { firaCode } from "@/fonts/fonts"
 import CloseButton from "@/app/components/CloseButton"
 
@@ -19,7 +18,7 @@ export function ContactScreenHtml() {
         >
           <div className="flex flex-row justify-end p-1">
             <div className="relative left-6">
-              <CloseButton onClick={navigateHome} />
+              <CloseButton />
             </div>
           </div>
           <div className="mx-auto relative fullsizedevice:top-[-40px] overflow-y-scroll overflow-x-hidden hide-scrollbar">

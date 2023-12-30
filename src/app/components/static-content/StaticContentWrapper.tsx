@@ -1,4 +1,6 @@
-import StaticPageFooter from "@/app/components/StaticPageFooter"
+"use client"
+
+import StaticPageFooter from "@/app/components/static-content/StaticPageFooter"
 import { useShowStaticContent } from "@/app/hooks/useShowStaticContent"
 import { firaCode } from "@/fonts/fonts"
 
