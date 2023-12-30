@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { useSpring, animated } from "@react-spring/web"
 import { useScreenStore } from "@/app/stores/screenStore"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 import arrowIcon from "@/assets/icons/arrow-icon.svg"
 
 export default function ScrollIndicator(props: { current: number; total: number }) {

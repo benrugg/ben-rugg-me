@@ -6,7 +6,7 @@ import { Instance, Instances } from "@react-three/drei"
 import { useSpring, animated, config } from "@react-spring/three"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
-import { randomFromArray } from "@/utils/random"
+import { randomFromArray } from "@/app/utils/random"
 import { Vector3Array } from "@/types"
 
 const minParticles = 30

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useLayoutEffect } from "react"
-import { isBot } from "@/utils/is-bot"
+import { isBot } from "@/app/utils/is-bot"
 
 export const useShowStaticContent = () => {
   const [showStaticContent, setShowStaticContent] = useState(false)

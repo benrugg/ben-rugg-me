@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { useScreenState } from "@/app/hooks/useScreenState"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 import CloseButton from "@/app/components/CloseButton"
 
 export function ContactScreenHtml() {

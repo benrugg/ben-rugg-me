@@ -1,6 +1,6 @@
 import Image from "next/image"
 import pointerIcon from "@/assets/icons/pointer-icon.svg"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 
 export default function SwipeInstructions() {
   return (

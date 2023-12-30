@@ -7,7 +7,7 @@ import FloatingVideo from "@/app/components/FloatingVideo"
 import Ground from "@/app/components/Ground"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import { useSpring, animated } from "@react-spring/three"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 
 function WelcomeScreenContents() {
   // init refs

@@ -7,7 +7,7 @@ import SwipeInstructions from "@/app/components/SwipeInstructions"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { companyInfo } from "@/app/data/companies"
 import { projectInfo } from "@/app/data/projects"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 
 export function CompaniesAndProjectsScreen(props: { screen: string }) {
   // get the current screen state

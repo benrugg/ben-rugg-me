@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import CloseButton from "@/app/components/CloseButton"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 import { resumeSentences } from "@/app/data/resume-sentences"
 import styles from "./glitch.module.scss"
 

@@ -2,7 +2,7 @@
 
 import StaticPageFooter from "@/app/components/static-content/StaticPageFooter"
 import { useShowStaticContent } from "@/app/hooks/useShowStaticContent"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 
 export default function StaticContentWrapper(props: { children: React.ReactNode; showAllFooterLinks?: boolean }) {
   const { staticContentCSS } = useShowStaticContent()

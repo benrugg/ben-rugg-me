@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { firaCode } from "@/fonts/fonts"
+import { firaCode } from "@/app/fonts/fonts"
 
 export default function StaticPageFooter(props: { showAllLinks?: boolean }) {
   return (

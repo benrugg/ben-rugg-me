@@ -1,5 +1,5 @@
 import MainWrapper from "@/app/components/MainWrapper"
-import { rootUrl } from "@/config/root-url"
+import { rootUrl } from "@/app/config/root-url"
 import "@/app/styles/globals.css"
 import type { Metadata } from "next"
 

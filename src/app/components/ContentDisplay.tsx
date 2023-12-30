@@ -7,8 +7,8 @@ import PlaneImage from "@/app/components/PlaneImage"
 import ArrowButton from "@/app/components/ArrowButton"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
-import { stopPointerProps, stopWheelProps } from "@/utils/stop-pointer-propagation"
-import { firaCode } from "@/fonts/fonts"
+import { stopPointerProps, stopWheelProps } from "@/app/utils/stop-pointer-propagation"
+import { firaCode } from "@/app/fonts/fonts"
 import type { Content, ImageSlide, VideoSlide } from "@/types"
 
 const offScreenY = 5

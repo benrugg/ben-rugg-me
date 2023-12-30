@@ -4,7 +4,7 @@ import { useMemo, useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Point, Points, useTexture } from "@react-three/drei"
 import { makeNoise2D } from "fast-simplex-noise"
-import { DustShader } from "@/shaders/DustShader"
+import { DustShader } from "@/app/shaders/DustShader"
 import type { Vector3Array } from "@/types"
 
 const minParticles = 300
