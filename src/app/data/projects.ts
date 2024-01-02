@@ -64,7 +64,7 @@ export const projectInfo: Content[] = [
       },
       {
         title: "/Description",
-        body: "Daily Good is a unique physical and digital product delivering a daily dose of positivity. I created the a high-touch custom onboarding flow and an admin app powered by ChatGPT. I also created the front-end marketing site and collaborated with my business partner to manufacture the physical product.",
+        body: "Daily Good is a unique physical and digital product delivering a daily dose of positivity. I created a high-touch custom onboarding flow and an admin app powered by ChatGPT. I also created the front-end marketing site and collaborated with my business partner to manufacture the physical product.",
       },
       {
         title: "/Website",
