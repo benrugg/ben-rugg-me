@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   metadataBase: new URL(rootUrl),
   openGraph: {
-    title: "Ben Rugg // Full-Stack Engineer & Entrepreneur",
+    title: "Ben Rugg // Full-Stack Engineer and Entrepreneur",
     description: "Digital portfolio of Ben Rugg // Serial entrepreneur and Full-Stack Engineer in Madison, Wisconsin.",
     url: rootUrl,
     images: [
