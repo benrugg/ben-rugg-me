@@ -59,12 +59,8 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
         screenTransitioningTo: undefined,
         screenTransitioningFrom: undefined,
         isScreenReady: true,
+        sectionIndex: 0,
       })
-
-      // reset section index if we've moved to a screen without sections
-      if (!get().screensWithSections.includes(newScreen)) {
-        set({ sectionIndex: 0 })
-      }
     }, transitionDuration)
 
     // create new timeout to update state a little later
