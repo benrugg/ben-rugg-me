@@ -299,7 +299,7 @@ export const projectInfo: Content[] = [
       },
       {
         title: "/Description",
-        body: "Jumpkick was a proactive notification system for Kickstarter. Users could choose project categories and receive an email when new projects met their unique interests. I built the entire system, including the front-end marketing site and onboarding flow, the backend, the email system, the kickstarter scraping/mining tool, and a proprietary prediction algorithm.",
+        body: "Jumpkick was a notification service for Kickstarter. Users could choose project categories and receive an email when new projects met their unique interests. I built the entire system, including the front-end marketing site and onboarding flow, the backend, the email system, the kickstarter scraping/mining tool, and a proprietary prediction algorithm.",
       },
       {
         title: "/Website",
