@@ -8,13 +8,13 @@ import type { Content, ContentSlide, ImageSlide, VideoSlide } from "@/types"
 function ImgOrVideo(props: { slide: ContentSlide }) {
   if ((props.slide as VideoSlide).video) {
     return (
-      <video className="mx-auto" muted loop playsInline controls>
+      <video className="mx-auto" muted loop playsInline controls preload="none">
         <source src={(props.slide as VideoSlide).video} type="video/mp4" />
       </video>
     )
   } else {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={(props.slide as ImageSlide).image} alt="" />
+    return <img src={(props.slide as ImageSlide).image} alt="" loading="lazy" />
   }
 }
 
