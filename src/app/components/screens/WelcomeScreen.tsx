@@ -117,7 +117,7 @@ export function WelcomeScreenHtml() {
         <p
           className={`${firaCode.className} text-[19px] tracking-wider font-light mt-1 smheight:mt-0 text-aqua mx-auto w-fit text-center cursor-pointer`}
         >
-          <Link href="/full-stack-engineer" prefetch={false}>
+          <Link href="/full-stack-engineer" prefetch={false} className="cursor-help">
             {"< / >"}
           </Link>
         </p>
@@ -125,23 +125,23 @@ export function WelcomeScreenHtml() {
       <div
         className={`flex flex-row flex-wrap gap-x-3 xs:gap-x-8 xs:gap-y-1 gap-y-0 items-center justify-between xs:mb-4 mb-3 sm:px-6 px-4 ${firaCode.className} xs:text-xs text-[13px] tracking-wide font-normal text-white uppercase`}
       >
-        <p className="cursor-pointer hover:text-aqua">
-          <Link href="/full-stack-engineer" prefetch={false}>
+        <p className="hover:text-aqua">
+          <Link href="/projects" prefetch={false}>
             Full-Stack/Engineer
           </Link>
         </p>
-        <p className="basis-1/3 sm:basis-0 text-right sm:text-center cursor-pointer hover:text-aqua">
+        <p className="basis-1/3 sm:basis-0 text-right sm:text-center hover:text-aqua">
           <Link href="/about" prefetch={false}>
             About
           </Link>
         </p>
-        <p className="basis-1/3 sm:basis-0 text-left sm:text-center cursor-pointer hover:text-aqua">
+        <p className="basis-1/3 sm:basis-0 text-left sm:text-center hover:text-aqua">
           <Link href="/contact" prefetch={false}>
             Contact
           </Link>
         </p>
-        <p className="cursor-pointer hover:text-aqua">
-          <Link href="/madison" prefetch={false}>
+        <p className="hover:text-aqua">
+          <Link href="/madison" prefetch={false} className="cursor-help">
             Madison/Wisconsin
           </Link>
         </p>
