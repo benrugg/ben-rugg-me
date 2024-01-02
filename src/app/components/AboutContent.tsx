@@ -3,13 +3,13 @@ export function AboutContentBody() {
     <>
       <p>I&apos;m an expert full-stack engineer and serial entrepreneur who is passionate about creating meaningful interactive experiences.</p>
       <p>
-        I had the good fortune to start, build and sell a highly successful startup in the tech space (Clover), which gave me a wealth of experiences.
-        From building and marketing a revolutionary product, to hiring and leading a team of 20, I had an absolute blast learning and growing as an
-        entrepreneur and creator.
+        I had the amazing experience of founding, building and selling a highly successful startup in the tech space (Clover), which gave me a wealth
+        of skill and knowledge. From creating and marketing a revolutionary product, to hiring and leading a team of 20, I had an absolute blast
+        learning and growing as an entrepreneur and creator.
       </p>
       <p>
-        Since the sale of Clover, I&apos;ve continued creating digital experiences and software - from web apps to mobile apps to games. I now have
-        two decades of experiences on all layers of app development, from front-end to back-end to architecture.
+        Since the sale of Clover, I&apos;ve continued creating digital experiences and software - from web services to mobile apps to games. I now
+        have two decades of experience in all aspects of web app development, from front-end to back-end to architecture.
       </p>
       <p>I love the intersection of technology and design, and I thrive creating user experiences that impact people in a practical way.</p>
     </>
