@@ -4,12 +4,13 @@ import { useThree } from "@react-three/fiber"
 import { MathUtils } from "three"
 import PlaneVideo from "@/app/components/PlaneVideo"
 import PlaneImage from "@/app/components/PlaneImage"
+import SlideIndicator from "@/app/components/SlideIndicator"
 import ArrowButton from "@/app/components/ArrowButton"
 import { useScreenStore } from "@/app/stores/screenStore"
 import { useRotationOnPointerMove } from "@/app/hooks/useRotationOnPointerMove"
 import { stopPointerProps, stopWheelProps } from "@/app/utils/stop-pointer-propagation"
 import { firaCode } from "@/app/fonts/fonts"
-import type { Content, ImageSlide, VideoSlide } from "@/types"
+import type { Content, ImageSlide, Vector3Array, VideoSlide } from "@/types"
 
 const offScreenY = 5
 
@@ -148,14 +149,23 @@ export function ContentDisplay(props: {
     maxContentScale,
   )
 
+  const isMobileScreenSize = size.width < 1250 || size.height < 650
+
+  // set the scale and position of the slide indicator
+  const slideIndicatorScale: Vector3Array = isMobileScreenSize ? [1.66, 1.66, 1] : [1, 1, 1]
+  const slideIndicatorX = (isMobileScreenSize ? 0.516 : 0.509) - props.content.slides.length * 0.013 * (isMobileScreenSize ? 1.66 : 1)
+  const slideIndicatorY = isMobileScreenSize ? -0.306 : -0.302
+  const slideIndicatorPosition: Vector3Array = [slideIndicatorX, slideIndicatorY, 0]
+
   // calculate the rotation of the image (on smaller screens, don't rotate as much)
   const rotationYMultiplier = size.width < 650 ? 0.5 : 1
   const rotationY = (props.rotationDirection === "left" ? Math.PI / 7 : -Math.PI / 7) * rotationYMultiplier
 
   // declare a function to show the text content on mobile
   const showTextContent = () => {
-    if (size.width >= 1250 && size.height >= 650) return
-    useScreenStore.getState().setIsTextContentVisibleOnMobile(true)
+    if (isMobileScreenSize) {
+      useScreenStore.getState().setIsTextContentVisibleOnMobile(true)
+    }
   }
 
   // on narrow-screened mobile devices, replace the title slide with a mobile-friendly version
@@ -200,6 +210,10 @@ export function ContentDisplay(props: {
 
         <Suspense fallback={null}>{Slide}</Suspense>
         {NextSlide && <Suspense fallback={null}>{NextSlide}</Suspense>}
+
+        <group scale={slideIndicatorScale} position={slideIndicatorPosition}>
+          <SlideIndicator numSlides={props.content.slides.length} currentIndex={slideIndex} onClick={setSlideIndex} />
+        </group>
 
         <ArrowButton
           position={[0.56, 0, 0.01]}
