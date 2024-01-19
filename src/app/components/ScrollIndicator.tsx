@@ -33,6 +33,8 @@ export default function ScrollIndicator(props: { current: number; total: number 
     useScreenStore.getState().incrementSectionIndex()
   }
 
+  const [sectionIndex, setSectionIndex] = useScreenStore((state) => [state.sectionIndex, state.setSectionIndex])
+
   return (
     <div className="flex flex-col justify-between items-center h-full text-white uppercase cursor-default pointer-events-none select-none">
       <div>
@@ -49,7 +51,11 @@ export default function ScrollIndicator(props: { current: number; total: number 
         <div className="w-[38px] h-full relative">
           <div className="flex flex-col justify-between w-full bg-[url('/images/ui/scroller-dashed-line-bg.png')] bg-repeat-y bg-center text-aqua text-center h-full text-[10px] font-bold">
             {Array.from({ length: props.total }).map((_, index) => (
-              <p key={index} className="h-[2px] leading-[2px] relative left-[0.5px]">
+              <p
+                key={index}
+                className={`h-[2px] leading-[2px] relative left-[0.5px] ${sectionIndex == index ? "" : "cursor-pointer"} pointer-events-auto`}
+                onClick={() => setSectionIndex(index)}
+              >
                 -
               </p>
             ))}

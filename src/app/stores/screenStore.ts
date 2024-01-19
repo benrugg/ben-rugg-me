@@ -17,11 +17,12 @@ interface ScreenStore {
   isScreenActive: (screen: string) => boolean
   isScreenVisible: (screen: string) => boolean
   sectionIndex: number
+  setSectionIndex: (sectionIndex: number) => void
+  incrementSectionIndex: () => void
+  decrementSectionIndex: () => void
   maxSections: number
   setMaxSections: (maxSections: number) => void
   screensWithSections: string[]
-  incrementSectionIndex: () => void
-  decrementSectionIndex: () => void
   slideIndexProxy: number
   incrementSlideIndex: () => void
   decrementSlideIndex: () => void
@@ -97,11 +98,9 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
     return screen === previousScreen || screen === currentScreen
   },
   sectionIndex: 0,
-  maxSections: 6,
-  setMaxSections: (maxSections) => {
-    set({ maxSections })
+  setSectionIndex: (sectionIndex) => {
+    set({ sectionIndex })
   },
-  screensWithSections: ["companies", "projects"],
   incrementSectionIndex: () => {
     const { allowSwiping, currentScreen, screensWithSections, sectionIndex, maxSections, isTextContentVisibleOnMobile } = get()
     if (!allowSwiping || isTextContentVisibleOnMobile || !screensWithSections.includes(currentScreen) || sectionIndex === maxSections - 1) return
@@ -114,6 +113,11 @@ export const useScreenStore = create<ScreenStore>((set, get) => ({
 
     set({ sectionIndex: sectionIndex - 1 })
   },
+  maxSections: 6,
+  setMaxSections: (maxSections) => {
+    set({ maxSections })
+  },
+  screensWithSections: ["companies", "projects"],
   slideIndexProxy: 0,
   incrementSlideIndex: () => {
     const { allowSwiping, slideIndexProxy } = get()
