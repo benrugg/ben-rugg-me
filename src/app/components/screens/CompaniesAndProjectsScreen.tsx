@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useEffect } from "react"
 import { useScreenState } from "@/app/hooks/useScreenState"
 import { ContentDisplay, ContentDisplayHtml } from "@/app/components/ContentDisplay"
 import ScrollIndicator from "@/app/components/ScrollIndicator"
@@ -49,14 +50,34 @@ export function CompaniesAndProjectsScreenHtml(props: { screen: string }) {
   }
 
   // declare function to hide swipe instructions
-  const hideSwipeInstructions = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    event.stopPropagation()
+  const hideSwipeInstructions = (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (event) {
+      event.stopPropagation()
+    }
     useScreenStore.getState().setHasSeenSwipeInstructions(true)
   }
 
   // prepare animation classes
   const cssClass = isTransitioningTo || isScreenReady ? "fade-in" : "fade-out"
   const justFadeOutCssClass = isTransitioningTo || isScreenReady ? "" : "fade-out"
+
+  // listen for changes to the sectionIndex, to hide the swipe instructions
+  // (this handles a user swiping to the next section, when the instructions
+  // are still visible)
+  useEffect(() => {
+    const unsubscribeFromScreenStore = useScreenStore.subscribe((state, prevState) => {
+      if (!isActive) return
+
+      if (state.sectionIndex !== prevState.sectionIndex) {
+        hideSwipeInstructions()
+      }
+    })
+
+    // cleanup when unmounting
+    return () => {
+      unsubscribeFromScreenStore()
+    }
+  })
 
   return (
     <>
