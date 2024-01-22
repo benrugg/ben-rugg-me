@@ -11,8 +11,10 @@ const config: Config = {
       },
       colors: {
         aqua: "#23FCE2",
+        "soft-blue": "#0b9aee",
       },
       letterSpacing: {
+        slightlytight: "-0.01em",
         normal: "0.06em",
         wide: "0.1em",
         wider: "0.2em",
